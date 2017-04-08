@@ -1,12 +1,19 @@
 // Variables
+@import "~bulma/sass/utilities/variables";
 @import "partials/variables";
 @import "partials/colors";
+@import "partials/fonts";
 
 // Mixins
 @import "mixins/mixins";
 
 // Main Layout
 @import "layout/header";
+
+// User
+@import "user/visual";
+@import "user/home";
+@import "user/control-bar";
 
 body, html {
   margin: 0;
@@ -15,10 +22,6 @@ body, html {
 
 * {
   box-sizing: border-box;
-}
-
-.container {
-  padding: 20px;
 }
 
 .splash-screen {
@@ -69,4 +72,12 @@ body, html {
   &:hover {
     color: $success;
   }
+}
+
+.footer {
+  background-color: transparent;
+
+  position: fixed;
+  bottom: 0;
+  left: 0;
 }

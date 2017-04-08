@@ -12,8 +12,8 @@
 
     @section('styles')
         <!-- Styles -->
-        <link href="{{ asset('assets/css/vendor.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/css/app.css') }}" rel="stylesheet">
+        <link href="{{ mix('assets/css/vendor.css') }}" rel="stylesheet">
+        <link href="{{ mix('assets/css/app.css') }}" rel="stylesheet">
     @show
     @yield('header-js')
     <!-- Scripts -->
@@ -23,16 +23,11 @@
         ]) !!};
     </script>
 </head>
-<body>
+<body class="@yield('class')">
     <header>
         @include('layouts/partials/header')
     </header>
     <main role="main">
-        @if (Auth::guest())
-            <header>
-                @include('layouts/partials/control-bar')
-            </header>
-        @endif
         <div class="container">
             @yield('content')
         </div>
@@ -42,7 +37,7 @@
     </section>
     <!-- Scripts -->
     @section('footer-js')
-        <script src="{{ asset('assets/js/app.js') }}"></script>
+        <script src="{{ mix('assets/js/app.js') }}"></script>
     @show
 </body>
 </html>

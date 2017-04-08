@@ -1,6 +1,8 @@
 /node_modules
 /public/hot
 /public/storage
+/public/fonts
+/public/assets/fonts
 /storage/*.key
 /vendor
 /.idea
@@ -8,3 +10,5 @@
 Homestead.json
 Homestead.yaml
 .env
+.DS_Store
+config.codekit3

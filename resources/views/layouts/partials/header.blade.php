@@ -2,16 +2,17 @@
     <div class="container">
         <div class="header__logo is-pulled-left">
             <a href="{{ url('/') }}">
-                <img src="{{ url('assets/img/logo.png') }}" title="{{ env('APP_NAME') }}" />
+                <img src="{{ asset('assets/img/logo.png') }}" title="{{ env('APP_NAME') }}" />
             </a>
         </div>
         <div class="header__user is-pulled-right">
-            @if (Auth::guest())
-                <div class="header__user--guest">
-                    <a href="{{ route('login') }}">
-                        <i class="fa fa-user-o" aria-hidden="true"></i>
-                    </a>
-                </div>
+{{--            @if (Auth::guest())--}}
+            <div class="header__user--guest">
+                <a href="{{ route('login') }}">
+                    <img src="{{ asset('assets/img/icons/user.svg') }}" alt="User">
+                </a>
+            </div>
+        </div>
             {{--@else--}}
                 {{--<div class="header__user--user">--}}
 
@@ -35,8 +36,10 @@
                         {{--</li>--}}
                     {{--</ul>--}}
                 {{--</li>--}}
-            @endif
-        </div>
+            {{--@endif--}}
     </div>
 </div>
+@if (Auth::check())
+    @extends('layouts/partials/control-bar')
+@endif
 
