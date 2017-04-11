@@ -1,8 +1,8 @@
 // Variables
 @import "~bulma/sass/utilities/variables";
-@import "partials/variables";
-@import "partials/colors";
-@import "partials/fonts";
+@import "layout/partials/variables";
+@import "layout/partials/colors";
+@import "layout/partials/fonts";
 
 // Mixins
 @import "mixins/mixins";
@@ -11,9 +11,12 @@
 @import "layout/header";
 
 // User
-@import "user/visual";
 @import "user/home";
-@import "user/control-bar";
+@import "layout/control-bar";
+
+// Visuals
+@import "visuals/visual";
+@import "visuals/player";
 
 body, html {
   margin: 0;

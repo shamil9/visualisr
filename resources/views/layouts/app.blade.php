@@ -25,7 +25,7 @@
 </head>
 <body class="@yield('class')">
     <header>
-        @include('layouts/partials/header')
+        @include('layouts.partials.header')
     </header>
     <main role="main">
         <div class="container">
@@ -33,7 +33,7 @@
         </div>
     </main>
     <section class="footer">
-        @include('layouts/partials/footer')
+        @include('layouts.partials.footer')
     </section>
     <!-- Scripts -->
     @section('footer-js')

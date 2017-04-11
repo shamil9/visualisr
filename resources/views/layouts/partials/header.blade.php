@@ -9,7 +9,7 @@
 {{--            @if (Auth::guest())--}}
             <div class="header__user--guest">
                 <a href="{{ route('login') }}">
-                    <img src="{{ asset('assets/img/icons/user.svg') }}" alt="User">
+                    <img src="{{ asset('assets/img/icons/user/user.svg') }}" alt="User">
                 </a>
             </div>
         </div>
@@ -40,6 +40,6 @@
     </div>
 </div>
 @if (Auth::check())
-    @extends('layouts/partials/control-bar')
+    @include('layouts.partials.control-bar')
 @endif
 
