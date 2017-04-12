@@ -6,7 +6,7 @@
     </span>
 
     <span class="player__seek-back">
-        <a id="seek-back" href="#">
+        5sec<a id="seek-back" href="#">
             <img src="{{ asset('assets/img/icons/player/seek-back.svg') }}" alt="Seek back 5sec">
         </a>
     </span>
@@ -26,7 +26,7 @@
     <span class="player__seek-forward">
         <a id="seek-forward" href="#">
             <img src="{{ asset('assets/img/icons/player/seek-forward.svg') }}" alt="Seek Forward 5sec">
-        </a>
+        </a>5sec
     </span>
 
     <span class="player__speed">

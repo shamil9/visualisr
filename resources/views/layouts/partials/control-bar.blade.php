@@ -1,10 +1,12 @@
 <div class="control-bar">
     <div class="container">
         <nav class="columns">
-            <div class="column is-1">
-                <span>{{ Auth::user()->name }}</span>
-            </div>
-            <div class="column is-10 has-text-centered">
+            @if(Auth::check())
+                <div class="column is-2">
+                    <span>{{ auth()->user()->name }}</span>
+                </div>
+            @endif
+            <div class="column has-text-centered">
                 @section('control-bar')
                 @show
             </div>

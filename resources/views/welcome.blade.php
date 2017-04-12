@@ -20,13 +20,11 @@
                 </a>
             </div>
             <div class="header__user is-pulled-right">
-{{--                @if (Auth::guest())--}}
-                    <div class="header__user--guest">
-                        <a href="{{ route('login') }}">
-                            <img src="{{ asset('assets/img/icons/user.svg') }}" alt="User">
-                        </a>
-                    </div>
-                {{--@endif--}}
+                <div class="header__user--guest">
+                    <a href="{{ route('login') }}">
+                        <img src="{{ asset('assets/img/icons/user/user.svg') }}" alt="User">
+                    </a>
+                </div>
             </div>
         </div>
     </header>

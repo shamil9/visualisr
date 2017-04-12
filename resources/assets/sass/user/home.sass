@@ -1,8 +1,21 @@
-.home
+.home section
   background-color: $white-ter
 
-.user__home
-  color: $primary
+.home__title
+  border-bottom: 1px solid $primary
 
-  font-family: $heading
-  font-size: 64px !important
+  & h1
+    color: $primary
+
+    font-family: $heading
+    font-size: 64px !important
+
+.home__plus
+  +center-flex
+
+  width: 35px
+  height: 35px
+
+  background-color: $success
+
+  border-radius: 50%

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'New Visual')
+@section('title', $visual->track)
 
 @section('control-bar')
     @if($visual->user->canManage($visual->user))
@@ -22,16 +22,16 @@
 
 @section('content')
     <div class="section">
-        <div class="visual">
-            <img src="http://lorempixel.com/1500/500/abstract/" alt="{{ $visual->track }}">
-        </div>
         <form id="delete-form" action="{{ route('visuals.destroy', ['visual' => $visual->id]) }}" method="POST" style="display: none;">
             {{ method_field('DELETE') }}
             {{ csrf_field() }}
         </form>
-        <form id="update-form" action="{{ route('visuals.update', ['visual' => $visual->id]) }}" method="POST" style="display: none;">
+        <form id="update-form" action="{{ route('visuals.update', ['visual' => $visual->id]) }}" method="POST">
             {{ method_field('PATCH') }}
             {{ csrf_field() }}
+            Track <input type="text" name="track" value="{{ $visual->track }}">
+            Artist <input type="text" name="artist" value="{{ $visual->artist }}">
+            Album <input type="text" name="album" value="{{ $visual->album }}">
         </form>
     </div>
 @endsection

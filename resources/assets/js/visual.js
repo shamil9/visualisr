@@ -31,7 +31,6 @@ class Visualiser {
 
             x += barWidth
         }
-        console.log(dataArray)
     }
 }
 

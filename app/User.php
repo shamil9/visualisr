@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -26,4 +27,15 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function visuals() {
+        return $this->hasMany(Visual::class);
+    }
+
+    public function canManage(User $user) {
+        if ($user->id === \auth()->user()->id)
+            return true;
+
+        return false;
+    }
 }

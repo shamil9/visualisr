@@ -3,7 +3,7 @@ import Visualiser from './visual'
 
 export default class Player {
     constructor () {
-        this.sound = new Howl({ src: ['/assets/song.mp3'] })
+        this.sound = new Howl({ src: ['/assets/song.mp3'], volume: 0.5 })
         this.analyser = Howler.ctx.createAnalyser()
         Howler.masterGain.connect(this.analyser)
         this.dataArray = new Uint8Array(this.analyser.frequencyBinCount)

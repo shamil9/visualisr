@@ -10,12 +10,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Auth::loginUsingId(1);
 Route::get('/', function () {
+    if (auth()->check())
+        return redirect()->route('user.home');
+
     return view('welcome');
-});
+})->name('index');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
-Route::get('/visuals/{visual}', 'ImageController@show')->name('visual_show');
+Route::get('/home', 'HomeController@index')->name('user.home');
+Route::resource('visuals', 'VisualController');

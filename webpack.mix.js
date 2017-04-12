@@ -17,4 +17,4 @@ mix.js('resources/assets/js/app.js', 'public/assets/js')
    .sass('resources/assets/sass/app.scss', 'public/assets/css')
    .sass('resources/assets/sass/vendor.scss', 'public/assets/css')
         .options({ processCssUrls: false })
-    .copy('resources/assets/img', 'public/assets/');
+    .copy('resources/assets/img/', 'public/assets/img', false);

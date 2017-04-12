@@ -20,7 +20,17 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
-        'avatar' => 'user.png',
+        'avatar' => $faker->imageUrl(128, 128, 'people'),
         'banned' => 0,
+    ];
+});
+
+$factory->define(App\Visual::class, function(Faker\Generator $faker) {
+    return [
+        'user_id' => factory(App\User::class)->create()->id,
+        'track' => $faker->words(2, true),
+        'album' => $faker->words(2, true),
+        'artist' => $faker->name,
+        'image' => $faker->imageUrl(1500, 500, 'abstract'),
     ];
 });

@@ -32,9 +32,9 @@
             @yield('content')
         </div>
     </main>
-    <section class="footer">
-        @include('layouts.partials.footer')
-    </section>
+    {{--<section class="footer">--}}
+        {{--@include('layouts.partials.footer')--}}
+    {{--</section>--}}
     <!-- Scripts -->
     @section('footer-js')
         <script src="{{ mix('assets/js/app.js') }}"></script>
