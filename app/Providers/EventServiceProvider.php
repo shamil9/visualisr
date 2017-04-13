@@ -16,6 +16,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\VisualUpdateEvent' => [
             'App\Listeners\VisualUpdateEventListener',
         ],
+        'App\Events\VisualStoreEvent' => [
+            'App\Listeners\VisualStoreEventListener',
+        ],
     ];
 
     /**

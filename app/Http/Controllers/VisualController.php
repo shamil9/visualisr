@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\VisualStoreEvent;
 use App\Events\VisualUpdateEvent;
 use App\Listeners\VisualUpdateEventListener;
 use App\Visual;
@@ -45,7 +46,10 @@ class VisualController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $visual = new Visual();
+        event(new VisualStoreEvent($visual, $request));
+
+        return $visual;
     }
 
     /**

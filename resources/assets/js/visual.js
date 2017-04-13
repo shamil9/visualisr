@@ -1,21 +1,21 @@
 class Visualiser {
     static init() {
         this.canvas = document.querySelector('#visualizer')
-        this.canvas.width = 1000;
-        this.canvas.height = 600;
+        this.canvas.width = 1900;
+        this.canvas.height = 1080;
+        this.canvasCtx = this.canvas.getContext('2d')
     }
     static showData(dataArray) {
         const WIDTH = this.canvas.width;
         const HEIGHT = this.canvas.height;
-        const canvasCtx = this.canvas.getContext('2d')
-        canvasCtx.clearRect(0, 0, WIDTH, HEIGHT);
+        this.canvasCtx.clearRect(0, 0, WIDTH, HEIGHT);
 
-        let barWidth = 1024 / WIDTH;
+        let barWidth = WIDTH / 1024;
         let barHeight;
         let x = 0;
         // Draw the time domain chart.
         for (let i = 0; i < 1024; i++) {
-            let value = dataArray[ i ]
+            // let value = dataArray[ i ]
             // let percent = value / 256;
             // console.log(value)
             // let height = HEIGHT * percent;
@@ -24,10 +24,10 @@ class Visualiser {
             // canvasCtx.fillStyle = 'dark';
             // ctx.fillRect(x, y, width, height)
             // canvasCtx.fillRect(i, 1, 1, value);
-            barHeight = dataArray[ i ] * 2
+            barHeight = dataArray[ i ] * 5
 
-            canvasCtx.fillStyle = 'rgba(0, 0, 0, ' + value + ','
-            canvasCtx.fillRect(x, HEIGHT - barHeight, barWidth, 5)
+            this.canvasCtx.fillStyle = 'black'
+            this.canvasCtx.fillRect(x, HEIGHT - barHeight, barWidth, 5)
 
             x += barWidth
         }

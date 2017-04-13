@@ -10,6 +10,7 @@ export default class Player {
         this.analyser.connect(Howler.ctx.destination)
         this.playButton = document.querySelector('#play')
         this.pauseButton = document.querySelector('#pause')
+        this.saveButton = document.querySelector('#save')
         this.seekForwardButton = document.querySelector('#seek-forward')
         this.seekBackButton = document.querySelector('#seek-back')
         this.position = null
@@ -22,6 +23,7 @@ export default class Player {
         this.pauseButton.addEventListener('click', this.pause.bind(this))
         this.seekForwardButton.addEventListener('click', this.jumpForward.bind(this))
         this.seekBackButton.addEventListener('click', this.jumpBack.bind(this))
+        this.saveButton.addEventListener('click', this.pause.bind(this))
     }
 
     play(event) {
@@ -85,4 +87,4 @@ export default class Player {
     }
 }
 
-window.onload = () => new Player()
+

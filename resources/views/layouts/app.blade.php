@@ -37,6 +37,8 @@
     {{--</section>--}}
     <!-- Scripts -->
     @section('footer-js')
+        <script src="{{ mix('assets/js/manifest.js') }}"></script>
+        <script src="{{ mix('assets/js/vendor.js') }}"></script>
         <script src="{{ mix('assets/js/app.js') }}"></script>
     @show
 </body>

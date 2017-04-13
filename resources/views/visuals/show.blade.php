@@ -4,7 +4,7 @@
 @section('control-bar')
     @if($visual->user->canManage($visual->user))
         <span>{{ $visual->track . " / " . $visual->artist . " / " . $visual->album }}</span>
-        <span><a href="{{ route('visuals.edit', ['visual' => $visual]) }}">Edit</a></span>
+        <span><a href="{{ route('visuals.edit', ['visual' => $visual]) }}">edit</a></span>
         <span class="visual__save">
         <a href="#" onclick="event.preventDefault();
                 document.getElementById('update-form').submit();">
@@ -23,7 +23,7 @@
 @section('content')
     <div class="section">
         <div class="visual">
-            <img src="http://lorempixel.com/1500/500/abstract/" alt="{{ $visual->track }}">
+            <img src="{{ asset('uploads/visuals/' . $visual->user->id . '/' . $visual->image) }}" alt="{{ $visual->track }}">
         </div>
         <form id="delete-form" action="{{ route('visuals.destroy', ['visual' => $visual->id]) }}" method="POST" style="display: none;">
             {{ method_field('DELETE') }}

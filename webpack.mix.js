@@ -12,8 +12,7 @@ const { mix } = require('laravel-mix');
  */
 
 mix.js('resources/assets/js/app.js', 'public/assets/js')
-   .js('resources/assets/js/player.js', 'public/assets/js')
-   .js('resources/assets/js/visual.js', 'public/assets/js')
+    .extract(['vue', 'lodash', 'axios', 'jquery'])
    .sass('resources/assets/sass/app.scss', 'public/assets/css')
    .sass('resources/assets/sass/vendor.scss', 'public/assets/css')
         .options({ processCssUrls: false })

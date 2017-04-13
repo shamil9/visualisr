@@ -1,7 +1,7 @@
 {
+  "/assets/js/vendor.js": "/assets/js/vendor.js",
   "/assets/js/app.js": "/assets/js/app.js",
   "/assets/css/app.css": "/assets/css/app.css",
   "/assets/css/vendor.css": "/assets/css/vendor.css",
-  "/assets/js/player.js": "/assets/js/player.js",
-  "/assets/js/visual.js": "/assets/js/visual.js"
+  "/assets/js/manifest.js": "/assets/js/manifest.js"
 }

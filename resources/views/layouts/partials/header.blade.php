@@ -5,7 +5,7 @@
                 <div class="level-item">
                     <div class="header__logo is-pulled-left">
                         <a href="{{ url('/') }}">
-                            <img src="{{ asset('assets/img/logo.png') }}" title="{{ env('APP_NAME') }}" />
+                            <img src="{{ asset('assets/img/logo.svg') }}" title="{{ env('APP_NAME') }}" />
                         </a>
                     </div>
                     <a href="{{ route('logout') }}"

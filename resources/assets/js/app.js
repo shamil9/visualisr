@@ -6,6 +6,10 @@
  */
 
 require('./bootstrap');
+import Player from './player'
+import VisualManager from './visuals-manager'
+window.Player = Player
+window.VisualManager = VisualManager
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
