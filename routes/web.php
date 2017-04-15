@@ -21,4 +21,5 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('user.home');
+Route::post('visuals/{visual}', 'VisualController@update');
 Route::resource('visuals', 'VisualController');

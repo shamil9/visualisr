@@ -28,18 +28,19 @@
             </a>5sec
         </div>
 
-        <div class="player__save" @click.prevent="$emit('toggleModalEvent')">
+        <div class="player__save" @click.prevent="toggleModal">
             <a id="save" href="#">
                 <img src="/assets/img/icons/user/camera.svg" alt="Save">
             </a>
         </div>
 
-        <manager :url="url"></manager>
+        <manager :url="url" :image="image"></manager>
     </div>
 </template>
 
 <script>
     import Player from '../player'
+    const visualizer = document.querySelector('#visualizer')
     export default {
         mounted() {
             this.$on('pauseEvent', () => this.pause())
@@ -49,7 +50,8 @@
             return {
                 player: new Player(),
                 isPlaying: false,
-                isPaused: false
+                isPaused: false,
+                image: null
             }
         },
         methods: {
@@ -69,6 +71,10 @@
             jumpForward() {
                 this.player.jumpForward()
             },
+            toggleModal() {
+                this.image = visualizer.toDataURL()
+                this.$emit('toggleModalEvent')
+            }
         }
     }
 </script>

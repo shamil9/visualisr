@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\VisualDestroyEvent;
 use App\Events\VisualStoreEvent;
 use App\Events\VisualUpdateEvent;
 use App\Listeners\VisualUpdateEventListener;
@@ -95,7 +96,7 @@ class VisualController extends Controller
 
         event(new VisualUpdateEvent($visual, $request));
 
-        return back();
+        // return $visual;
     }
 
     /**
@@ -104,10 +105,10 @@ class VisualController extends Controller
      * @param  \App\Visual $visual
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Visual $visual)
+    public function destroy(Visual $visual, Request $request)
     {
         $this->userCheck($visual->user);
-        $visual->delete();
+        event(new VisualDestroyEvent($visual, $request));
 
         return redirect()->route('user.home');
     }

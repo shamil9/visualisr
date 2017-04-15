@@ -16,7 +16,7 @@
                         </p>
                         <p class="control is-expanded">
                             <input
-                                v-model="track"
+                                v-model="localTrack"
                                 :class="{'is-danger': errors.track}"
                                 name="track" class="input" type="text">
                         </p>
@@ -33,7 +33,7 @@
                         </p>
                         <p class="control is-expanded">
                             <input
-                                v-model="album"
+                                v-model="localAlbum"
                                 :class="{'is-danger': errors.album}"
                                 name="album" class="input" type="text">
                         </p>
@@ -50,7 +50,7 @@
                         </p>
                         <p class="control is-expanded">
                             <input
-                                v-model="artist"
+                                v-model="localArtist"
                                 :class="{'is-danger': errors.artist}"
                                 name="artist" class="input" type="text">
                         </p>
@@ -74,18 +74,17 @@
 </template>
 
 <script>
-    const visualizer = document.querySelector('#visualizer')
     export default {
-        props: ['url'],
+        props: ['url', 'track', 'album', 'artist', 'image'],
         mounted() {
             this.$parent.$on('toggleModalEvent', () => this.toggleModal())
         },
         data() {
             return {
                 showSubmitModal: false,
-                track: null,
-                album: null,
-                artist: null,
+                localTrack: this.track || null,
+                localAlbum: this.album || null,
+                localArtist: this.album || null,
                 loading: false,
                 disabled: false,
                 submitMessage: 'Save Visual',
@@ -103,10 +102,10 @@
                 this.showLoadingSpiner()
                 window.axios
                     .post(this.url, {
-                        image: visualizer.toDataURL(),
-                        track: this.track,
-                        album: this.album,
-                        artist: this.artist
+                        image: this.image,
+                        track: this.localTrack,
+                        album: this.localAlbum,
+                        artist: this.localArtist
                     })
                     .then(response => {
                         this.showSuccess()
@@ -142,7 +141,7 @@
                 this.colorClass = 'is-success'
             },
             redirectTo(response) {
-                const redirectTo = `${this.url}/${response.data.id}`
+                const redirectTo = `${this.url}/${response.data.id || ''}`
                 setTimeout(() => window.location.href = redirectTo, 2000)
             }
         }

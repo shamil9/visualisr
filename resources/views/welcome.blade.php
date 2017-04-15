@@ -19,13 +19,6 @@
                     <img src="{{ url('assets/img/logo.png') }}" title="{{ env('APP_NAME') }}" />
                 </a>
             </div>
-            <div class="header__user is-pulled-right">
-                <div class="header__user--guest">
-                    <a href="{{ route('login') }}">
-                        <img src="{{ asset('assets/img/icons/user/user.svg') }}" alt="User">
-                    </a>
-                </div>
-            </div>
         </div>
     </header>
     <main class="splash-screen" role="main">

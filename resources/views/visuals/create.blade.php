@@ -17,7 +17,7 @@
 @section('footer-js')
     @parent
     <script>
-        var playerControls = new Vue({
+        new Vue({
             el: '#player',
         });
     </script>

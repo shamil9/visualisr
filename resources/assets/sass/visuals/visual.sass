@@ -22,19 +22,10 @@
   display: block
   margin: 0 auto
 
-#visual-form
-  font-size: 20px
-  & input
-    color: $grey-light
+.visual__edit
+  @include flex()
+  height: $control-bar-height
 
-    width: 100%
-    height: 50px
-
-    border-bottom: 1px $grey-light solid
-    border-top: none
-    border-left: none
-    border-right: none
-    outline: none
-
-    font-size: 20px
-    line-height: 20px
+.visual__track, .visual__artist, .visual__album
+  text-transform: capitalize
+  margin: 0 10px

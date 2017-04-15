@@ -2,22 +2,38 @@
 @section('title', 'New Visual')
 
 @section('control-bar')
-    @if($visual->user->canManage($visual->user))
-        <span>{{ $visual->track . " / " . $visual->artist . " / " . $visual->album }}</span>
-        <span><a href="{{ route('visuals.edit', ['visual' => $visual]) }}">edit</a></span>
-        <span class="visual__save">
-        <a href="#" onclick="event.preventDefault();
-                document.getElementById('update-form').submit();">
-            <img src="{{ asset('assets/img/icons/user/confirm.svg') }}" alt="Delete">
-        </a>
-    </span>
-    <span class="visual__remove">
-        <a href="#" onclick="event.preventDefault();
-                document.getElementById('delete-form').submit();">
-            <img src="{{ asset('assets/img/icons/user/trash.svg') }}" alt="Delete">
-        </a>
-    </span>
-    @endif
+        <div id="visual-edit" class="visual__edit">
+            <div>
+                <span class="visual__track">
+                    <b>Track:</b> {{ $visual->track }}
+                </span> ∙
+                <span class="visual__album">
+                  <b>Album:</b>  {{ $visual->album }}
+                </span> ∙
+                <span class="visual__artist">
+                   <b>Artist:</b> {{ $visual->artist }}
+                </span>
+            </div>
+            @if($visual->user->canManage($visual->user))
+                <div class="visual__save">
+                    <a href="#" @click.prevent="$emit('toggleModalEvent')">
+                        <img src="{{ asset('assets/img/icons/user/confirm.svg') }}" alt="Delete">
+                    </a>
+                </div>
+                <div class="visual__remove">
+                    <a href="#" onclick="event.preventDefault();
+                            document.getElementById('delete-form').submit();">
+                        <img src="{{ asset('assets/img/icons/user/trash.svg') }}" alt="Delete">
+                    </a>
+                </div>
+                <manager
+                    url="{{ route('visuals.update', ['visual' => $visual->id]) }}"
+                    track="{{ $visual->track }}"
+                    album="{{ $visual->album }}"
+                    artist="{{ $visual->artist }}">
+                </manager>
+            @endif
+        </div>
 @endsection
 
 @section('content')
@@ -29,13 +45,16 @@
             {{ method_field('DELETE') }}
             {{ csrf_field() }}
         </form>
-        <form id="update-form" action="{{ route('visuals.update', ['visual' => $visual->id]) }}" method="POST" style="display: none;">
-            {{ method_field('PATCH') }}
-            {{ csrf_field() }}
-        </form>
     </div>
 @endsection
 
 @section('footer-js')
-    @parent
+@parent
+<script>
+    @if($visual->user->canManage($visual->user))
+        new Vue({
+            el: '#visual-edit',
+        });
+    @endif
+</script>
 @endsection
