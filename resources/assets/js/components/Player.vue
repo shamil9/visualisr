@@ -22,13 +22,19 @@
             </a>
         </div>
 
-        <div class="player__seek-forward "  @click.prevent="jumpForward">
+        <div class="player__seek-forward" @click.prevent="jumpForward">
             <a id="seek-forward" href="#">
                 <img src="/assets/img/icons/player/seek-forward.svg" alt="Seek Forward 5sec">
             </a>5sec
         </div>
 
-        <slot></slot>
+        <div class="player__save" @click.prevent="$emit('toggleModalEvent')">
+            <a id="save" href="#">
+                <img src="/assets/img/icons/user/camera.svg" alt="Save">
+            </a>
+        </div>
+
+        <manager :url="url"></manager>
     </div>
 </template>
 
@@ -38,6 +44,7 @@
         mounted() {
             this.$on('pauseEvent', () => this.pause())
         },
+        props: ['url'],
         data() {
             return {
                 player: new Player(),

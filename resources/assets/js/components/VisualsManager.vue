@@ -1,85 +1,75 @@
 <template>
     <span>
-        <span class="player__save" @click.prevent="toggleModal">
-            <a id="save" href="#">
-                <img src="/assets/img/icons/user/camera.svg" alt="Save">
-            </a>
-        </span>
 
-        <span class="player__close">
-            <a id="trash" href="#">
-                <img src="/assets/img/icons/player/close.svg" alt="">
-            </a>
-            <modal v-if="showSubmitModal">
-                <div class="modal-card">
-                    <header class="modal-card-head">
-                        <p class="modal-card-title">Save Visual</p>
-                        <button class="delete" @click.prevent="toggleModal"></button>
-                    </header>
-                    <section class="modal-card-body">
-                        <div class="field has-addons">
-                            <p class="control">
-                                <button
-                                    :class="[errors.track ? 'is-danger' : 'is-outlined']"
-                                    disabled class="button" style="width: 75px">Track</button>
-                            </p>
-                            <p class="control is-expanded">
-                                <input
-                                    v-model="track"
-                                    :class="{'is-danger': errors.track}"
-                                    name="track" class="input" type="text">
-                            </p>
-                        </div>
-                        <b v-if="errors.track"
-                            v-for="error in errors.track"
-                            class="help is-danger">* {{ error }}</b>
+        <modal v-if="showSubmitModal">
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Save Visual</p>
+                    <button class="delete" @click.prevent="toggleModal"></button>
+                </header>
+                <section class="modal-card-body">
+                    <div class="field has-addons">
+                        <p class="control">
+                            <button
+                                :class="[errors.track ? 'is-danger' : 'is-outlined']"
+                                disabled class="button" style="width: 75px">Track</button>
+                        </p>
+                        <p class="control is-expanded">
+                            <input
+                                v-model="track"
+                                :class="{'is-danger': errors.track}"
+                                name="track" class="input" type="text">
+                        </p>
+                    </div>
+                    <b v-if="errors.track"
+                        v-for="error in errors.track"
+                        class="help is-danger">* {{ error }}</b>
 
-                        <div class="field has-addons">
-                            <p class="control">
-                                <button
-                                    :class="[errors.album ? 'is-danger' : 'is-outlined']"
-                                    disabled class="button" style="width: 75px">Album</button>
-                            </p>
-                            <p class="control is-expanded">
-                                <input
-                                    v-model="album"
-                                    :class="{'is-danger': errors.album}"
-                                    name="album" class="input" type="text">
-                            </p>
-                        </div>
-                        <b v-if="errors.album"
-                            v-for="error in errors.album"
-                            class="help is-danger">* {{ error }}</b>
+                    <div class="field has-addons">
+                        <p class="control">
+                            <button
+                                :class="[errors.album ? 'is-danger' : 'is-outlined']"
+                                disabled class="button" style="width: 75px">Album</button>
+                        </p>
+                        <p class="control is-expanded">
+                            <input
+                                v-model="album"
+                                :class="{'is-danger': errors.album}"
+                                name="album" class="input" type="text">
+                        </p>
+                    </div>
+                    <b v-if="errors.album"
+                        v-for="error in errors.album"
+                        class="help is-danger">* {{ error }}</b>
 
-                        <div class="field has-addons">
-                            <p class="control">
-                                <button
-                                    :class="[errors.artist ? 'is-danger' : 'is-outlined']"
-                                    disabled class="button" style="width: 75px">Artist</button>
-                            </p>
-                            <p class="control is-expanded">
-                                <input
-                                    v-model="artist"
-                                    :class="{'is-danger': errors.artist}"
-                                    name="artist" class="input" type="text">
-                            </p>
-                        </div>
-                        <b v-if="errors.artist"
-                            v-for="error in errors.artist"
-                            class="help is-danger">* {{ error }}</b>
+                    <div class="field has-addons">
+                        <p class="control">
+                            <button
+                                :class="[errors.artist ? 'is-danger' : 'is-outlined']"
+                                disabled class="button" style="width: 75px">Artist</button>
+                        </p>
+                        <p class="control is-expanded">
+                            <input
+                                v-model="artist"
+                                :class="{'is-danger': errors.artist}"
+                                name="artist" class="input" type="text">
+                        </p>
+                    </div>
+                    <b v-if="errors.artist"
+                        v-for="error in errors.artist"
+                        class="help is-danger">* {{ error }}</b>
 
-                    </section>
-                    <footer class="modal-card-foot">
-                        <a class="button"
-                            @click.prevent="save"
-                            :class="[{ 'is-loading': loading }, colorClass]"
-                            :disabled="disabled"
-                            >{{ submitMessage }}</a>
-                        <a class="button" @click.prevent="toggleModal">Close</a>
-                    </footer>
-                  </div>
-            </modal>
-        </span>
+                </section>
+                <footer class="modal-card-foot">
+                    <a class="button"
+                        @click.prevent="save"
+                        :class="[{ 'is-loading': loading }, colorClass]"
+                        :disabled="disabled"
+                        >{{ submitMessage }}</a>
+                    <a class="button" @click.prevent="toggleModal">Close</a>
+                </footer>
+              </div>
+        </modal>
     </span>
 </template>
 
@@ -87,6 +77,9 @@
     const visualizer = document.querySelector('#visualizer')
     export default {
         props: ['url'],
+        mounted() {
+            this.$parent.$on('toggleModalEvent', () => this.toggleModal())
+        },
         data() {
             return {
                 showSubmitModal: false,
@@ -115,7 +108,10 @@
                         album: this.album,
                         artist: this.artist
                     })
-                    .then(response => this.showSuccess())
+                    .then(response => {
+                        this.showSuccess()
+                        this.redirectTo(response)
+                    })
                     .catch(error => {
                         this.showError()
                         this.errors = error.response.data
@@ -144,6 +140,10 @@
                 this.errors = {}
                 this.submitMessage = 'Save'
                 this.colorClass = 'is-success'
+            },
+            redirectTo(response) {
+                const redirectTo = `${this.url}/${response.data.id}`
+                setTimeout(() => window.location.href = redirectTo, 2000)
             }
         }
     }

@@ -3,9 +3,7 @@
 
 @section('control-bar')
     <div id="player">
-        <player>
-            <manager url="{{ route('visuals.store') }}"></manager>
-        </player>
+        <player url="{{ route('visuals.store') }}"></player>
     </div>
     {{-- @include('visuals.partials.player') --}}
 @endsection

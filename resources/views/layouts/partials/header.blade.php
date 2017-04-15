@@ -24,15 +24,6 @@
                         </ul>
                     </div>
                 </div>
-                <div class="level-item">
-                    <div class="header__user is-pulled-right">
-                        <div class="header__user--guest">
-                            <a href="{{ route('login') }}">
-                                <img src="{{ asset('assets/img/icons/user/user.svg') }}" alt="User">
-                            </a>
-                        </div>
-                    </div>
-                </div>
             </div>
         </nav>
                 {{--<li class="dropdown">--}}

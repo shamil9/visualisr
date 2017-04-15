@@ -46,11 +46,7 @@ class VisualController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'track' => 'required',
-            'album' => 'required',
-            'artist' => 'required',
-        ]);
+        $this->checkFields($request);
 
         $visual = new Visual();
         event(new VisualStoreEvent($visual, $request));
@@ -80,11 +76,6 @@ class VisualController extends Controller
     public function edit(Visual $visual)
     {
         $this->userCheck($visual->user);
-        $this->validate($request, [
-            'track' => 'required',
-            'album' => 'required',
-            'artist' => 'required',
-        ]);
 
         return view('visuals.edit', compact('visual'));
     }
@@ -100,6 +91,7 @@ class VisualController extends Controller
     public function update(Request $request, Visual $visual)
     {
         $this->userCheck($visual->user);
+        $this->checkFields($request);
 
         event(new VisualUpdateEvent($visual, $request));
 
@@ -118,5 +110,14 @@ class VisualController extends Controller
         $visual->delete();
 
         return redirect()->route('user.home');
+    }
+
+    public function checkFields($request)
+    {
+        return $this->validate($request, [
+            'track' => 'required',
+            'album' => 'required',
+            'artist' => 'required',
+        ]);
     }
 }
