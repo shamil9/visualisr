@@ -46,6 +46,12 @@ class VisualController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'track' => 'required',
+            'album' => 'required',
+            'artist' => 'required',
+        ]);
+
         $visual = new Visual();
         event(new VisualStoreEvent($visual, $request));
 
@@ -74,6 +80,11 @@ class VisualController extends Controller
     public function edit(Visual $visual)
     {
         $this->userCheck($visual->user);
+        $this->validate($request, [
+            'track' => 'required',
+            'album' => 'required',
+            'artist' => 'required',
+        ]);
 
         return view('visuals.edit', compact('visual'));
     }

@@ -6,7 +6,7 @@
                     <span>{{ auth()->user()->name }}</span>
                 </div>
             @endif
-            <div class="column has-text-centered">
+            <div class="column">
                 @section('control-bar')
                 @show
             </div>

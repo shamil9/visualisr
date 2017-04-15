@@ -1,14 +1,23 @@
+.player
+  display: flex
+  justify-content: center
+  align-items: center
+
 .player__close, .player__seek-forward
   margin-right: 55px
+  font-size: 12px
 
 .player__seek-back
   margin-right: 35px
+  font-size: 12px
 
 .player__play
   margin-right: 10px
+  margin-top: 5px
 
 .player__pause
   margin-right: 30px
+  margin-top: 5px
 
 .player__speed
   margin-right: 50px
@@ -16,6 +25,8 @@
 .player__save
   margin-right: 25px
 
-#visualizer
-  display: block
-  margin: 0 auto
+.player--active
+  fill: $success !important
+
+.player__button
+  fill: white

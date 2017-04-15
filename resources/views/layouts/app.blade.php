@@ -23,19 +23,23 @@
         ]) !!};
     </script>
 </head>
-<body class="@yield('class')">
-    <header>
-        @include('layouts.partials.header')
-    </header>
-    <main role="main">
-        <div class="container">
-            @yield('content')
-        </div>
-    </main>
-    {{--<section class="footer">--}}
-        {{--@include('layouts.partials.footer')--}}
-    {{--</section>--}}
-    <!-- Scripts -->
+<body>
+    <div class="@yield('class')">
+        <header>
+            @include('layouts.partials.header')
+        </header>
+
+        <main role="main">
+            <div class="container">
+                @yield('content')
+            </div>
+        </main>
+
+        {{--<section class="footer">--}}
+            {{--@include('layouts.partials.footer')--}}
+        {{--</section>--}}
+        <!-- Scripts -->
+    </div>
     @section('footer-js')
         <script src="{{ mix('assets/js/manifest.js') }}"></script>
         <script src="{{ mix('assets/js/vendor.js') }}"></script>

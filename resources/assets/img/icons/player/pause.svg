@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
-    <title>pause - FontAwesome</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="Visual-Player" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" font-size="20" font-family="FontAwesome" font-weight="normal">
-        <g id="Layout" transform="translate(-562.000000, -105.000000)" fill="#FFFFFF">
+    <g id="Visual-Player">
+        <g id="Layout" transform="translate(-562.000000, -105.000000)">
             <g id="Control-bar" transform="translate(0.000000, 90.000000)">
-                <g id="Player" transform="translate(377.000000, 4.000000)">
-                    <text id="pause---FontAwesome">
-                        <tspan x="185" y="27"></tspan>
-                    </text>
+                <g id="Player" transform="translate(377.000000, 6.000000)">
+                    <path d="M202.142878,9.99998212 C202.142878,9.60935665 201.819216,9.28569555 201.428591,9.28569555 L195.714298,9.28569555 C195.323673,9.28569555 195.000012,9.60935665 195.000012,9.99998212 L195.000012,25.7142866 C195.000012,26.104912 195.323673,26.4285731 195.714298,26.4285731 L201.428591,26.4285731 C201.819216,26.4285731 202.142878,26.104912 202.142878,25.7142866 L202.142878,9.99998212 Z M192.142866,9.99998212 C192.142866,9.60935665 191.819205,9.28569555 191.428579,9.28569555 L185.714287,9.28569555 C185.323661,9.28569555 185,9.60935665 185,9.99998212 L185,25.7142866 C185,26.104912 185.323661,26.4285731 185.714287,26.4285731 L191.428579,26.4285731 C191.819205,26.4285731 192.142866,26.104912 192.142866,25.7142866 L192.142866,9.99998212 Z" id="pause---FontAwesome"></path>
                 </g>
             </g>
         </g>

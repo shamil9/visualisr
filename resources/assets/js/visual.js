@@ -1,9 +1,9 @@
 class Visualiser {
     static init() {
-        this.canvas = document.querySelector('#visualizer')
+        this.canvas = document.querySelector('#visualizer');
         this.canvas.width = 1900;
         this.canvas.height = 1080;
-        this.canvasCtx = this.canvas.getContext('2d')
+        this.canvasCtx = this.canvas.getContext('2d');
     }
     static showData(dataArray) {
         const WIDTH = this.canvas.width;
@@ -24,14 +24,14 @@ class Visualiser {
             // canvasCtx.fillStyle = 'dark';
             // ctx.fillRect(x, y, width, height)
             // canvasCtx.fillRect(i, 1, 1, value);
-            barHeight = dataArray[ i ] * 5
+            barHeight = dataArray[i] * 5;
 
-            this.canvasCtx.fillStyle = 'black'
-            this.canvasCtx.fillRect(x, HEIGHT - barHeight, barWidth, 5)
+            this.canvasCtx.fillStyle = 'black';
+            this.canvasCtx.fillRect(x, HEIGHT - barHeight, barWidth, 5);
 
-            x += barWidth
+            x += barWidth;
         }
     }
 }
 
-export default Visualiser
+export default Visualiser;
