@@ -15,8 +15,8 @@
     <header class="header">
         <div class="container">
             <div class="header__logo is-pulled-left">
-                <a href="{{ url('/') }}">
-                    <img src="{{ url('assets/img/logo.png') }}" title="{{ env('APP_NAME') }}" />
+                <a href="{{ route('user.home') }}">
+                    <img src="{{ url('assets/img/logo.svg') }}" title="{{ env('APP_NAME') }}" />
                 </a>
             </div>
         </div>
@@ -25,7 +25,7 @@
         <p>Create beautiful art</p>
         <img src="{{ asset('assets/img/wave.png') }}" alt="Visualisr">
         <p>From your favorite song</p>
-        <a class="join">JOIN NOW</a>
+        <a class="join" href="{{ route('login') }}">JOIN NOW</a>
     </main>
 </div>
 </body>

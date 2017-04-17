@@ -15,11 +15,16 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('twitter_id')->nullable();
             $table->string('name', 150)->unique();
             $table->string('email', 150)->unique();
             $table->string('password');
             $table->string('avatar')->default('user.png');
             $table->boolean('banned')->default(0);
+            $table->boolean('admin')->default(0);
+            $table->string('twitter_profile_background_color')->nullable();
+            $table->string('twitter_profile_link_color')->nullable();
+            $table->string('twitter_profile_image_url')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

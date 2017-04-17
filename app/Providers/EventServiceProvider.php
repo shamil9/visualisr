@@ -13,6 +13,7 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
+        // Visual events
         'App\Events\VisualUpdateEvent' => [
             'App\Listeners\VisualUpdateEventListener',
         ],
@@ -21,6 +22,10 @@ class EventServiceProvider extends ServiceProvider
         ],
         'App\Events\VisualDestroyEvent' => [
             'App\Listeners\VisualDestroyEventListener',
+        ],
+        // User events
+        'App\Events\CreateUserEvent' => [
+            'App\Listeners\CreateUserEventListener',
         ],
     ];
 

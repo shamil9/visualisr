@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Auth::loginUsingId(1);
+// Auth::loginUsingId(1);
 Route::get('/', function () {
     if (auth()->check())
         return redirect()->route('user.home');
@@ -18,6 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 })->name('index');
 
+Route::get('login/twitter', 'Auth\LoginController@redirectToProvider')->name('twitter.login');
+Route::get('login/twitter/callback', 'Auth\LoginController@handleProviderCallback')->name('twitter.login.callback');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('user.home');

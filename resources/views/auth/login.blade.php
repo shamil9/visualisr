@@ -31,6 +31,7 @@
                     <a class="btn btn-link" href="{{ route('password.request') }}">
                         Forgot Your Password?
                     </a>
+                    <a href="{{ route('twitter.login') }}">Login with Twitter</a>
                 </p>
             </div>
 

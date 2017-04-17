@@ -1,6 +1,5 @@
 <template>
     <span>
-
         <modal v-if="showSubmitModal">
             <div class="modal-card">
                 <header class="modal-card-head">
@@ -68,7 +67,7 @@
                         >{{ submitMessage }}</a>
                     <a class="button" @click.prevent="toggleModal">Close</a>
                 </footer>
-              </div>
+            </div>
         </modal>
     </span>
 </template>
@@ -96,7 +95,7 @@
             toggleModal() {
                 this.showSubmitModal = !this.showSubmitModal
                 this.reset()
-                this.$parent.$emit('pauseEvent')
+                EventBus.$emit('pauseEvent')
             },
             save() {
                 this.showLoadingSpiner()
@@ -129,7 +128,7 @@
             showSuccess() {
                this.loading = false
                this.disabled = true
-               this.submitMessage = 'Success!'
+               this.submitMessage = 'Saved! Redirecting...'
                this.colorClass = 'is-success'
                this.errors = {}
             },
@@ -141,8 +140,9 @@
                 this.colorClass = 'is-success'
             },
             redirectTo(response) {
+                // when updating an visual the response should be empty, otherwise redirect url will be incorrect
                 const redirectTo = `${this.url}/${response.data.id || ''}`
-                setTimeout(() => window.location.href = redirectTo, 2000)
+                setTimeout(() => window.location.href = redirectTo, 3000)
             }
         }
     }

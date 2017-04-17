@@ -43,7 +43,7 @@
     const visualizer = document.querySelector('#visualizer')
     export default {
         mounted() {
-            this.$on('pauseEvent', () => this.pause())
+            EventBus.$on('pauseEvent', () => this.pause())
         },
         props: ['url'],
         data() {
