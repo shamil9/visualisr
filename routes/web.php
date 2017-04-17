@@ -18,8 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 })->name('index');
 
-Route::get('login/twitter', 'Auth\LoginController@redirectToProvider')->name('twitter.login');
-Route::get('login/twitter/callback', 'Auth\LoginController@handleProviderCallback')->name('twitter.login.callback');
+Route::get('login/twitter', 'Auth\Providers\Twitter@redirectToProvider')->name('twitter.login');
+Route::get('login/twitter/callback', 'Auth\Providers\Twitter@handleProviderCallback')->name('twitter.login.callback');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('user.home');

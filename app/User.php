@@ -23,7 +23,6 @@ class User extends Authenticatable
         'twitter_profile_link_color',
         'twitter_profile_image_url',
         'twitter_profile_background_color',
-        'admin',
     ];
 
     /**
