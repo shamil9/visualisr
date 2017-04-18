@@ -17,7 +17,7 @@
                             <input
                                 v-model="localTrack"
                                 :class="{'is-danger': errors.track}"
-                                name="track" class="input" type="text">
+                                name="track" class="input" type="text" autofocus>
                         </p>
                     </div>
                     <b v-if="errors.track"
@@ -142,7 +142,7 @@
             redirectTo(response) {
                 // when updating an visual the response should be empty, otherwise redirect url will be incorrect
                 const redirectTo = `${this.url}/${response.data.id || ''}`
-                setTimeout(() => window.location.href = redirectTo, 3000)
+                setTimeout(() => window.location.href = redirectTo, 1500)
             }
         }
     }

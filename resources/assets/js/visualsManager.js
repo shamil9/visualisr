@@ -1,24 +1,18 @@
 export default class VisualManager {
     constructor(url) {
-        this.visualizer = document.querySelector('#visualizer');
-        this.url = url;
-        // this.addEventListeners();
-    }
-
-    addEventListeners() {
-        this.saveButton.addEventListener('click', this.submitImage.bind(this));
+        this.visualizer = document.querySelector('#visualizer')
+        this.url = url
     }
 
     submitImage(event) {
-        // event.preventDefault();
         window.axios
-            .post('/visuals', {
+            .post(this.url, {
                 image: this.visualizer.toDataURL(),
                 track: this.trackInput.value,
                 album: this.albumInput.value,
                 artist: this.artistInput.value
             })
             .then(response => console.log(response))
-            .catch(error => console.log(error));
+            .catch(error => console.log(error))
     }
 }

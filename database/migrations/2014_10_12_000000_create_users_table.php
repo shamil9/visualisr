@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('twitter_profile_background_color')->nullable();
             $table->string('twitter_profile_link_color')->nullable();
             $table->string('twitter_profile_image_url')->nullable();
+            $table->string('twitter_avatar')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

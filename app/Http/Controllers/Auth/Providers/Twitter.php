@@ -21,7 +21,7 @@ class Twitter
     /**
      * Obtain the user information from twitter.
      *
-     * @return Response
+     * @return Illuminate\Http\RedirectResponse
      */
     public function handleProviderCallback()
     {
@@ -82,10 +82,10 @@ class Twitter
             'twitter_profile_background_color' => $user->user['profile_background_color'],
             'twitter_profile_link_color' => $user->user['profile_link_color'],
             'twitter_profile_image_url' => $user->user['profile_image_url'],
+            'twitter_avatar' => $user->avatar,
             'email' => $user->email,
             'password' => str_random(8),
             'name' => $user->nickname,
-            'avatar' => $user->avatar,
         ]);
     }
 }

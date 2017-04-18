@@ -28,7 +28,7 @@
                     </a>
                 </div>
 
-                <modal v-if="showDeleteModal">
+                <modal v-show="showDeleteModal">
                     <div class="modal-card">
                         <div class="modal-cotent">
                             <article class="message is-danger">

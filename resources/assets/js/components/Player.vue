@@ -44,18 +44,25 @@
     export default {
         mounted() {
             EventBus.$on('pauseEvent', () => this.pause())
+            EventBus.$on('changeSongEvent', () => this.changeSong())
         },
         props: ['url'],
         data() {
             return {
-                player: new Player(),
                 isPlaying: false,
                 isPaused: false,
-                image: null
+                image: null,
+                song: '/assets/song.mp3',
+            }
+        },
+        computed: {
+            player() {
+                return new Player(this.song)
             }
         },
         methods: {
             play() {
+                console.log(this.player)
                 this.isPlaying = true
                 this.isPaused = false
                 this.player.play()
@@ -74,6 +81,11 @@
             toggleModal() {
                 this.image = visualizer.toDataURL()
                 this.$emit('toggleModalEvent')
+            },
+            changeSong() {
+                this.pause()
+                this.song = this.$parent.song
+                this.play()
             }
         }
     }
