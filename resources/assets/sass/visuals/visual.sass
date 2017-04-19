@@ -1,10 +1,8 @@
 .visual
   width: 100%
-
   overflow: hidden
-
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)
   border: 3px solid white
+  @include shadow-s()
 
   & .front
     text-align: center
@@ -19,6 +17,15 @@
   @include flex()
   height: $control-bar-height
 
-.visual__track, .visual__artist, .visual__album
+.visual__track, .visual__artist, .visual__album, .visual__private
   text-transform: capitalize
   margin: 0 10px
+
+.visual__private
+  @include flex()
+  height: 100%
+  margin-left: 50px
+  & label
+    position: relative
+    margin-left: 5px
+    margin-top: -10px

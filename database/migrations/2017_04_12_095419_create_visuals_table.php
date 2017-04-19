@@ -20,6 +20,7 @@ class CreateVisualsTable extends Migration
             $table->string('artist');
             $table->string('album');
             $table->string('image');
+            $table->boolean('private');
             $table->timestamps();
         });
     }

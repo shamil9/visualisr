@@ -27,8 +27,14 @@
                         <img src="{{ asset('assets/img/icons/user/trash.svg') }}" alt="Delete">
                     </a>
                 </div>
+                <div class="visual__private">
+                    Private:
+                    <label for="private" @change.stop="togglePrivate">
+                        <input type="checkbox" id="private" :checked="private" /><span class="switch"></span><span class="toggle"></span>
+                    </label>
+                </div>
 
-                <modal v-show="showDeleteModal">
+                <modal v-show="showDeleteModal" v-cloak>
                     <div class="modal-card">
                         <div class="modal-cotent">
                             <article class="message is-danger">
@@ -70,12 +76,13 @@
 
 @section('footer-js')
 @parent
-{{-- {{ @if($visual->user->canManage($visual->user)) }} --}}
     <script>
         new Vue({
             el: '#visual-edit',
             data: {
-                showDeleteModal: false
+                showDeleteModal: false,
+                private: {{ $visual->private }},
+                display: 'none',
             },
             methods: {
                 toggleModal: function() {
@@ -83,9 +90,22 @@
                 },
                 submit: function() {
                     document.getElementById('delete-form').submit();
-                }
+               },
+               togglePrivate: function() {
+                    window.axios
+                        .post('{{ route('visuals.update.post', $visual) }}', {
+                            image: '{{ $visual->image }}',
+                            track: '{{ $visual->track }}',
+                            album: '{{ $visual->album }}',
+                            artist: '{{ $visual->artist }}',
+                            private: !this.private,
+                        })
+                        .then(response => {
+                        })
+                        .catch(error => {
+                        })
+               }
             }
         });
     </script>
-{{-- {{ @endif }} --}}
 @endsection

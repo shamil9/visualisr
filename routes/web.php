@@ -23,5 +23,5 @@ Route::get('login/twitter/callback', 'Auth\Providers\Twitter@handleProviderCallb
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('user.home');
-Route::post('visuals/{visual}', 'VisualController@update');
+Route::post('visuals/{visual}', 'VisualController@update')->name('visuals.update.post');
 Route::resource('visuals', 'VisualController');

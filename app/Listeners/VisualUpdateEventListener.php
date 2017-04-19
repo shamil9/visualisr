@@ -27,6 +27,7 @@ class VisualUpdateEventListener
         $event->visual->track = $event->request->track;
         $event->visual->album = $event->request->album;
         $event->visual->artist = $event->request->artist;
+        $event->visual->private = $event->request->private || 0;
 
         $event->visual->saveOrFail();
     }

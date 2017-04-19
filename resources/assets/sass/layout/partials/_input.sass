@@ -1,0 +1,36 @@
+$width: 35px
+$height: $width / 2.5
+
+input[type='checkbox']
+  display: none
+
+  &:checked ~ .toggle
+    background: $success
+    transform: translateX(($width - ($height * 1.4 - $height) / 2) - $height)
+    transition: .5s
+
+  &:checked ~ .switch
+    background: $success
+    transition: .5s
+
+.switch
+  display: block
+  width: $width
+  height: $height
+  background: $grey-light
+  border-radius: $height / 2
+  position: absolute
+  top: 0
+  transition: .5s
+
+.toggle
+  height: $height * 1.4
+  width: $height * 1.4
+  border-radius: 50%
+  background: white
+  position: absolute
+  top: ($height * 1.4 - $height) / -2
+  left: ($height * 1.4 - $height) / -2
+  will-change: transform, background
+  box-shadow: 0 $width / 50 $width / 25 rgba(black, .4)
+  transition: .5s

@@ -9,6 +9,7 @@
 
 // Main Layout
 @import "layout/header";
+@import "layout/partials/input";
 
 // User
 @import "user/home";
@@ -26,6 +27,10 @@ body, html {
 
 * {
   box-sizing: border-box;
+}
+
+[v-cloak] {
+  display: none;
 }
 
 .splash-screen {

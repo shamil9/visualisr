@@ -26,7 +26,8 @@ class VisualController extends Controller
      */
     public function index()
     {
-        //
+        $visuals = Visual::where(['private' => 0])->orderBy('id', 'desc')->paginate(10);
+        return view('visuals.index', compact('visuals'));
     }
 
     /**
@@ -95,8 +96,6 @@ class VisualController extends Controller
         $this->checkFields($request);
 
         event(new VisualUpdateEvent($visual, $request));
-
-        // return $visual;
     }
 
     /**

@@ -18,7 +18,7 @@
                 <div class="level-item">
                     <div class="header__nav">
                         <ul>
-                            <li><a href="">Visuals</a></li>
+                            <li><a href="{{ route('visuals.index') }}">Visuals</a></li>
                             <li><a href="">Blog</a></li>
                             <li><a href="">Contact</a></li>
                         </ul>
