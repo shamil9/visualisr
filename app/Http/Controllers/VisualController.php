@@ -16,7 +16,7 @@ class VisualController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth', ['except' => 'index', 'show']);
+        $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 
     /**
@@ -65,7 +65,12 @@ class VisualController extends Controller
      */
     public function show(Visual $visual)
     {
-        return view('visuals/show', compact('visual'));
+        if ($visual->private &&
+            $visual->user_id !== auth()->id() ||
+            $visual->private && !auth()->check())
+            return view('visuals.private-error');
+
+        return view('visuals.show', compact('visual'));
     }
 
     /**
@@ -77,7 +82,7 @@ class VisualController extends Controller
      */
     public function edit(Visual $visual)
     {
-        $this->userCheck($visual->user);
+        $this->authorize('update', $visual);
 
         return view('visuals.edit', compact('visual'));
     }
@@ -92,7 +97,7 @@ class VisualController extends Controller
      */
     public function update(Request $request, Visual $visual)
     {
-        $this->userCheck($visual->user);
+        $this->authorize('update', $visual);
         $this->checkFields($request);
 
         event(new VisualUpdateEvent($visual, $request));
@@ -106,7 +111,7 @@ class VisualController extends Controller
      */
     public function destroy(Visual $visual, Request $request)
     {
-        $this->userCheck($visual->user);
+        $this->authorize('delete', $visual);
         event(new VisualDestroyEvent($visual, $request));
 
         return redirect()->route('user.home');

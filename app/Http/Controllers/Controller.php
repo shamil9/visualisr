@@ -11,9 +11,4 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-
-    public function userCheck(User $user) {
-        if (!$user->canManage($user))
-            return abort(403, 'Unauthorized action.');
-    }
 }

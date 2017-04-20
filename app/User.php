@@ -37,11 +37,4 @@ class User extends Authenticatable
     public function visuals() {
         return $this->hasMany(Visual::class);
     }
-
-    public function canManage(User $user) {
-        if ($user->id === \auth()->user()->id)
-            return true;
-
-        return false;
-    }
 }
