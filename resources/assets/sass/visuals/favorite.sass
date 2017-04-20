@@ -1,0 +1,33 @@
+$size: 40px
+.favorite
+  width: $size
+
+  position: absolute
+  top: 20px
+  right: 20px
+
+.favorite__button
+  @include shadow-xs()
+  @include flex()
+
+  border: none
+  border-radius: 50%
+
+  background-color: white
+  width: $size
+  height: $size
+
+  & img
+    width: 70%
+    vertical-align: middle
+
+  &:focus
+  outline: none
+
+.favorite--active
+  fill: $red !important
+
+.favorite-path
+  fill: white
+  stroke: $red
+  stroke-width: 5px

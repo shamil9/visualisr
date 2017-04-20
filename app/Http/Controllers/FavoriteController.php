@@ -7,25 +7,6 @@ use Illuminate\Http\Request;
 
 class FavoriteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -35,29 +16,23 @@ class FavoriteController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $this->validate($request, [
+            'user_id' => 'required',
+            'visual_id' => 'required',
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Favorite  $favorite
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Favorite $favorite)
-    {
-        //
-    }
+        if (Favorite::where(['user_id' => $request->user_id,
+                             'visual_id' => $request->visual_id])->exists()) {
+            return Favorite::where([
+                'user_id' => $request->user_id,
+                'visual_id' => $request->visual_id,
+            ])->delete();
+        }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Favorite  $favorite
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Favorite $favorite)
-    {
-        //
+        Favorite::create([
+            'user_id' => $request->user_id,
+            'visual_id' => $request->visual_id,
+        ]);
     }
 
     /**

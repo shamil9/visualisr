@@ -18,10 +18,14 @@ Route::get('/', function () {
     return view('welcome');
 })->name('index');
 
+Route::get('/home', 'HomeController@index')->name('user.home');
+
 Route::get('login/twitter', 'Auth\Providers\Twitter@redirectToProvider')->name('twitter.login');
 Route::get('login/twitter/callback', 'Auth\Providers\Twitter@handleProviderCallback')->name('twitter.login.callback');
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('user.home');
+
 Route::post('visuals/{visual}', 'VisualController@update')->name('visuals.update.post');
 Route::resource('visuals', 'VisualController');
+
+Route::post('favorites', 'FavoriteController@store')->name('favorites.store');

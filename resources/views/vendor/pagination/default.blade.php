@@ -15,7 +15,7 @@
                 Next page &raquo;
             </a>
         @else
-            <span>&raquo;</span>
+            <span></span>
         @endif
 
         {{-- Pagination Elements --}}
@@ -33,7 +33,6 @@
                         <li><a class="pagination-link is-current">{{ $page }}</a></li>
                     @else
                         <li><a class="pagination-link" href="{{ $url }}">{{ $page }}</a></li>
-
                     @endif
                 @endforeach
             @endif

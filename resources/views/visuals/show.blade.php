@@ -52,7 +52,7 @@
             </modal>
 
             <manager
-                url="{{ route('visuals.update', ['visual' => $visual->id]) }}"
+                url="{{ route('visuals.update', $visual) }}"
                 track="{{ $visual->track }}"
                 album="{{ $visual->album }}"
                 artist="{{ $visual->artist }}">
@@ -62,9 +62,21 @@
 @endsection
 
 @section('content')
-    <div class="section">
-        <div class="visual">
-            <img src="{{ asset('uploads/visuals/' . $visual->user->id . '/' . $visual->image) }}" alt="{{ $visual->track }}">
+    <div class="section" id="content">
+        <div class="visual relative">
+            @unless($visual->user_id === auth()->id())
+                <div class="favorite">
+                    <button class="favorite__button" @click.prevent="submit">
+                        <svg width="20px" height="20px" viewBox="0 0 83 71">
+                           <use
+                            :class="{'favorite--active': isActive}"
+                            class="favorite-path" xlink:href="{{ asset('assets/img/icons/user/favorite.svg') }}#Default"></use>
+                        </svg>
+                    </button>
+                    {{ $visual->favorites_count }}
+                </div>
+            @endunless
+            <img src="{{ asset('uploads/visuals/' . $visual->user_id . '/' . $visual->image) }}" alt="{{ $visual->track }}">
         </div>
 
         @can('delete', $visual)
@@ -79,37 +91,7 @@
 @section('footer-js')
 @parent
 @can('update', $visual)
-    <script>
-        new Vue({
-            el: '#visual-edit',
-            data: {
-                showDeleteModal: false,
-                private: {{ $visual->private }},
-                display: 'none',
-            },
-            methods: {
-                toggleModal: function() {
-                    this.showDeleteModal = !this.showDeleteModal;
-                },
-                submit: function() {
-                    document.getElementById('delete-form').submit();
-               },
-               togglePrivate: function() {
-                    window.axios
-                        .post('{{ route('visuals.update.post', $visual) }}', {
-                            image: '{{ $visual->image }}',
-                            track: '{{ $visual->track }}',
-                            album: '{{ $visual->album }}',
-                            artist: '{{ $visual->artist }}',
-                            private: !this.private,
-                        })
-                        .then(response => {
-                        })
-                        .catch(error => {
-                        })
-               }
-            }
-        });
-    </script>
+    @include('visuals.partials.update-vue')
 @endcan
+@include('visuals.partials.show-vue')
 @endsection

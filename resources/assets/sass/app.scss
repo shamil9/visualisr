@@ -19,6 +19,7 @@
 @import "visuals/visual";
 @import "visuals/player";
 @import "visuals/create";
+@import "visuals/favorite";
 
 body, html {
   margin: 0;
@@ -31,6 +32,10 @@ body, html {
 
 [v-cloak] {
   display: none;
+}
+
+.relative {
+  position: relative;
 }
 
 .splash-screen {
