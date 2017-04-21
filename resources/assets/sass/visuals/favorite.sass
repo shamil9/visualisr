@@ -24,10 +24,13 @@ $size: 40px
   &:focus
   outline: none
 
-.favorite--active
-  fill: $red !important
-
-.favorite-path
+.favorite__heart
   fill: white
+  fill-opacity: 0
   stroke: $red
   stroke-width: 5px
+  transition: fill-opacity 400ms
+
+.favorite--active
+  fill: $red !important
+  fill-opacity: 1 !important

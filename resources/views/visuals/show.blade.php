@@ -66,14 +66,17 @@
         <div class="visual relative">
             @unless($visual->user_id === auth()->id())
                 <div class="favorite">
-                    <button class="favorite__button" @click.prevent="submit">
+                    <button
+                        @click.prevent="submit"
+                        class="favorite__button"
+                        :data-balloon="'Favorites: ' + favoriteCount"
+                        data-balloon-pos="left">
                         <svg width="20px" height="20px" viewBox="0 0 83 71">
                            <use
                             :class="{'favorite--active': isActive}"
-                            class="favorite-path" xlink:href="{{ asset('assets/img/icons/user/favorite.svg') }}#Default"></use>
+                            class="favorite__heart" xlink:href="{{ asset('assets/img/icons/user/favorite.svg') }}#Default"></use>
                         </svg>
                     </button>
-                    {{ $visual->favorites_count }}
                 </div>
             @endunless
             <img src="{{ asset('uploads/visuals/' . $visual->user_id . '/' . $visual->image) }}" alt="{{ $visual->track }}">

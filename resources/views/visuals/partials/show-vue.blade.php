@@ -5,6 +5,7 @@
             user: '{{ auth()->id() }}',
             visual: '{{ $visual->id }}',
             isActive: {{ ($visual->inFavorites() ? 'true' : 'false') }},
+            favoriteCount: {{ $visual->favorites_count }}
         },
         methods: {
             submit: function () {
@@ -15,6 +16,7 @@
                     })
                     .then(response => {
                         this.isActive = !this.isActive;
+                        this.favoriteCount = response.data;
                     })
                     .catch();
             }

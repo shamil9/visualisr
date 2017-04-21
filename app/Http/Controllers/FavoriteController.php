@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Favorite;
+use App\Visual;
 use Illuminate\Http\Request;
 
 class FavoriteController extends Controller
@@ -12,7 +13,7 @@ class FavoriteController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return integer
      */
     public function store(Request $request)
     {
@@ -21,40 +22,21 @@ class FavoriteController extends Controller
             'visual_id' => 'required',
         ]);
 
-        if (Favorite::where(['user_id' => $request->user_id,
-                             'visual_id' => $request->visual_id])->exists()) {
-            return Favorite::where([
-                'user_id' => $request->user_id,
-                'visual_id' => $request->visual_id,
-            ])->delete();
+        $favorite = Favorite::where(['user_id' => $request->user_id,
+                            'visual_id' => $request->visual_id]);
+        $inFavorites = $favorite->exists();
+
+        if ($inFavorites) {
+            $favorite->delete();
+
+            return Visual::find($request->visual_id)->favorites->count();
         }
 
         Favorite::create([
             'user_id' => $request->user_id,
             'visual_id' => $request->visual_id,
         ]);
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Favorite  $favorite
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Favorite $favorite)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Favorite  $favorite
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Favorite $favorite)
-    {
-        //
+        return Visual::find($request->visual_id)->favorites->count();
     }
 }
