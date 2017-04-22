@@ -21,8 +21,13 @@
 @import "visuals/player";
 @import "visuals/create";
 @import "visuals/favorite";
+@import "visuals/stats";
+@import "comments/comment";
 
 body, html {
+  font-family: $roboto;
+  font-size: 16px;
+
   margin: 0;
   padding: 0;
 }

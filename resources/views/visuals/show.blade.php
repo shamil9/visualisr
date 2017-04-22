@@ -69,7 +69,7 @@
                     <button
                         @click.prevent="submit"
                         class="favorite__button"
-                        :data-balloon="'Favorites: ' + favoriteCount"
+                        :data-balloon="tooltipMessage"
                         data-balloon-pos="left">
                         <svg width="20px" height="20px" viewBox="0 0 83 71">
                            <use
@@ -88,6 +88,27 @@
                 {{ csrf_field() }}
             </form>
         @endcan
+    </div>
+    <div class="section">
+        <div class="columns">
+            <div class="column is-4">
+                <div class="box stats">
+                    <div class="columns is-multiline">
+                        <div class="column is-6"><span class="title is-4">Views:</span></div>
+                        <div class="column is-6 has-text-right"><span class="title is-4">2320380</div>
+
+                        <div class="column is-6"><span class="title is-4">Favorites:</span></div>
+                        <div class="column is-6 has-text-right"><span class="title is-4">42342</div>
+
+                        <div class="column is-6"><span class="title is-4">Comments:</span></div>
+                        <div class="column is-6 has-text-right"><span class="title is-4">656345</div>
+                    </div>
+                </div>
+            </div>
+            <div class="column is-7 is-offset-1">
+                @include('comments.index')
+            </div>
+        </div>
     </div>
 @endsection
 

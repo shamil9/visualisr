@@ -8,10 +8,7 @@
                             <img src="{{ asset('assets/img/logo.svg') }}" title="{{ env('APP_NAME') }}" />
                         </a>
                     </div>
-                    <a href="{{ route('logout') }}"
-                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        Logout
-                    </a>
+                    <span class="tag is-info">Beta</span>
                 </div>
             </div>
             <div class="level-right">
@@ -33,9 +30,6 @@
 
                     {{--<ul class="dropdown-menu" role="menu">--}}
                         {{--<li>--}}
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                {{ csrf_field() }}
-                            </form>
                         {{--</li>--}}
                     {{--</ul>--}}
                 {{--</li>--}}

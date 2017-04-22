@@ -15,7 +15,7 @@ class FavoriteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return integer
      */
-    public function store(Request $request)
+    public function toggleFavorite(Request $request)
     {
         $this->validate($request, [
             'user_id' => 'required',

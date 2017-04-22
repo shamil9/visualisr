@@ -28,4 +28,4 @@ Auth::routes();
 Route::post('visuals/{visual}', 'VisualController@update')->name('visuals.update.post');
 Route::resource('visuals', 'VisualController');
 
-Route::post('favorites', 'FavoriteController@store')->name('favorites.store');
+Route::post('favorites', 'FavoriteController@toggleFavorite')->name('favorites.toggle');
