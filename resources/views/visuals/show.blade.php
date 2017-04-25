@@ -36,7 +36,7 @@
 
             <modal v-show="showDeleteModal" v-cloak>
                 <div class="modal-card">
-                    <div class="modal-cotent">
+                    <div class="modal-content">
                         <article class="message is-danger">
                             <div class="message-header">
                                 <p><strong>Danger</strong>!</p>
@@ -63,7 +63,7 @@
 
 @section('content')
     <div class="section" id="content">
-        <div class="visual relative">
+        <div class="relative">
             @unless($visual->user_id === auth()->id())
                 <div class="favorite">
                     <button
@@ -95,13 +95,13 @@
                 <div class="box stats">
                     <div class="columns is-multiline">
                         <div class="column is-6"><span class="title is-4">Views:</span></div>
-                        <div class="column is-6 has-text-right"><span class="title is-4">2320380</div>
+                        <div class="column is-6 has-text-right"><span class="title is-4">{{ $visual->views }}</div>
 
                         <div class="column is-6"><span class="title is-4">Favorites:</span></div>
-                        <div class="column is-6 has-text-right"><span class="title is-4">42342</div>
+                        <div class="column is-6 has-text-right"><span class="title is-4">{{ $visual->favorites_count }}</div>
 
                         <div class="column is-6"><span class="title is-4">Comments:</span></div>
-                        <div class="column is-6 has-text-right"><span class="title is-4">656345</div>
+                        <div class="column is-6 has-text-right"><span class="title is-4">{{ $visual->comments_count }}</div>
                     </div>
                 </div>
             </div>

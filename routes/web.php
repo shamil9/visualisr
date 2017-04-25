@@ -25,6 +25,7 @@ Route::get('login/twitter/callback', 'Auth\Providers\Twitter@handleProviderCallb
 Auth::routes();
 
 
+Route::resource('visuals/{visual}/comments', 'CommentController');
 Route::post('visuals/{visual}', 'VisualController@update')->name('visuals.update.post');
 Route::resource('visuals', 'VisualController');
 

@@ -11,8 +11,28 @@ class Visual extends Model
         'track', 'artist', 'album', 'private'
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user() {
         return $this->belongsTo(User::class);
+    }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 
     /**
@@ -34,8 +54,13 @@ class Visual extends Model
         return $this->favorites()->count();
     }
 
-    public function favorites()
+    /**
+     * Get the number of comments for the visual.
+     *
+     * @return integer
+     */
+    public function getCommentsCountAttribute()
     {
-        return $this->hasMany(Favorite::class);
+        return $this->comments()->count();
     }
 }

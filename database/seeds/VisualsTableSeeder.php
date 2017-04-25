@@ -11,6 +11,6 @@ class VisualsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Visual::class, 40)->create();
+        factory(\App\Visual::class, 15)->create();
     }
 }

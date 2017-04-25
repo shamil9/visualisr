@@ -8,6 +8,7 @@ use App\Events\VisualUpdateEvent;
 use App\Listeners\VisualUpdateEventListener;
 use App\Visual;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
 
 class VisualController extends Controller
 {
@@ -69,6 +70,8 @@ class VisualController extends Controller
             $visual->user_id !== auth()->id() ||
             $visual->private && !auth()->check())
             return view('visuals.private-error');
+
+        $visual->views = Redis::incr('visual' . $visual->id);
 
         return view('visuals.show', compact('visual'));
     }

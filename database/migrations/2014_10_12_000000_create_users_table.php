@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('name', 150)->unique();
             $table->string('email', 150)->unique();
             $table->string('password');
-            $table->string('avatar')->default('user.png');
+            $table->string('avatar')->default('user.svg');
             $table->boolean('banned')->default(0);
             $table->boolean('admin')->default(0);
             $table->string('twitter_profile_background_color')->nullable();

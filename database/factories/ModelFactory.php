@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\File;
+
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -13,24 +15,25 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\User::class, function (Faker\Generator $faker) {
-    static $password;
-
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
-        'password' => $password ?: $password = bcrypt('secret'),
+        'password' => bcrypt('secret'),
         'remember_token' => str_random(10),
-        'avatar' => $faker->imageUrl(128, 128, 'people'),
         'banned' => 0,
     ];
 });
 
 $factory->define(App\Visual::class, function(Faker\Generator $faker) {
+    $user = factory(App\User::class)->create();
+    $path = public_path() . '/' . getenv('APP_UPLOADS') . '/visuals/' . $user->id;
+    File::makeDirectory($path);
+
     return [
-        'user_id' => factory(App\User::class)->create()->id,
+        'user_id' => $user->id,
         'track' => $faker->words(2, true),
         'album' => $faker->words(2, true),
         'artist' => $faker->name,
-        'image' => $faker->imageUrl(1500, 500, 'abstract'),
+        'image' => $faker->image($path, 1500, 500, 'abstract', false),
     ];
 });
