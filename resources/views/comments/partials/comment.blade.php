@@ -6,7 +6,11 @@
     </figure>
     <div class="media-content">
         <div class="box">
-            {{ $comment->body }}
+            @can('update', $comment)
+                <comment body="{{ $comment->body }}" id="{{ $comment->id }}" />
+            @else
+                {{ $comment->body }}
+            @endcan
         </div>
     </div>
 </article>

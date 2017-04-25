@@ -62,7 +62,8 @@
 @endsection
 
 @section('content')
-    <div class="section" id="content">
+<section id="content">
+    <div class="section">
         <div class="relative">
             @unless($visual->user_id === auth()->id())
                 <div class="favorite">
@@ -94,11 +95,13 @@
             <div class="column is-4">
                 <div class="box stats">
                     <div class="columns is-multiline">
+                        <div class="column is-6"><span class="title is-4">Note:</span></div>
+                        <div class="column is-6 has-text-right"><span class="title is-4">3.4</div>
                         <div class="column is-6"><span class="title is-4">Views:</span></div>
                         <div class="column is-6 has-text-right"><span class="title is-4">{{ $visual->views }}</div>
 
                         <div class="column is-6"><span class="title is-4">Favorites:</span></div>
-                        <div class="column is-6 has-text-right"><span class="title is-4">{{ $visual->favorites_count }}</div>
+                        <div class="column is-6 has-text-right"><span class="title is-4">@{{ favoritesCount }}</div>
 
                         <div class="column is-6"><span class="title is-4">Comments:</span></div>
                         <div class="column is-6 has-text-right"><span class="title is-4">{{ $visual->comments_count }}</div>
@@ -110,6 +113,7 @@
             </div>
         </div>
     </div>
+</section>
 @endsection
 
 @section('footer-js')

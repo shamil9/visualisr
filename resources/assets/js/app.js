@@ -14,4 +14,5 @@ window.EventBus = new Vue({})
 Vue.component('player', require('./components/Player.vue'))
 Vue.component('manager', require('./components/VisualsManager.vue'))
 Vue.component('modal', require('./components/Modal.vue'))
+Vue.component('comment', require('./components/Comment.vue'))
 //

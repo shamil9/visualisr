@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
+    public function __construct () {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -38,11 +42,7 @@ class CommentController extends Controller
     public function store(Request $request, Visual $visual)
     {
         $this->authorize('create', Comment::class);
-        $this->validate($request, [
-            'user_id'   => 'exists:users',
-            'visual_id' => 'exists:visuals',
-            'body'      => 'required|max:180|min:2',
-        ]);
+        $this->validateComment($request);
 
         $visual->comments()->create([
             'user_id'   => auth()->id(),
@@ -70,9 +70,8 @@ class CommentController extends Controller
      * @param  \App\Comment $comment
      * @return \Illuminate\Http\Response
      */
-    public function edit(Comment $comment)
+    public function edit(Request $request, Comment $comment)
     {
-        //
     }
 
     /**
@@ -82,9 +81,13 @@ class CommentController extends Controller
      * @param  \App\Comment             $comment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comment $comment)
+    public function update(Request $request, Visual $visual, Comment $comment)
     {
-        //
+        $this->authorize('update', $comment);
+        $this->validateComment($request);
+        $comment->update(['body' => $request->body]);
+
+        return $comment->body;
     }
 
     /**
@@ -96,5 +99,19 @@ class CommentController extends Controller
     public function destroy(Comment $comment)
     {
         //
+    }
+
+    /**
+     * Validate comment form
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Respone
+     */
+    private function validateComment($request)
+    {
+        return $this->validate($request, [
+            'user_id'   => 'exists:users',
+            'visual_id' => 'exists:visuals',
+            'body'      => 'required|max:180|min:2',
+        ]);
     }
 }

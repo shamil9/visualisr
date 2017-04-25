@@ -64,7 +64,7 @@ class VisualController extends Controller
      * @return \Illuminate\Http\Response
      * @internal param Image $image
      */
-    public function show(Visual $visual)
+    public function show(Request $request, Visual $visual)
     {
         if ($visual->private &&
             $visual->user_id !== auth()->id() ||

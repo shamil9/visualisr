@@ -2,6 +2,8 @@
 
 namespace App\Policies;
 
+use App\Comment;
+use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class CommentPolicy
@@ -19,6 +21,13 @@ class CommentPolicy
     public function create()
     {
         if (! auth()->check()) return false;
+
+        return true;
+    }
+
+    public function update(User $user, Comment $comment)
+    {
+        if ($user->id !== $comment->user_id) return false;
 
         return true;
     }

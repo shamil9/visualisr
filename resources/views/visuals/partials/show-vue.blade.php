@@ -5,7 +5,9 @@
             user: '{{ auth()->id() }}',
             visual: '{{ $visual->id }}',
             isActive: {{ ($visual->inFavorites() ? 'true' : 'false') }},
-            tooltipMessage: 'Favorites: ' + {{ $visual->favorites_count }}
+            tooltipMessage: 'Favorites: ' + {{ $visual->favorites_count }},
+            favoritesCount: '{{ $visual->favorites_count }}',
+            commentEditUrl: '{{ route('comments.store', $visual) }}',
         },
         methods: {
             submit: function () {
@@ -17,10 +19,14 @@
                     .then(function(response) {
                         this.isActive = !this.isActive;
                         this.tooltipMessage = 'Favorites: ' + response.data;
+                        this.favoritesCount = response.data;
                     }.bind(this))
                     .catch(function(error) {
                         this.tooltipMessage = 'Error! Cannot add favorite.'
                     }.bind(this));
+            },
+            editComment: function(body, id) {
+                return axios.patch(this.commentEditUrl + '/' + id, { body: body });
             }
         }
     });
