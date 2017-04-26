@@ -11,10 +11,11 @@
 @import "layout/header";
 @import "layout/partials/input";
 @import "layout/tooltip";
+@import "layout/control-bar";
+@import "home";
 
 // User
-@import "user/home";
-@import "layout/control-bar";
+@import "user";
 
 // Visuals
 @import "visuals/visual";

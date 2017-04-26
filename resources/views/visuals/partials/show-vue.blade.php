@@ -8,6 +8,9 @@
             tooltipMessage: 'Favorites: ' + {{ $visual->favorites_count }},
             favoritesCount: '{{ $visual->favorites_count }}',
             commentEditUrl: '{{ route('comments.store', $visual) }}',
+            showSocial: false,
+            showDownload: false,
+            pageUrl: window.location.href,
         },
         methods: {
             submit: function () {

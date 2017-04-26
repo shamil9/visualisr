@@ -39,6 +39,7 @@ class VisualStoreEventListener
                 $constraint->aspectRatio();
             })->save($dir . '/' . 'thumb_' . $event->visual->image);
             \Image::make($event->request->image)->resize(1500, 500)->save($dir . '/' . 'twitter_' . $event->visual->image);
+            \Image::make($event->request->image)->resize(828, 315)->save($dir . '/' . 'fb_' . $event->visual->image);
         } catch (Exception $e) {
             return $e;
         } finally {
