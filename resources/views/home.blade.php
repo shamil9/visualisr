@@ -1,7 +1,7 @@
 @extends('layouts/app')
 @section('class', 'home')
 @section('content')
-    <div class="section">
+    <div class="section" id="app">
         <div class="columns">
             <div class="column is-2">
                 <aside class="menu">
@@ -50,6 +50,15 @@
                     @each('visuals.partials.visual', $user->visuals, 'visual')
                 </div>
             </div>
+            <flash message="{{ session('flash') }}"></flash>
         </div>
     </div>
+@endsection
+@section('footer-js')
+@parent
+<script>
+    new Vue({
+        el: '#app'
+    });
+</script>
 @endsection

@@ -117,7 +117,8 @@ class VisualController extends Controller
         $this->authorize('delete', $visual);
         event(new VisualDestroyEvent($visual, $request));
 
-        return redirect()->route('user.home');
+        return redirect(route('user.home'))
+                ->with('flash', 'Your visual has been deleted');
     }
 
     public function checkFields($request)

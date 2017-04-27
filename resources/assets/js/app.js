@@ -6,6 +6,7 @@
 
 require('./bootstrap')
 window.EventBus = new Vue({})
+window.flash = message => EventBus.$emit('flash', message)
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -15,4 +16,4 @@ Vue.component('player', require('./components/Player.vue'))
 Vue.component('manager', require('./components/VisualsManager.vue'))
 Vue.component('modal', require('./components/Modal.vue'))
 Vue.component('comment', require('./components/Comment.vue'))
-//
+Vue.component('flash', require('./components/Flash.vue'))
