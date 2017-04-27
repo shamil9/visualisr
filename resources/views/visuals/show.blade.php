@@ -107,8 +107,8 @@
                 </div>
             </div>
         </div>
+        <flash message="{{ session('flash') }}"></flash>
     </div>
-
 </section>
 @endsection
 

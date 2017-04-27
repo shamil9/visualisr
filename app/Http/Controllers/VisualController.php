@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Events\VisualDestroyEvent;
 use App\Events\VisualStoreEvent;
 use App\Events\VisualUpdateEvent;
-use App\Listeners\VisualUpdateEventListener;
 use App\Visual;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
@@ -28,6 +27,7 @@ class VisualController extends Controller
     public function index()
     {
         $visuals = Visual::where(['private' => 0])->orderBy('id', 'desc')->paginate(10);
+
         return view('visuals.index', compact('visuals'));
     }
 
@@ -45,7 +45,7 @@ class VisualController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return Visual
      */
     public function store(Request $request)
     {
@@ -53,6 +53,7 @@ class VisualController extends Controller
 
         $visual = new Visual();
         event(new VisualStoreEvent($visual, $request));
+        $request->session()->flash('flash', 'Visual created with success');
 
         return $visual;
     }
@@ -64,11 +65,12 @@ class VisualController extends Controller
      * @return \Illuminate\Http\Response
      * @internal param Image $image
      */
-    public function show(Request $request, Visual $visual)
+    public function show(Visual $visual)
     {
         if ($visual->private &&
             $visual->user_id !== auth()->id() ||
-            $visual->private && !auth()->check())
+            $visual->private && ! auth()->check()
+        )
             return view('visuals.private-error');
 
         $visual->views = Redis::incr('visual' . $visual->id);
@@ -96,7 +98,6 @@ class VisualController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @param Visual                    $visual
      * @return \Illuminate\Http\Response
-     * @internal param Image $image
      */
     public function update(Request $request, Visual $visual)
     {
@@ -104,6 +105,7 @@ class VisualController extends Controller
         $this->checkFields($request);
 
         event(new VisualUpdateEvent($visual, $request));
+        $request->session()->flash('flash', 'Visual updated with success');
     }
 
     /**
@@ -118,14 +120,19 @@ class VisualController extends Controller
         event(new VisualDestroyEvent($visual, $request));
 
         return redirect(route('user.home'))
-                ->with('flash', 'Your visual has been deleted');
+            ->with('flash', 'Your visual has been deleted');
     }
 
+    /**
+     * Validate form fields
+     *
+     * @param  \Illuminate\Http\Request $request
+     */
     public function checkFields($request)
     {
         return $this->validate($request, [
-            'track' => 'required',
-            'album' => 'required',
+            'track'  => 'required',
+            'album'  => 'required',
             'artist' => 'required',
         ]);
     }

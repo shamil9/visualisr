@@ -50,7 +50,8 @@ class CommentController extends Controller
             'body'      => $request->body,
         ]);
 
-        return redirect(route('visuals.show', $visual));
+        return redirect(route('visuals.show', $visual))
+            ->with('flash', 'Comment added successfully');
     }
 
     /**

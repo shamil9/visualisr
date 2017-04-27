@@ -30,7 +30,7 @@ class VisualPolicy
      */
     public function create(User $user)
     {
-        //
+
     }
 
     /**

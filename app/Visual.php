@@ -36,7 +36,8 @@ class Visual extends Model
     }
 
     /**
-     * Check if current visual is already have been favourited
+     * Check if current visual is already have been favorited
+     *
      * @return boolean
      */
     public function inFavorites()

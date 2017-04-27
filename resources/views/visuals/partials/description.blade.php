@@ -11,19 +11,19 @@
                 <div class="visual__actions">
                     <hr>
                     <span>
-                        <a @click.prevent="showSocial = !showSocial" href="#">
+                        <a @click.prevent="showSocial" href="#">
                             <img src="{{ asset('assets/img/icons/share.svg') }}" alt="Share"> Share
                         </a>
                     </span>
                     <span>
-                        <a @click.prevent="showDownload = !showDownload" href="#">
+                        <a @click.prevent="showDownload" href="#">
                             <img src="{{ asset('assets/img/icons/download.svg') }}" alt="Download Options"> Download
                         </a>
                     </span>
                 </div>
             </div>
         </div>
-        <div v-if="showSocial" id="social" class="visual__actions">
+        <div v-if="social" id="social" class="visual__actions">
             <span>
                <a :href="'https://www.facebook.com/sharer.php?u=' + pageUrl">
                    <img src="{{ asset('assets/img/icons/facebook.svg') }}" alt="Share on Facebook">
@@ -40,7 +40,7 @@
             Google+</a>
             </span>
         </div>
-        <div v-if="showDownload" id="download" class="visual__actions">
+        <div v-if="download" id="download" class="visual__actions">
             <span>
                <a href="{{ asset(asset(getenv('APP_UPLOADS') . '/visuals/' . $visual->user_id . '/fb_' . $visual->image)) }}" download>
                    <img src="{{ asset('assets/img/icons/facebook.svg') }}" alt="Download Facebook Profile Banner">

@@ -36,6 +36,7 @@ export default {
                     this.isEditing = !this.isEditing
                     this.errors = {}
                     this.commentBody = response.data
+                    flash('Comment edited with success')
                 })
                 .catch(error => {
                     this.errors = error.response.data
