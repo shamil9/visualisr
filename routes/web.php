@@ -1,7 +1,7 @@
 <?php
 
 /*
-|--------------------------------------------------------------------------
+-------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
 |
@@ -12,13 +12,16 @@
 */
 // Auth::loginUsingId(1);
 Route::get('/', function () {
-    if (auth()->check())
+    if (auth()->check()) {
         return redirect()->route('user.home');
+    }
 
     return view('welcome');
 })->name('index');
 
 Route::get('/home', 'HomeController@index')->name('user.home');
+Route::get('/contact', 'HomeController@contact')->name('contact');
+Route::post('/contact', 'HomeController@storeTicket')->name('contact.store');
 
 Route::get('login/twitter', 'Auth\Providers\Twitter@redirectToProvider')->name('twitter.login');
 Route::get('login/twitter/callback', 'Auth\Providers\Twitter@handleProviderCallback')->name('twitter.login.callback');

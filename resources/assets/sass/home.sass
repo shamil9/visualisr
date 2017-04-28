@@ -3,18 +3,15 @@
 
 .home__title
   & h1
-    color: $primary
-
     font-family: $heading
     font-size: 64px !important
 
 .home__plus
   @include flex
+  @include shadow-xs()
 
   width: 35px
   height: 35px
 
   background-color: $success
   border-radius: 50%
-
-  @include shadow-s()

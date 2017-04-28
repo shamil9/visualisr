@@ -3,10 +3,8 @@
 @import "layout/partials/variables";
 @import "layout/partials/colors";
 @import "layout/partials/fonts";
-
 // Mixins
 @import "mixins/mixins";
-
 // Main Layout
 @import "layout/header";
 @import "layout/partials/input";
@@ -14,10 +12,9 @@
 @import "layout/control-bar";
 @import "home";
 @import "flash";
-
+@import "contact";
 // User
 @import "user";
-
 // Visuals
 @import "visuals/visual";
 @import "visuals/player";
@@ -25,81 +22,68 @@
 @import "visuals/favorite";
 @import "visuals/stats";
 @import "comments/comment";
-
-body, html {
-  font-family: $roboto;
-  font-size: 16px;
-
-  margin: 0;
-  padding: 0;
+body,
+html {
+    font-family: $roboto;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
 }
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 [v-cloak] {
-  display: none;
+    display: none;
 }
 
 .relative {
-  position: relative;
+    position: relative;
 }
 
 .splash-screen {
-  @include flex($direction: column);
-
-  height: 100vh;
-  width: 100%;
-
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -1;
-
-  background-color: black;
-
-  & img {
-    max-width: 710px;
-  }
-
-  & p {
-    color: white;
-
-    font-size: 64px;
-    font-family: 'Raleway', sans-serif;
-  }
+    @include flex($direction: column);
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background-color: black;
+    & img {
+        max-width: 710px;
+    }
+    & p {
+        color: white;
+        font-size: 64px;
+        font-family: 'Raleway', sans-serif;
+    }
 }
 
 .join {
-  background: #000000;
-  color: #FFFFFF;
-
-  border-radius: 50%;
-  border: 2px solid;
-  border-image: linear-gradient(to right, #31725A, #34495E 100px, #31725A);
-  border-image-slice: 1;
-
-  font-size: 14px !important;
-  font-family: 'Raleway', sans-serif;
-  letter-spacing: 2.36px;
-  line-height: 19px;
-  text-align: center;
-
-  width: 250px;
-
-  margin-top: 70px;
-  padding: 10px 50px;
-
-  &:hover {
-    color: $success;
-  }
+    background: #000000;
+    color: #FFFFFF;
+    border-radius: 50%;
+    border: 2px solid;
+    border-image: linear-gradient(to right, #31725A, #34495E 100px, #31725A);
+    border-image-slice: 1;
+    font-size: 14px !important;
+    font-family: 'Raleway', sans-serif;
+    letter-spacing: 2.36px;
+    line-height: 19px;
+    text-align: center;
+    width: 250px;
+    margin-top: 70px;
+    padding: 10px 50px;
+    &:hover {
+        color: $success;
+    }
 }
 
 .footer {
-  background-color: transparent;
-
-  position: fixed;
-  bottom: 0;
-  left: 0;
+    background-color: transparent;
+    position: fixed;
+    bottom: 0;
+    left: 0;
 }
