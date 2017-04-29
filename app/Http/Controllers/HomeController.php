@@ -2,11 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\SupportTicket;
 use Illuminate\Http\Request;
+use App\SupportTicket;
 
 class HomeController extends Controller
 {
+    /**
+     * HomeController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['contact']]);
+    }
+
     /**
     * Show the application dashboard.
     *
@@ -15,8 +23,7 @@ class HomeController extends Controller
     public function index()
     {
         $user = auth()->user();
-
-        return view('home', compact('user'));
+        return view('home', ['visuals' => $user->visuals, 'user' => $user]);
     }
 
     /**
@@ -29,6 +36,12 @@ class HomeController extends Controller
         return view('contact');
     }
 
+    /**
+     * Save contact message
+     *
+     * @param  Request $request
+     * @return \Illuminate\Http\Response
+     */
     public function storeTicket(Request $request)
     {
         $this->validate($request, [
@@ -41,5 +54,12 @@ class HomeController extends Controller
         $message->create($request->only(['body', 'name', 'email']));
 
         return back()->with('flash', 'Message sent with success');
+    }
+
+    public function showFavorites()
+    {
+        $user = auth()->user();
+
+        return view('home', ['visuals' => $user->favorites, 'user' => $user]);
     }
 }

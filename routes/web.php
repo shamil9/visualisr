@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Auth::loginUsingId(1);
+Auth::loginUsingId(2);
 Route::get('/', function () {
     if (auth()->check()) {
         return redirect()->route('user.home');
@@ -20,6 +20,7 @@ Route::get('/', function () {
 })->name('index');
 
 Route::get('/home', 'HomeController@index')->name('user.home');
+Route::get('/home/favorites', 'HomeController@showFavorites')->name('user.favorites');
 Route::get('/contact', 'HomeController@contact')->name('contact');
 Route::post('/contact', 'HomeController@storeTicket')->name('contact.store');
 

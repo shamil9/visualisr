@@ -22,11 +22,12 @@ class FavoriteController extends Controller
             'visual_id' => 'required',
         ]);
 
-        $favorite = Favorite::where(['user_id' => $request->user_id,
-                            'visual_id' => $request->visual_id]);
-        $inFavorites = $favorite->exists();
+        $favorite = Favorite::where([
+            'user_id' => $request->user_id,
+            'visual_id' => $request->visual_id
+        ]);
 
-        if ($inFavorites) {
+        if ($favorite->exists()) {
             $favorite->delete();
 
             return Visual::find($request->visual_id)->favorites->count();
