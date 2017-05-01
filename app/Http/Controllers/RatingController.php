@@ -3,10 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Rating;
+use App\Visual;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
 
 class RatingController extends Controller
 {
+    /**
+     * RatingController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -35,7 +44,16 @@ class RatingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'rating' => 'required',
+            'visual' => 'required|exists:visuals,id'
+        ]);
+
+        Redis::hset('visual.' . $request->visual, 'user.' . auth()->id(), $request->rating);
+        $ratings = collect(Redis::hvals('visual.' . $request->visual));
+        $ratingsAverage = $ratings->avg();
+
+        Redis::zadd('visuals', $ratingsAverage, 'visual.' . $request->visual);
     }
 
     /**

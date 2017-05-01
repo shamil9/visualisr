@@ -30,6 +30,7 @@
         </header>
 
         <main role="main">
+            @yield('container-header')
             <div class="container">
                 @yield('content')
             </div>

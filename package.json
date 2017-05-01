@@ -21,6 +21,7 @@
     "balloon-css": "^0.4.0",
     "bulma": "^0.4.0",
     "howler": "^2.0.3",
-    "normalize.css": "^6.0.0"
+    "normalize.css": "^6.0.0",
+    "vue-bulma-rating": "^1.0.1"
   }
 }

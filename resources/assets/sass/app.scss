@@ -21,7 +21,9 @@
 @import "visuals/create";
 @import "visuals/favorite";
 @import "visuals/stats";
-@import "comments/comment";
+@import "visuals/comment";
+@import "visuals/rating";
+
 body,
 html {
     font-family: $roboto;

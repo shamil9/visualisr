@@ -33,4 +33,6 @@ Route::resource('visuals/{visual}/comments', 'CommentController');
 Route::post('visuals/{visual}', 'VisualController@update')->name('visuals.update.post');
 Route::resource('visuals', 'VisualController');
 
+Route::resource('ratings', 'RatingController');
+
 Route::post('favorites', 'FavoriteController@toggleFavorite')->name('favorites.toggle');

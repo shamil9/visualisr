@@ -60,7 +60,13 @@
     </div>
     <div class="column is-4">
         <div class="stats">
-            <div class="columns is-multiline">
+            <div class="columns is-multiline is-gapless">
+                <div class="column is-6">
+                    <span class="title is-5">Average Rating:</span>
+                </div>
+                <div class="column is-6 has-text-right">
+                    <span class="title is-5">{{ $visual->rating or 'No ratings yet' }}</span>
+                </div>
                 <div class="column is-6">
                     <span class="title is-5">Views:</span>
                 </div>

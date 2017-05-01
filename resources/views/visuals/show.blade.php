@@ -73,6 +73,9 @@
         <div class="columns">
             <div class="column is-4">
                 <div class="card">
+                    <header class="card-header">
+                        <p class="card-header-title">Comments: {{ $visual->favoritesCount }}</p>
+                    </header>
                     <div class="card-content">
                         @include('comments.index')
                     </div>
@@ -81,7 +84,10 @@
 
             <div class="column is-8">
                 <div class="relative">
-                    @unless($visual->user_id === auth()->id())
+                    @unless($visual->user_id === auth()->id() && auth()->check())
+                        <div class="rating">
+                            <rating :items="ratingItems" :value="ratingValue" @change="submitRating"></rating>
+                        </div>
                         <div class="favorite">
                             <button
                                 @click.prevent="submit"

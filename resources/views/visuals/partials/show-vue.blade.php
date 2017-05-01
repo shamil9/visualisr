@@ -11,8 +11,28 @@
             social: false,
             download: false,
             pageUrl: window.location.href,
+            ratingValue: {{ $visual->userRating or 1 }},
+            ratingItems: [
+                {title: '5 Stars', value: 5},
+                {title: '4 Stars', value: 4},
+                {title: '3 Stars', value: 3},
+                {title: '2 Stars', value: 2},
+                {title: '1 Star', value: 1}
+            ]
         },
         methods: {
+            submitRating: function (rating) {
+                axios
+                    .post('{{ route('ratings.store', $visual) }}', {
+                        rating: rating,
+                        visual: this.visual,
+                    })
+                    .then(function(response) {
+                        console.log(response);
+                    }.bind(this))
+                    .catch(function(error) {
+                    }.bind(this));
+            },
             submit: function () {
                 axios
                     .post('{{ route('favorites.toggle') }}',{
