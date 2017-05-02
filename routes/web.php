@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-//Auth::loginUsingId(2);
+Auth::loginUsingId(2);
 Route::get('/', function () {
     if (auth()->check()) {
         return redirect()->route('user.home');

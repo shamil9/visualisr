@@ -74,7 +74,7 @@
             <div class="column is-4">
                 <div class="card">
                     <header class="card-header">
-                        <p class="card-header-title">Comments: {{ $visual->favoritesCount }}</p>
+                        <p class="card-header-title">Comments: {{ $visual->comments->count() }}</p>
                     </header>
                     <div class="card-content">
                         @include('comments.index')

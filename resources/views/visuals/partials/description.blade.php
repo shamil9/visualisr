@@ -3,7 +3,8 @@
         <div class="media">
             <div class="media-left">
                 <figure class="user__avatar image is-48x48">
-                    <img src="{{ asset(getenv('APP_UPLOADS') . '/avatars/' . $visual->user->avatar) }}" alt="">
+                    <img src="{{ asset(getenv('APP_UPLOADS') . '/avatars/' . $visual->user->avatar) }}"
+                         alt="{{ $visual->user->name }}">
                 </figure>
             </div>
             <div class="media-right">
@@ -83,7 +84,7 @@
                     <span class="title is-5">Comments:</span>
                 </div>
                 <div class="column is-6 has-text-right">
-                    <span class="title is-5">{{ $visual->comments_count }}</span>
+                    <span class="title is-5">{{ $visual->comments->count() }}</span>
                 </div>
             </div>
         </div>

@@ -26,7 +26,10 @@ class VisualController extends Controller
      */
     public function index()
     {
-        $visuals = Visual::where(['private' => 0])->with('comments', 'favorites')->orderBy('id', 'desc')->paginate(10);
+        $visuals = Visual::where(['private' => 0])
+            ->with('comments', 'favorites')
+            ->orderBy('id', 'desc')
+            ->paginate(9);
 
         return view('visuals.index', compact('visuals'));
     }
@@ -73,9 +76,7 @@ class VisualController extends Controller
         )
             return view('visuals.private-error');
 
-        $visual->views = Redis::incr('visual' . $visual->id);
         $visual->userRating = Redis::hget('visual.' . $visual->id, 'user.' . auth()->id());
-        $visual->rating = Redis::zscore('visuals', 'visual.' . $visual->id);
 
         return view('visuals.show', compact('visual'));
     }

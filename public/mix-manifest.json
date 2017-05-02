@@ -3,7 +3,7 @@
   "/assets/js/app.js": "/assets/js/app.js",
   "/assets/css/app.css": "/assets/css/app.css",
   "/assets/css/vendor.css": "/assets/css/vendor.css",
+  "/assets/css/admin.css": "/assets/css/admin.css",
   "/assets/js/admin.js": "/assets/js/admin.js",
-  "/assets/js/manifest.js": "/assets/js/manifest.js",
-  "/assets/css/admin.css": "/assets/css/admin.css"
+  "/assets/js/manifest.js": "/assets/js/manifest.js"
 }

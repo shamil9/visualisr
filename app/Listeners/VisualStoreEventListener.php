@@ -3,8 +3,6 @@
 namespace App\Listeners;
 
 use App\Events\VisualStoreEvent;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 class VisualStoreEventListener
 {
@@ -22,7 +20,7 @@ class VisualStoreEventListener
      * Handle the event.
      *
      * @param  VisualStoreEvent  $event
-     * @return void
+     * @return Exception|\Exception
      */
     public function handle(VisualStoreEvent $event)
     {
@@ -33,14 +31,8 @@ class VisualStoreEventListener
         $event->visual->image = $event->visual->user_id . uniqid($event->visual->track) . '.png';
 
         try {
-            $dir = $this->createDir($event->visual->user_id);
-            \Image::make($event->request->image)->save($dir . '/' . $event->visual->image);
-            \Image::make($event->request->image)->resize(410, null, function ($constraint) {
-                $constraint->aspectRatio();
-            })->save($dir . '/' . 'thumb_' . $event->visual->image);
-            \Image::make($event->request->image)->resize(1500, 500)->save($dir . '/' . 'twitter_' . $event->visual->image);
-            \Image::make($event->request->image)->resize(828, 315)->save($dir . '/' . 'fb_' . $event->visual->image);
-        } catch (Exception $e) {
+            $this->storeImage($event->request, $event->visual);
+        } catch (\Exception $e) {
             return $e;
         } finally {
             $event->visual->save();
@@ -55,5 +47,31 @@ class VisualStoreEventListener
         } finally {
             return $dir;
         }
+    }
+
+    public function storeImage($request, $visual)
+    {
+        $dir = $this->createDir($visual->user_id);
+
+        // full size image
+        \Image::make($request->image)
+            ->save($dir . '/' . $visual->image);
+
+        // thumbnail
+        \Image::make($request->image)
+            ->resize(410, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })
+            ->save($dir . '/' . 'thumb_' . $visual->image);
+
+        // twitter banner
+        \Image::make($request->image)
+            ->resize(1500, 500)
+            ->save($dir . '/' . 'twitter_' . $visual->image);
+
+        //facebook banner
+        \Image::make($request->image)
+            ->resize(828, 315)
+            ->save($dir . '/' . 'fb_' . $visual->image);
     }
 }

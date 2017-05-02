@@ -2,14 +2,16 @@
 
 namespace App;
 
-use App\Favorite;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Redis;
 
 class Visual extends Model
 {
     protected $fillable = [
         'track', 'artist', 'album', 'private'
     ];
+
+    protected $with = ['favorites', 'comments', 'user'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -63,5 +65,25 @@ class Visual extends Model
     public function getCommentsCountAttribute()
     {
         return $this->comments()->count();
+    }
+
+    /**
+     * Get the number of views for the visual.
+     *
+     * @return integer
+     */
+    public function getViewsAttribute()
+    {
+        return Redis::incr('visual' . $this->id);
+    }
+
+    /**
+     * Get the rating for the visual.
+     *
+     * @return integer
+     */
+    public function getRatingAttribute()
+    {
+        return Redis::zscore('visuals', 'visual.' . $this->id);
     }
 }

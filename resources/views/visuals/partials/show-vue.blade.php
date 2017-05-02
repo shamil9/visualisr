@@ -2,17 +2,17 @@
     new Vue({
         el: '#content',
         data: {
-            user: '{{ auth()->id() }}',
-            visual: '{{ $visual->id }}',
+            user:           '{{ auth()->id() }}',
+            visual:         '{{ $visual->id }}',
             isActive: {{ ($visual->inFavorites() ? 'true' : 'false') }},
             tooltipMessage: {!! ($visual->inFavorites() ? '"Remove favorite"' : '"Add favorite"') !!},
-            favoritesCount: '{{ $visual->favorites_count }}',
+            favoritesCount: '{{ $visual->favorites->count() }}',
             commentEditUrl: '{{ route('comments.store', $visual) }}',
-            social: false,
-            download: false,
-            pageUrl: window.location.href,
+            social:         false,
+            download:       false,
+            pageUrl:        window.location.href,
             ratingValue: {{ $visual->userRating or 1 }},
-            ratingItems: [
+            ratingItems:    [
                 {title: '5 Stars', value: 5},
                 {title: '4 Stars', value: 4},
                 {title: '3 Stars', value: 3},
