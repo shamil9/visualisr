@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Redis;
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,8 +12,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        Redis::flushall();
         $this->call(UsersTableSeeder::class);
         $this->call(VisualsTableSeeder::class);
+        $this->call(BlogTableSeeder::class);
         // $this->call(CommentsTableSeeder::class);
     }
 }

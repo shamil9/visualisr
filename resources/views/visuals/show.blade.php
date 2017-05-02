@@ -84,7 +84,7 @@
 
             <div class="column is-8">
                 <div class="relative">
-                    @unless($visual->user_id === auth()->id() && auth()->check())
+                    @if ($visual->user_id !== auth()->id() && auth()->check())
                         <div class="rating">
                             <rating :items="ratingItems" :value="ratingValue" @change="submitRating"></rating>
                         </div>
@@ -101,7 +101,7 @@
                                 </svg>
                             </button>
                         </div>
-                    @endunless
+                    @endif
                     <img src="{{ asset(getenv('APP_UPLOADS') . '/visuals/' . $visual->user_id . '/' . $visual->image) }}" alt="{{ $visual->track }}"
                     style="padding-bottom: 16px">
                 </div>

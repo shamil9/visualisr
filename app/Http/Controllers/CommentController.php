@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
-    public function __construct () {
+    public function __construct()
+    {
         $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 
@@ -35,9 +36,9 @@ class CommentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param Visual                    $visual
-     * @return \Illuminate\Http\Response
+     * @param   \Illuminate\Http\Request $request
+     * @param   Visual                   $visual
+     * @return  \Illuminate\Http\Response
      */
     public function store(Request $request, Visual $visual)
     {
@@ -104,8 +105,9 @@ class CommentController extends Controller
 
     /**
      * Validate comment form
+     *
      * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Respone
+     * @return \Illuminate\Http\Response
      */
     private function validateComment($request)
     {

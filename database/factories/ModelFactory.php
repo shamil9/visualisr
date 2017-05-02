@@ -37,3 +37,11 @@ $factory->define(App\Visual::class, function(Faker\Generator $faker) {
         'image' => $faker->image($path, 1500, 500, 'abstract', false),
     ];
 });
+
+$factory->define(App\Blog::class, function (Faker\Generator $faker) {
+    return [
+        'user_id' => 1,
+        'title'   => $faker->words(2, true),
+        'body'    => $faker->paragraph(10, true),
+    ];
+});

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\SupportTicket;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -12,7 +12,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['contact']]);
+        $this->middleware('auth', ['except' => ['contact', 'storeTicket']]);
     }
 
     /**

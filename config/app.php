@@ -165,6 +165,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
+        Indal\Markdown\MarkdownServiceProvider::class,
 
         /*
          * Package Service Providers...

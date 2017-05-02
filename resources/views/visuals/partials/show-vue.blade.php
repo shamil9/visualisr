@@ -28,7 +28,6 @@
                         visual: this.visual,
                     })
                     .then(function(response) {
-                        console.log(response);
                     }.bind(this))
                     .catch(function(error) {
                     }.bind(this));

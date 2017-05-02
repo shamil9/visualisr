@@ -21,7 +21,7 @@
             <li>
                 <a>Stats</a>
             </li>
-            <li><a>Blog</a></li>
+            <li><a href="{{ route('blog.create') }}">Add Blog Article</a></li>
             <li><a>Members</a></li>
             <li><a>Visuals</a></li>
             <li><a>Contact messages</a></li>
