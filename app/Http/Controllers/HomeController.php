@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\SupportTicket;
+use App\Visual;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -58,8 +59,10 @@ class HomeController extends Controller
 
     public function showFavorites()
     {
-        $user = auth()->user();
+        $favorites = auth()->user()->favorites->map(function ($favorite) {
+            return $favorite->visual_id;
+        });
 
-        return view('home', ['visuals' => $user->favorites, 'user' => $user]);
+        return view('home', ['visuals' => Visual::find($favorites->all())]);
     }
 }

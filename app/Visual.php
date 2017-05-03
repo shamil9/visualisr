@@ -48,26 +48,6 @@ class Visual extends Model
     }
 
     /**
-     * Get the number of favorites for the visual.
-     *
-     * @return integer
-     */
-    public function getFavoritesCountAttribute()
-    {
-        return $this->favorites()->count();
-    }
-
-    /**
-     * Get the number of comments for the visual.
-     *
-     * @return integer
-     */
-    public function getCommentsCountAttribute()
-    {
-        return $this->comments()->count();
-    }
-
-    /**
      * Get the number of views for the visual.
      *
      * @return integer
