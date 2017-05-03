@@ -27,7 +27,7 @@ class VisualController extends Controller
     public function index()
     {
         $visuals = Visual::where(['private' => 0])
-            ->with('comments', 'favorites')
+            ->with('comments', 'favorites', 'user')
             ->orderBy('id', 'desc')
             ->paginate(9);
 

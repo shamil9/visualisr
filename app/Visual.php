@@ -11,7 +11,7 @@ class Visual extends Model
         'track', 'artist', 'album', 'private'
     ];
 
-    protected $with = ['favorites', 'comments', 'user'];
+    protected $with = [];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

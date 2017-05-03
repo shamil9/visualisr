@@ -10,11 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Auth::loginUsingId(2);
+//Auth::loginUsingId(2);
 Route::get('/', function () {
-    if (auth()->check()) {
-        return redirect()->route('user.home');
-    }
+    if (auth()->check()) return redirect()->route('user.home');
 
     return view('welcome');
 })->name('index');
@@ -35,5 +33,8 @@ Route::post('visuals/{visual}', 'VisualController@update')->name('visuals.update
 Route::resource('visuals', 'VisualController');
 
 Route::resource('ratings', 'RatingController');
+
+Route::patch('users/{user}/toggle', 'UserController@toggleUserBannedStatus')->name('users.toggle.status');
+Route::resource('users', 'UserController');
 
 Route::post('favorites', 'FavoriteController@toggleFavorite')->name('favorites.toggle');

@@ -8,13 +8,23 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     /**
+     * UserController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['show']]);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::with('visuals')
+            ->orderBy('id', 'desc')
+            ->paginate(9);
 
         return view('admin.users.index', ['users' => $users]);
     }
@@ -77,11 +87,30 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param User $user
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $this->authorize('manage', User::class);
+        $user->delete();
+
+        return back()->with('flash', 'User deleted successfully');
+    }
+
+    /**
+     * Block or unblock an user
+     *
+     * @param User $user
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function toggleUserBannedStatus(User $user)
+    {
+        $this->authorize('manage', User::class);
+        $user->banned = ! $user->banned;
+        $user->save();
+
+        return back()->with('flash', 'User successfully updated');
     }
 }
