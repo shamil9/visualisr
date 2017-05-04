@@ -63,4 +63,9 @@
 @section('footer-js')
     @parent
     <script src="{{ asset('assets/js/admin.js') }}"></script>
+    <script>
+        new SimpleMDE({
+            element: document.querySelector('#editor')
+        });
+    </script>
 @endsection

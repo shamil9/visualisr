@@ -7,7 +7,6 @@ use Laravel\Socialite\Facades\Socialite;
 
 class Twitter
 {
-
     /**
      * Redirect the user to the twitter authentication page.
      *

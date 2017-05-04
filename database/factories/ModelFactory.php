@@ -1,5 +1,7 @@
 <?php
 
+use App\User;
+use App\Visual;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
 
@@ -62,5 +64,16 @@ $factory->define(App\Blog::class, function (Faker\Generator $faker) {
         'user_id' => 1,
         'title'   => $faker->words(2, true),
         'body'    => $faker->paragraph(10, true),
+    ];
+});
+
+$factory->define(App\Comment::class, function (Faker\Generator $faker) {
+    $visuals = Visual::all();
+    $users = User::all();
+
+    return [
+        'user_id' => $users->random()->id,
+        'visual_id' => $visuals->random()->id,
+        'body' => $faker->paragraph()
     ];
 });

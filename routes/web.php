@@ -17,25 +17,36 @@ Route::get('/', function () {
     return view('welcome');
 })->name('index');
 
+// main nav
 Route::get('/home', 'HomeController@index')->name('user.home');
-Route::get('/home/favorites', 'HomeController@showFavorites')->name('user.favorites');
+
+// blog
 Route::resource('blog', 'BlogController');
 
+// auth
 Route::get('login/twitter', 'Auth\Providers\Twitter@redirectToProvider')->name('twitter.login');
 Route::get('login/twitter/callback', 'Auth\Providers\Twitter@handleProviderCallback')->name('twitter.login.callback');
 Auth::routes();
 
-
+// visuals
 Route::resource('visuals/{visual}/comments', 'CommentController');
 Route::post('visuals/{visual}', 'VisualController@update')->name('visuals.update.post');
 Route::resource('visuals', 'VisualController');
 
+// ratings
 Route::resource('ratings', 'RatingController');
 
+// users
 Route::patch('users/{user}/toggle', 'UserController@toggleUserBannedStatus')->name('users.toggle.status');
 Route::resource('users', 'UserController');
+Route::get('/home/favorites', 'HomeController@showFavorites')->name('user.favorites');
 
+// favorite visual
 Route::post('favorites', 'FavoriteController@toggleFavorite')->name('favorites.toggle');
 
+// support tickets
 Route::resource('contact', 'SupportTicketController');
 
+// admin stats
+Route::get('/admin/stats', 'HomeController@stats')->name('admin.stats');
+Route::get('/admin/statscount', 'HomeController@statsCount')->name('admin.stats.count');

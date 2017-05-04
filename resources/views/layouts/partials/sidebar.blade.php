@@ -13,13 +13,19 @@
         <li><a>Change Password</a></li>
         <li><a>Change Email</a></li>
         <li><a>Change Avatar</a></li>
-        <li><a>Add Twitter account</a></li>
+        <li>
+            <a href="{{ route('twitter.login') }}">Twitter Account
+                @if (auth()->user()->twitter_id)
+                    <i class="fa fa-check-circle" aria-hidden="true"></i>
+                @endif
+            </a>
+        </li>
     </ul>
     @if (auth()->user()->admin)
         <p class="menu-label">Administration</p>
         <ul class="menu-list">
             <li>
-                <a>Stats</a>
+                <a class="@activeClass('admin.stats')" href="{{ route('admin.stats') }}">Stats</a>
             </li>
             <li>
                 <a class="@activeClass('blog.create')" href="{{ route('blog.create') }}">

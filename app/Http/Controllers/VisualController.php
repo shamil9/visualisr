@@ -76,6 +76,7 @@ class VisualController extends Controller
         )
             return view('visuals.private-error');
 
+        Redis::zincrby('visual', 1, 'visual.' . $visual->id);
         $visual->userRating = Redis::hget('visual.' . $visual->id, 'user.' . auth()->id());
 
         return view('visuals.show', compact('visual'));
