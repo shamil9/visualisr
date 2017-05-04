@@ -5,7 +5,7 @@
             <span></span>
         @else
             <a href="{{ $paginator->previousPageUrl() }}" rel="prev" class="pagination-previous">
-                &laquo; Previous
+                &laquo; Previous Page
             </a>
         @endif
 

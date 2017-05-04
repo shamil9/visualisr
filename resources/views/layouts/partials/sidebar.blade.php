@@ -31,8 +31,11 @@
                     Members
                 </a>
             </li>
-            <li><a>Visuals</a></li>
-            <li><a>Contact messages</a></li>
+            <li>
+                <a class="@activeClass('contact.index')" href="{{ route('contact.index') }}">
+                    Contact messages
+                </a>
+            </li>
         </ul>
     @endif
 </aside>

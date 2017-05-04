@@ -19,8 +19,6 @@ Route::get('/', function () {
 
 Route::get('/home', 'HomeController@index')->name('user.home');
 Route::get('/home/favorites', 'HomeController@showFavorites')->name('user.favorites');
-Route::get('/contact', 'HomeController@contact')->name('contact');
-Route::post('/contact', 'HomeController@storeTicket')->name('contact.store');
 Route::resource('blog', 'BlogController');
 
 Route::get('login/twitter', 'Auth\Providers\Twitter@redirectToProvider')->name('twitter.login');
@@ -38,3 +36,6 @@ Route::patch('users/{user}/toggle', 'UserController@toggleUserBannedStatus')->na
 Route::resource('users', 'UserController');
 
 Route::post('favorites', 'FavoriteController@toggleFavorite')->name('favorites.toggle');
+
+Route::resource('contact', 'SupportTicketController');
+

@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Observers\SupportTicketObserver;
 use App\Observers\UserObserver;
+use App\SupportTicket;
 use App\User;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Schema;
@@ -19,6 +21,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
         User::observe(UserObserver::class);
+        SupportTicket::observe(SupportTicketObserver::class);
 
         Blade::directive('activeClass', function ($path) {
             return "<?php if (Request::url() == route($path)) echo 'is-active'; ?>";

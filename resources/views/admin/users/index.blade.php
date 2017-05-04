@@ -25,7 +25,6 @@
             el:      '.users',
             methods: {
                 submit: function ( event ) {
-                    event.preventDefault();
                     event.target.parentNode.submit();
                 }
             }

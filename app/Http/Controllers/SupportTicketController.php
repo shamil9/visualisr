@@ -8,13 +8,23 @@ use Illuminate\Http\Request;
 class SupportTicketController extends Controller
 {
     /**
+     * HomeController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['create', 'store']]);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        $messages = SupportTicket::all();
+
+        return view('admin.contact.index', ['messages' => $messages]);
     }
 
     /**
@@ -24,62 +34,50 @@ class SupportTicketController extends Controller
      */
     public function create()
     {
-        //
+        return view('contact');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
-    }
+        $this->validateFields($request);
+        $message = new SupportTicket();
+        $message->create($request->only(['body', 'name', 'email']));
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\SupportTicket  $supportTicket
-     * @return \Illuminate\Http\Response
-     */
-    public function show(SupportTicket $supportTicket)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\SupportTicket  $supportTicket
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(SupportTicket $supportTicket)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\SupportTicket  $supportTicket
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, SupportTicket $supportTicket)
-    {
-        //
+        return back()->with('flash', 'Message sent with success');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\SupportTicket  $supportTicket
+     * @param SupportTicket $contact
      * @return \Illuminate\Http\Response
+     * @internal param SupportTicketCreated $supportTicket
      */
-    public function destroy(SupportTicket $supportTicket)
+    public function destroy(SupportTicket $contact)
     {
-        //
+        $this->authorize('manage', SupportTicket::class);
+        $contact->delete();
+
+        return back()->with('flash', 'Support Ticket successfully deleted');
+    }
+
+    public function validateFields(Request $request)
+    {
+        if (auth()->check()) {
+            $request->request->add(['email' => auth()->user()->email]);
+            $request->request->add(['name' => auth()->user()->name]);
+        }
+
+        $this->validate($request, [
+            'body'  => 'required|min:10',
+            'email' => 'required',
+            'name'  => 'required',
+        ]);
     }
 }

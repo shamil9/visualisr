@@ -17,7 +17,7 @@
                         <ul>
                             <li><a href="{{ route('visuals.index') }}">Visuals</a></li>
                             <li><a href="{{ route('blog.index') }}">Blog</a></li>
-                            <li><a href="{{ route('contact') }}">Contact</a></li>
+                            <li><a href="{{ route('contact.create') }}">Contact</a></li>
                         </ul>
                     </div>
                 </div>
