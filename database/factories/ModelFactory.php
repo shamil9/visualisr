@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\File;
+use Intervention\Image\Facades\Image;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,19 +32,19 @@ $factory->define(App\Visual::class, function (Faker\Generator $faker) {
     $image = $faker->image($path, 1900, 1080, 'abstract', false);
 
     // thumbnail
-    \Image::make($path . '/' . $image)
+    Image::make($path . '/' . $image)
         ->resize(410, null, function ($constraint) {
             $constraint->aspectRatio();
         })
         ->save($path . '/' . 'thumb_' . $image);
 
     // twitter banner
-    \Image::make($path . '/' . $image)
+    Image::make($path . '/' . $image)
         ->resize(1500, 500)
         ->save($path . '/' . 'twitter_' . $image);
 
     //facebook banner
-    \Image::make($path . '/' . $image)
+    Image::make($path . '/' . $image)
         ->resize(828, 315)
         ->save($path . '/' . 'fb_' . $image);
 

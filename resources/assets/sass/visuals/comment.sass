@@ -6,10 +6,22 @@
   max-height: 36px
 
   border-radius: 50%
-  // border: 1px solid $grey-lighter
 
   margin-right: 5px
   padding: 3px
 
 .comment + .media
   border: none
+
+.comment__content
+  max-width: 327px
+
+.comment__content .box:not(:last-child)
+  margin-bottom: 5px
+
+.comment__info
+  color: $grey-light
+  font-size: .8rem
+
+  & a
+    color: $red

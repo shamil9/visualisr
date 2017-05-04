@@ -31,4 +31,9 @@ class CommentPolicy
 
         return true;
     }
+
+    public function destroy()
+    {
+        if (auth()->user()->admin) return true;
+    }
 }

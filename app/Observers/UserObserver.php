@@ -2,7 +2,6 @@
 
 namespace App\Observers;
 
-use App\Mail\UserCreated;
 use App\User;
 
 class UserObserver
@@ -15,7 +14,7 @@ class UserObserver
      */
     public function created(User $user)
     {
-        \Mail::to($user)->send(new UserCreated($user));
+//        \Mail::to($user)->send(new UserCreated($user));
     }
 
     /**

@@ -80,12 +80,6 @@
                 <div class="column is-6 has-text-right">
                     <span class="title is-5">@{{ favoritesCount }}</span>
                 </div>
-                <div class="column is-6">
-                    <span class="title is-5">Comments:</span>
-                </div>
-                <div class="column is-6 has-text-right">
-                    <span class="title is-5">{{ $visual->comments->count() }}</span>
-                </div>
             </div>
         </div>
     </div>
