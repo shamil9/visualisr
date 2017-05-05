@@ -14,13 +14,13 @@
         </div>
         @can('destroy', App\Comment::class)
             <div class="has-text-right comment__info">
-                <form method="post"
+                <form method="post" ref="{{ $comment->id }}"
                       action="{{ route('comments.destroy',
                                 ['visual' => $visual, 'comment' => $comment]) }}">
                     {{ csrf_field() }}
                     {{ method_field('delete') }}
                     {{ $comment->created_at->diffForHumans() }}
-                    <a @click.prevent="deleteComment" href="#">Delete</a>
+                    <a @click.prevent="$emit('showModalEvent', {{ $comment->id }})" href="#">Delete</a>
                 </form>
             </div>
         @endcan

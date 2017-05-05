@@ -41,10 +41,10 @@
                         <a href="#" class="user__block card-footer-item">Block</a>
                     @endif
                 </form>
-                <form @click="submit" style="flex: 1" method="post" action="{{ route('users.destroy', $user) }}">
+                <form ref="{{ $user->id }}" style="flex: 1" method="post" action="{{ route('users.destroy', $user) }}">
                     {{ csrf_field() }}
                     {{ method_field('delete') }}
-                    <a class="user__delete card-footer-item">Delete</a>
+                    <a @click.prevent="$emit('showModalEvent', {{ $user->id }})" class="user__delete card-footer-item">Delete</a>
                 </form>
             </footer>
         @endcan

@@ -20,6 +20,7 @@
         </div>
     </article>
 </form>
+<delete-modal v-cloak></delete-modal>
 <br>
 
 @foreach($visual->comments->sortByDesc('id') as $comment)

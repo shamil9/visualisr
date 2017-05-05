@@ -48,5 +48,5 @@ Route::post('favorites', 'FavoriteController@toggleFavorite')->name('favorites.t
 Route::resource('contact', 'SupportTicketController');
 
 // admin stats
-Route::get('/admin/stats', 'HomeController@stats')->name('admin.stats');
-Route::get('/admin/statscount', 'HomeController@statsCount')->name('admin.stats.count');
+Route::get('/admin/stats', 'StatsController@stats')->name('admin.stats');
+Route::get('/admin/statscount', 'StatsController@statsCount')->name('admin.stats.count');

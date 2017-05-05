@@ -4,6 +4,7 @@
     @parent
     <link rel="stylesheet" href="{{ asset('assets/css/admin.css') }}">
 @endsection
+@section('class', 'blog-create')
 
 @section('content')
     <section class="section">
@@ -14,17 +15,17 @@
             <div class="column is-8">
                 <form method="post"
                       action="{{
-                    isset($blog) ?
-                    route('blog.update', $blog) :
-                    route('blog.store')
-                  }}">
+                                isset($blog) ?
+                                route('blog.update', $blog) :
+                                route('blog.store')
+                              }}">
 
                     {{ csrf_field() }}
                     {{ method_field(isset($blog) ? 'patch' : 'post') }}
 
                     @if (isset($blog))
                         <span class="pull-right">
-                        <button id="delete" class="button is-small is-danger">Delete</button>
+                        <button @click.prevent="$emit('showModalEvent', {{ $blog->id }})" class="button is-small is-danger">Delete</button>
                     </span>
                     @endif
 
@@ -49,10 +50,11 @@
                     </p>
                 </form>
             </div>
+            <delete-modal v-cloak></delete-modal>
         </div>
 
         @if (isset($blog))
-            <form id="delete-form" action="{{ route('blog.destroy', $blog) }}" method="POST" style="display: none;">
+            <form ref="{{ $blog->id }}" action="{{ route('blog.destroy', $blog) }}" method="POST" style="display: none;">
                 {{ csrf_field() }}
                 {{ method_field('delete') }}
             </form>
@@ -64,6 +66,7 @@
     @parent
     <script src="{{ asset('assets/js/admin.js') }}"></script>
     <script>
+        new Vue({el: '.blog-create'})
         new SimpleMDE({
             element: document.querySelector('#editor')
         });

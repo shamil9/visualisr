@@ -58,10 +58,6 @@
                 this.social   = false;
                 this.download = !this.download;
             },
-            deleteComment: function ( event ) {
-                event.preventDefault();
-                event.target.parentNode.submit();
-            }
         }
     });
 </script>

@@ -16,13 +16,14 @@
             </div>
         </div>
         <flash message="{{ session('flash') }}"></flash>
+        <delete-modal v-cloak></delete-modal>
     </section>
 @endsection
 @section('footer-js')
     @parent
     <script>
         new Vue({
-            el:      '.users',
+            el: '.users',
             methods: {
                 submit: function ( event ) {
                     event.target.parentNode.submit();

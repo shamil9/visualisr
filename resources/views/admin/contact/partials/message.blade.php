@@ -19,7 +19,7 @@
                                       action="{{ route('contact.destroy', $message) }}">
                                     {{ csrf_field() }}
                                     {{ method_field('delete') }}
-                                    <a @click.prevent="showDeleteModal({{ $message->id }})" class="level-item" href="#">
+                                    <a @click.prevent="$emit('showModalEvent', {{ $message->id }})" class="level-item" href="#">
                                         <span class="icon is-small"><i class="fa fa-trash"></i></span>
                                     </a>
                                 </form>
