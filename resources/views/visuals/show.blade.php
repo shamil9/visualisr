@@ -77,7 +77,9 @@
                         <p class="card-header-title">Comments: {{ $visual->comments->count() }}</p>
                     </header>
                     <div class="card-content">
-                        @include('comments.index')
+                        <div class="comments">
+                            @include('comments.index')
+                        </div>
                     </div>
                 </div>
             </div>

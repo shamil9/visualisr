@@ -49,6 +49,7 @@ class Twitter
         User::where(['id' => auth()->user()->id])
             ->update([
                 'twitter_id' => $user->id,
+                'twitter_name' => $user->nickname,
                 'twitter_profile_background_color' => $user->user['profile_background_color'],
                 'twitter_profile_link_color' => $user->user['profile_link_color'],
                 'twitter_profile_image_url' => $user->user['profile_image_url'],
@@ -78,6 +79,7 @@ class Twitter
     {
         return User::create([
             'twitter_id' => $user->id,
+            'twitter_name' => $user->nickname,
             'twitter_profile_background_color' => $user->user['profile_background_color'],
             'twitter_profile_link_color' => $user->user['profile_link_color'],
             'twitter_profile_image_url' => $user->user['profile_image_url'],
