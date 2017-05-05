@@ -69,13 +69,13 @@ class HomeController extends Controller
 
     public function getStats($table)
     {
-        $count = DB::table($table)
-                     ->select(DB::raw('count(*) as count'))
-                     ->groupBy('created_at')
-                     ->get()
-                     ->map(function ($object) {
-                        return $object->count;
-                    });
+        $count = DB::select("
+                    select count(*) as count, monthname(created_at) as month
+                    from {$table}
+                    where created_at between now() - INTERVAL 6 MONTH and NOW()
+                    group by month
+                    order by created_at
+                ");
 
         return $count;
     }
