@@ -51,19 +51,22 @@
         .catch(function (error) {});
 
     function getMonthLabel(stats) {
-        var months = [];
-        var monthCount = 0;
+        var months = [ "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December" ];
+        var now = new Date().getMonth();
 
-        // build the months labels
-        for (set in stats) {
-            if (Object.keys(stats[set]).length >= monthCount) {
-                stats[set].forEach(function(data, index) {
-                    months[index] = data.month;
-                });
-                monthCount = Object.keys(stats[set]).length;
-            }
+        // return months from last year if current month number is less than 6
+        if (now < 5) {
+            var monthsWithOffset = months.slice(now - 5);
+            months.forEach(function (value, index) {
+                if (index > now) return;
+                monthsWithOffset.push(value);
+            });
+
+            return monthsWithOffset;
         }
-        return months;
+
+        return months.slice(now, now + 5);
     }
 
     function renderChart(stats) {
@@ -73,9 +76,7 @@
         for (entity in stats) {
             data[entity] = {};
             data[entity].values = [];
-            // entity = comments
             labels.forEach(function (label, index) {
-                //label = december
                 data[entity].values[index] = 0;
                 stats[entity].forEach(function (month) {
                     if (label === month.month) {
@@ -97,20 +98,20 @@
                 datasets: [
                     {
                         label: "Comments",
-                        backgroundColor: "rgba(100,192,30,0.4)",
-                        borderColor: "rgba(100,192,30,1)",
+                        backgroundColor: "rgba(201,214,223,0.4)",
+                        borderColor: "rgba(201,214,223,1)",
                         data: data.comments.values,
                     },
                     {
                         label: "Visuals",
-                        backgroundColor: "rgba(75,192,192,0.4)",
-                        borderColor: "rgba(75,192,192,1)",
+                        backgroundColor: "rgba(63,193,201,0.4)",
+                        borderColor: "rgba(63,193,201,1)",
                         data: data.visuals.values,
                     },
                     {
                         label: "Users",
-                        backgroundColor: "rgba(75,192,192,0.4)",
-                        borderColor: "rgba(75,192,40,1)",
+                        backgroundColor: "rgba(252,81,133,0.4)",
+                        borderColor: "rgba(252,81,133,1)",
                         data: data.users.values,
                     }
                 ]

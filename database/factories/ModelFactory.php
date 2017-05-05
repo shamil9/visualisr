@@ -4,6 +4,7 @@ use App\User;
 use App\Visual;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
+use Carbon\Carbon;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +29,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(App\Visual::class, function (Faker\Generator $faker) {
-    $user = factory(App\User::class)->create();
+    $user = factory(App\User::class)->create(['created_at' => Carbon::now()->subMonths(rand(1,6))]);
     $path = public_path() . '/' . getenv('APP_UPLOADS') . '/visuals/' . $user->id;
     File::makeDirectory($path);
     $image = $faker->image($path, 1900, 1080, 'abstract', false);
