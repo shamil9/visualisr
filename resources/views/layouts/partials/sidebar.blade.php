@@ -14,11 +14,11 @@
         <li><a>Change Email</a></li>
         <li><a>Change Avatar</a></li>
         <li>
-            <a href="{{ route('twitter.login') }}">Twitter Account
-                @if (auth()->user()->twitter_id)
-                    <i class="fa fa-check-circle" aria-hidden="true"></i>
-                @endif
-            </a>
+            @if (auth()->user()->twitter_id)
+                <a href="{{ route('twitter.unlink') }}">Unlink Twitter Account</a>
+            @else
+                <a href="{{ route('twitter.login') }}">Add Twitter Account</a>
+            @endif
         </li>
     </ul>
     @if (auth()->user()->admin)

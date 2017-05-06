@@ -14,7 +14,7 @@ class UserObserver
      */
     public function created(User $user)
     {
-//        \Mail::to($user)->send(new UserCreated($user));
+        \Mail::to($user)->send(new UserCreated($user));
     }
 
     /**
@@ -25,6 +25,9 @@ class UserObserver
      */
     public function deleting(User $user)
     {
-        //
+        $user->visuals()->delete();
+        $dir = public_path() . '/uploads/visuals/' . $user->id;
+
+        deleteDirectory($dir);
     }
 }

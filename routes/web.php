@@ -26,6 +26,7 @@ Route::resource('blog', 'BlogController');
 // auth
 Route::get('login/twitter', 'Auth\Providers\Twitter@redirectToProvider')->name('twitter.login');
 Route::get('login/twitter/callback', 'Auth\Providers\Twitter@handleProviderCallback')->name('twitter.login.callback');
+Route::get('login/twitter/remove', 'Auth\Providers\Twitter@unlinkAccount')->name('twitter.unlink');
 Auth::routes();
 
 // visuals

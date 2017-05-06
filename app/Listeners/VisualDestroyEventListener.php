@@ -25,7 +25,7 @@ class VisualDestroyEventListener
     public function handle(VisualDestroyEvent $event)
     {
         $event->visual->delete();
-        $id = auth()->user()->id;
-        unlink(public_path() . '/uploads/visuals/' . $id);
+        $dir = public_path() . '/uploads/visuals/' . $event->visual->user->id;
+        deleteDirectory($dir);
     }
 }

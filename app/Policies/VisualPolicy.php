@@ -10,6 +10,11 @@ class VisualPolicy
 {
     use HandlesAuthorization;
 
+    public function before()
+    {
+        if (auth()->user()->admin) return true;
+    }
+
     /**
      * Determine whether the user can view the visual.
      *

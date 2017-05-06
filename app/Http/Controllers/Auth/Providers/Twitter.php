@@ -9,8 +9,6 @@ class Twitter
 {
     /**
      * Redirect the user to the twitter authentication page.
-     *
-     * @return Response
      */
     public function redirectToProvider()
     {
@@ -20,7 +18,7 @@ class Twitter
     /**
      * Obtain the user information from twitter.
      *
-     * @return Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function handleProviderCallback()
     {
@@ -41,52 +39,74 @@ class Twitter
 
     /**
      * If user is logged in and dont have Twitter acount linked
+     *
      * @param  $user
-     * @return Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     private function updateUser($user)
     {
         User::where(['id' => auth()->user()->id])
             ->update([
-                'twitter_id' => $user->id,
-                'twitter_name' => $user->nickname,
+                'twitter_id'                       => $user->id,
+                'twitter_name'                     => $user->nickname,
                 'twitter_profile_background_color' => $user->user['profile_background_color'],
-                'twitter_profile_link_color' => $user->user['profile_link_color'],
-                'twitter_profile_image_url' => $user->user['profile_image_url'],
+                'twitter_profile_link_color'       => $user->user['profile_link_color'],
+                'twitter_profile_image_url'        => $user->user['profile_image_url'],
             ]);
 
         return redirect(route('user.home'));
     }
 
     /**
-     * If user is loggin in via Twitter
+     * If user is login in via Twitter
+     *
      * @param  $user
-     * @return Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     private function logginUser($user)
     {
-       \Auth::login($user, true);
+        \Auth::login($user, true);
 
-       return redirect(route('user.home'));
+        return redirect(route('user.home'));
     }
 
     /**
      * Create new user
+     *
      * @param  $user
      * @return User           New User instance
      */
     private function createUser($user)
     {
         return User::create([
-            'twitter_id' => $user->id,
-            'twitter_name' => $user->nickname,
+            'twitter_id'                       => $user->id,
+            'twitter_name'                     => $user->nickname,
             'twitter_profile_background_color' => $user->user['profile_background_color'],
-            'twitter_profile_link_color' => $user->user['profile_link_color'],
-            'twitter_profile_image_url' => $user->user['profile_image_url'],
-            'twitter_avatar' => $user->avatar,
-            'email' => $user->email,
-            'password' => str_random(8),
-            'name' => $user->nickname,
+            'twitter_profile_link_color'       => $user->user['profile_link_color'],
+            'twitter_profile_image_url'        => $user->user['profile_image_url'],
+            'twitter_avatar'                   => $user->avatar,
+            'email'                            => $user->email,
+            'password'                         => str_random(8),
+            'name'                             => $user->nickname,
         ]);
+    }
+
+    /**
+     * Unlink users Twitter account
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function unlinkAccount()
+    {
+        auth()->user()->update([
+            'twitter_id'                       => '',
+            'twitter_name'                     => '',
+            'twitter_profile_background_color' => '',
+            'twitter_profile_link_color'       => '',
+            'twitter_profile_image_url'        => '',
+            'twitter_avatar'                   => '',
+        ]);
+
+        return back()->with('flash', 'Twitter account successfully removed');
     }
 }
