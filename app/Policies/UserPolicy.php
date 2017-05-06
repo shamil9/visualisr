@@ -21,6 +21,7 @@ class UserPolicy
 
     public function before(User $user)
     {
+        if (auth()->user()->banned) return false;
         if ($user->admin) return true;
     }
 

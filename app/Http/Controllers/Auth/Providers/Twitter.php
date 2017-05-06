@@ -38,7 +38,7 @@ class Twitter
     }
 
     /**
-     * If user is logged in and dont have Twitter acount linked
+     * If user is logged in and don't have Twitter account linked
      *
      * @param  $user
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector

@@ -30,7 +30,9 @@ class SupportTicketCreated extends Mailable
      */
     public function build()
     {
-        return $this->from($this->message->email)
+        return $this
+            ->subject('New Support Ticket')
+            ->from($this->message->email)
             ->markdown('email.support-ticket');
     }
 }

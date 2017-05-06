@@ -17,4 +17,9 @@ class RatingPolicy
     {
         //
     }
+
+    public function before()
+    {
+        if (auth()->user()->banned) return false;
+    }
 }

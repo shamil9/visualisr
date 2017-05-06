@@ -18,6 +18,11 @@ class CommentPolicy
         //
     }
 
+    public function before()
+    {
+        if (auth()->user()->banned) return false;
+    }
+
     public function create()
     {
         if (! auth()->check()) return false;

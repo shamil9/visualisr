@@ -2,24 +2,22 @@
 
 namespace App\Mail;
 
-use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class UserCreated extends Mailable
+class UserSuspendedMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    private $user;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct()
     {
-        $this->user = $user;
+        //
     }
 
     /**
@@ -30,7 +28,7 @@ class UserCreated extends Mailable
     public function build()
     {
         return $this
-            ->subject('Account Created')
-            ->markdown('email.users.create', ['user', $this->user]);
+            ->subject('Account Suspended')
+            ->markdown('email.users.suspended');
     }
 }

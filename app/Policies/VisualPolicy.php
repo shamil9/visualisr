@@ -12,6 +12,7 @@ class VisualPolicy
 
     public function before()
     {
+        if (auth()->user()->banned) return false;
         if (auth()->user()->admin) return true;
     }
 

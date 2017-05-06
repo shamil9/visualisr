@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\UserSuspendedMail;
+use App\Mail\UserUnblockedMail;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -12,7 +15,7 @@ class UserController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['show']]);
+        $this->middleware(['auth', 'banned.check'], ['except' => ['show']]);
     }
 
     /**
@@ -22,6 +25,7 @@ class UserController extends Controller
      */
     public function index()
     {
+        $this->authorize('manage', User::class);
         $users = User::with('visuals')
             ->orderBy('id', 'desc')
             ->paginate(9);
@@ -108,9 +112,23 @@ class UserController extends Controller
     public function toggleUserBannedStatus(User $user)
     {
         $this->authorize('manage', User::class);
-        $user->banned = ! $user->banned;
-        $user->save();
+        if ($user->banned) {
+            $user->banned = ! $user->banned;
+            Mail::to($user->email)->send(new UserUnblockedMail($user));
 
-        return back()->with('flash', 'User successfully updated');
+            $user->save();
+
+            return back()->with('flash', 'User successfully updated');
+        }
+
+        if (! $user->banned) {
+            $user->banned = ! $user->banned;
+            Mail::to($user->email)->send(new UserSuspendedMail($user));
+
+            $user->save();
+
+            return back()->with('flash', 'User successfully updated');
+        }
+
     }
 }

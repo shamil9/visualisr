@@ -12,14 +12,14 @@ class RatingController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware(['auth', 'banned.check'], ['except' => ['index', 'show']]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return int
      */
     public function store(Request $request)
     {

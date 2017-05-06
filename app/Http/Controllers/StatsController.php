@@ -2,19 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Redis;
 use App\Comment;
 use App\User;
 use App\Visual;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redis;
 
 class StatsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('banned.check');
+    }
+
     /**
      * Display stats page
      *
-     * @return Illuminate\Http\Response
+     * @return \Illuminate\Http\Response
      */
     public function stats()
     {
