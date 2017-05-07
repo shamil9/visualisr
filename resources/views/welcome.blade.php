@@ -12,20 +12,14 @@
 </head>
 <body>
 <div class="home">
-    <header class="header">
-        <div class="container">
-            <div class="header__logo is-pulled-left">
-                <a href="{{ route('user.home') }}">
-                    <img src="{{ url('assets/img/logo.svg') }}" title="{{ env('APP_NAME') }}" />
-                </a>
-            </div>
-        </div>
+    <header>
+        @include('layouts.partials.header')
     </header>
     <main class="splash-screen" role="main">
         <p>Create beautiful art</p>
         <img src="{{ asset('assets/img/wave.png') }}" alt="Visualisr">
         <p>From your favorite song</p>
-        <a class="join" href="{{ route('login') }}">JOIN NOW</a>
+        <a class="join" href="{{ route('register') }}">JOIN NOW</a>
     </main>
 </div>
 </body>
