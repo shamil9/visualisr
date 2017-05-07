@@ -64,7 +64,7 @@
 
 @section('footer-js')
     @parent
-    <script src="{{ asset('assets/js/admin.js') }}"></script>
+    <script src="{{ mix('assets/js/admin.js') }}"></script>
     <script>
         new Vue({el: '.blog-create'})
         new SimpleMDE({

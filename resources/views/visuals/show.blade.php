@@ -88,7 +88,12 @@
                 <div class="relative">
                     @if ($visual->user_id !== auth()->id() && auth()->check())
                         <div class="rating">
-                            <rating :items="ratingItems" :value="ratingValue" @change="submitRating"></rating>
+                            <rating
+                                :items="ratingItems"
+                                kind="grow"
+                                :value="ratingValue"
+                                @change="submitRating">
+                            </rating>
                         </div>
                         <div class="favorite">
                             <button

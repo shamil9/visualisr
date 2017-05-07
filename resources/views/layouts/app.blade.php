@@ -14,6 +14,7 @@
         <!-- Styles -->
         <link href="{{ mix('assets/css/vendor.css') }}" rel="stylesheet">
         <link href="{{ mix('assets/css/app.css') }}" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Raleway|Roboto+Condensed" rel="stylesheet">
     @show
     @yield('header-js')
     <!-- Scripts -->

@@ -15,7 +15,7 @@ class BannedAccountCheck
      */
     public function handle($request, Closure $next)
     {
-        if (auth()->user()->banned)
+        if (auth()->check() && auth()->user()->banned)
             return redirect(route('banned'));
 
         return $next($request);
