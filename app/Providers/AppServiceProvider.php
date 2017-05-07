@@ -26,6 +26,19 @@ class AppServiceProvider extends ServiceProvider
         Blade::directive('activeClass', function ($path) {
             return "<?php if (Request::url() == route($path)) echo 'is-active'; ?>";
         });
+
+        Blade::directive('breadcrumbs', function ($routes) {
+            $collection = collect(preg_split("/'/",$routes))->nth(2, 1);
+            $linkNames = $collection->nth(2);
+            $routeNames = $collection->nth(2, 1);
+            $output = '';
+
+            $linkNames->each(function ($linkName, $index) use ($routeNames, &$output) {
+                $url = route($routeNames[$index]);
+                $output .= "<span class='breadcrumbs__link'><a href='$url'>$linkName</a></span>";
+            });
+            return '<?php echo "' . $output . '" ?>';
+        });
     }
 
     /**

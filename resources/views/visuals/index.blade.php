@@ -1,5 +1,8 @@
 @extends('layouts.app')
 @section('title', 'Latest Visuals')
+@section('breadcrumbs')
+    @breadcrumbs(['Home' => 'index', 'Visuals' => 'visuals.index'])
+@endsection
 
 @section('content')
     <div class="section">

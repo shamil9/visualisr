@@ -2,7 +2,7 @@
 @section('title', 'Login')
 
 @section('breadcrumbs')
-Index / Login
+    @breadcrumbs(['Home' => 'index', 'Login' => 'login'])
 @stop
 @section('content')
 <section class="section">

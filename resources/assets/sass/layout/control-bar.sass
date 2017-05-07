@@ -16,3 +16,11 @@
 
   & .columns
     margin: 0
+
+.breadcrumbs__link
+  & a
+    color: white
+
+  &:not(:last-of-type)::after
+    padding: 0 5px
+    content: '/'
