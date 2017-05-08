@@ -12,7 +12,7 @@
 */
 //Auth::loginUsingId(2);
 Route::get('/', function () {
-    if (auth()->check()) return redirect()->route('user.home');
+    if (auth()->check()) return redirect()->route('visuals.index');
 
     return view('welcome');
 })->name('index');

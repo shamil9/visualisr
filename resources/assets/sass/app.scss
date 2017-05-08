@@ -90,3 +90,16 @@ html {
     bottom: 0;
     left: 0;
 }
+
+.error {
+    @include flex()
+    height: 50vh;
+
+    &__number {
+        font-size: 60px;
+        border-right: 3px solid $red;
+        line-height: 1;
+        padding: 0 20px;
+        margin-right: 20px;
+    }
+}
