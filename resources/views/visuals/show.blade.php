@@ -24,10 +24,16 @@
             </div>
 
             <div class="visual__remove">
-                    <a href="#" @click.prevent="toggleModal">
+                <a href="#" @click.prevent="$emit('showModalEvent', {{ $visual->id }})">
                     <img src="{{ asset('assets/img/icons/user/trash.svg') }}" alt="Delete">
                 </a>
             </div>
+
+            <form ref="{{ $visual->id }}" action="{{ route('visuals.destroy', ['visual' => $visual->id]) }}" method="POST">
+                {{ method_field('DELETE') }}
+                {{ csrf_field() }}
+            </form>
+
             <div class="visual__private">
                 Private:
                 <label for="private" @change.stop="togglePrivate">
@@ -35,34 +41,12 @@
                 </label>
             </div>
 
-            <modal v-show="showDeleteModal" v-cloak>
-                <div class="modal-card">
-                    <div class="modal-content">
-                        <article class="message is-danger">
-                            <div class="message-header">
-                                <p><strong>Danger</strong>!</p>
-                            </div>
-                            <div class="message-body">
-                                <p class="title is-2 is-danger">Delete visual?</p>
-                                <button class="button is-danger" @click.prevent="submit">Delete</button>
-                                <button @click.prevent="toggleModal" class="button">Cancel</button>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-            </modal>
+            <delete-modal v-cloak></delete-modal>
 
             <manager
                 url="{{ route('visuals.update', $visual) }}"
-                track="{{ $visual->track }}"
-                album="{{ $visual->album }}"
-                artist="{{ $visual->artist }}">
+                :entity="{{ $visual }}">
             </manager>
-
-            <form id="delete-form" action="{{ route('visuals.destroy', ['visual' => $visual->id]) }}" method="POST" style="display: none;">
-                {{ method_field('DELETE') }}
-                {{ csrf_field() }}
-            </form>
         @endcan
     </div>
 @endsection
@@ -104,7 +88,8 @@
                                 <svg width="20px" height="20px" viewBox="0 0 83 71">
                                    <use
                                     :class="{'favorite--active': isActive}"
-                                    class="favorite__heart" xlink:href="{{ asset('assets/img/icons/user/favorite.svg') }}#Default"></use>
+                                    class="favorite__heart" xlink:href="{{ asset('assets/img/icons/user/favorite.svg') }}#Default">
+                                    </use>
                                 </svg>
                             </button>
                         </div>

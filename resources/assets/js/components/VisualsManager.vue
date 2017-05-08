@@ -6,6 +6,7 @@
                     <p class="modal-card-title">Save Visual</p>
                     <button class="delete" @click.prevent="toggleModal"></button>
                 </header>
+
                 <section class="modal-card-body">
                     <div class="field has-addons">
                         <p class="control">
@@ -13,13 +14,15 @@
                                 :class="[errors.track ? 'is-danger' : 'is-outlined']"
                                 disabled class="button" style="width: 75px">Track</button>
                         </p>
+
                         <p class="control is-expanded">
                             <input
-                                v-model="localTrack"
+                                v-model="visual.track"
                                 :class="{'is-danger': errors.track}"
                                 name="track" class="input" type="text" autofocus>
                         </p>
                     </div>
+
                     <b v-if="errors.track"
                         v-for="error in errors.track"
                         class="help is-danger">* {{ error }}</b>
@@ -30,13 +33,15 @@
                                 :class="[errors.album ? 'is-danger' : 'is-outlined']"
                                 disabled class="button" style="width: 75px">Album</button>
                         </p>
+
                         <p class="control is-expanded">
                             <input
-                                v-model="localAlbum"
+                                v-model="visual.album"
                                 :class="{'is-danger': errors.album}"
                                 name="album" class="input" type="text">
                         </p>
                     </div>
+
                     <b v-if="errors.album"
                         v-for="error in errors.album"
                         class="help is-danger">* {{ error }}</b>
@@ -47,18 +52,21 @@
                                 :class="[errors.artist ? 'is-danger' : 'is-outlined']"
                                 disabled class="button" style="width: 75px">Artist</button>
                         </p>
+
                         <p class="control is-expanded">
                             <input
-                                v-model="localArtist"
+                                v-model="visual.artist"
                                 :class="{'is-danger': errors.artist}"
                                 name="artist" class="input" type="text">
                         </p>
                     </div>
+
                     <b v-if="errors.artist"
                         v-for="error in errors.artist"
                         class="help is-danger">* {{ error }}</b>
 
                 </section>
+
                 <footer class="modal-card-foot">
                     <a class="button"
                         @click.prevent="save"
@@ -74,16 +82,14 @@
 
 <script>
     export default {
-        props: ['url', 'track', 'album', 'artist', 'image'],
+        props: ['url', 'entity', 'image'],
         mounted() {
             this.$parent.$on('toggleModalEvent', () => this.toggleModal())
         },
         data() {
             return {
                 showSubmitModal: false,
-                localTrack: this.track || null,
-                localAlbum: this.album || null,
-                localArtist: this.album || null,
+                visual: this.entity || {},
                 loading: false,
                 disabled: false,
                 submitMessage: 'Save Visual',
@@ -101,10 +107,10 @@
                 this.showLoadingSpiner()
                 window.axios
                     .post(this.url, {
-                        image: this.image,
-                        track: this.localTrack,
-                        album: this.localAlbum,
-                        artist: this.localArtist
+                        image: this.image || this.visual.image,
+                        track: this.visual.track,
+                        album: this.visual.album,
+                        artist: this.visual.artist
                     })
                     .then(response => {
                         this.showSuccess()

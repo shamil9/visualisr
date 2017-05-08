@@ -4,7 +4,10 @@
 @section('control-bar')
     <div id="player">
         <player url="{{ route('visuals.store') }}"></player>
-        <div class="file has-text-centered" @drop.stop.prevent="changeSong" @dragover.stop.prevent="dragOver">
+
+        <div class="file has-text-centered"
+            @drop.stop.prevent="changeSong"
+            @dragover.stop.prevent="dragOver">
             <img src="{{ asset('/assets/img/icons/file.png') }}" alt="Drop File"> @{{ text }}
         </div>
     </div>

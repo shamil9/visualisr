@@ -1,6 +1,6 @@
 <template>
     <div class="player">
-        <div class="player__seek-back "  @click.prevent="jumpBack">
+        <div class="player__seek-back" @click.prevent="jumpBack">
             5sec<a id="seek-back" href="#">
                 <img src="/assets/img/icons/player/seek-back.svg" alt="Seek back 5sec">
             </a>
