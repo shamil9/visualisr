@@ -8,7 +8,11 @@
                 </figure>
             </div>
             <div class="media-right">
-                <p class="title is-3">{{ $visual->user->name }}</p>
+                <p class="title is-3">
+                    <a href="{{ route('users.show', $visual->user->slug) }}">
+                        {{ $visual->user->name }}
+                    </a>
+                </p>
                 <div class="visual__actions">
                     <hr>
                     <span>

@@ -17,7 +17,11 @@
                     </figure>
                 </div>
                 <div class="media-content">
-                    <p class="title is-4">{{ $visual->user->name }}</p>
+                    <p class="title is-4">
+                        <a href="{{ route('users.show', $visual->user->slug) }}">
+                            {{ $visual->user->name }}
+                        </a>
+                    </p>
                     <p class="subtitle is-6">{{ $visual->updated_at->diffForHumans() }}</p>
                 </div>
             </div>

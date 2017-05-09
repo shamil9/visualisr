@@ -34,8 +34,6 @@ class CreateFavoritesTable extends Migration
      */
     public function down()
     {
-        $table->dropForeign('favorites_user_id_foreign');
-        $table->dropForeign('favorites_visual_id_foreign');
         Schema::dropIfExists('favorites');
     }
 }

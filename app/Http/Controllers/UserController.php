@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Favorite;
 use App\Mail\UserSuspendedMail;
 use App\Mail\UserUnblockedMail;
 use App\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -57,12 +59,22 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param User $slug
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $user = User::with('visuals', 'favorites')
+            ->where(['slug' => $slug])
+            ->firstOrFail();
+
+        $visuals = $user->visuals->map(function ($visual) {
+            return $visual->id;
+        });
+
+        $likes = Favorite::whereIn('visual_id', $visuals->toArray())->get()->count();
+
+        return view('admin.users.show', compact('user', 'visuals', 'likes'));
     }
 
     /**

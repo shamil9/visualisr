@@ -25,31 +25,32 @@ Route::get('/banned', function () {
 Route::get('/home', 'HomeController@index')->name('user.home');
 
 // blog
-Route::resource('blog', 'BlogController');
+Route::resource('/blog', 'BlogController');
 
 // auth
 Route::group(['middleware' => 'banned.check'], function () {
-    Route::get('login/twitter', 'Auth\Providers\Twitter@redirectToProvider')->name('twitter.login');
-    Route::get('login/twitter/callback', 'Auth\Providers\Twitter@handleProviderCallback')->name('twitter.login.callback');
-    Route::get('login/twitter/remove', 'Auth\Providers\Twitter@unlinkAccount')->name('twitter.unlink');
+    Route::get('/login/twitter', 'Auth\Providers\Twitter@redirectToProvider')->name('twitter.login');
+    Route::get('/login/twitter/callback', 'Auth\Providers\Twitter@handleProviderCallback')->name('twitter.login.callback');
+    Route::get('/login/twitter/remove', 'Auth\Providers\Twitter@unlinkAccount')->name('twitter.unlink');
 });
 Auth::routes();
 
 // visuals
-Route::resource('visuals/{visual}/comments', 'CommentController');
-Route::post('visuals/{visual}', 'VisualController@update')->name('visuals.update.post');
+Route::resource('/visuals/{visual}/comments', 'CommentController');
+Route::post('/visuals/{visual}', 'VisualController@update')->name('visuals.update.post');
 Route::resource('visuals', 'VisualController');
 
 // ratings
 Route::resource('ratings', 'RatingController');
 
 // users
-Route::patch('users/{user}/toggle', 'UserController@toggleUserBannedStatus')->name('users.toggle.status');
-Route::resource('users', 'UserController');
+Route::patch('/users/{user}/toggle', 'UserController@toggleUserBannedStatus')->name('users.toggle.status');
+Route::resource('users', 'UserController', ['except', ['show']]);
 Route::get('/home/favorites', 'HomeController@showFavorites')->name('user.favorites');
+Route::get('/users/{slug}', 'UserController@show')->name('users.show');
 
 // favorite visual
-Route::post('favorites', 'FavoriteController@toggleFavorite')->name('favorites.toggle');
+Route::post('/favorites', 'FavoriteController@toggleFavorite')->name('favorites.toggle');
 
 // support tickets
 Route::resource('contact', 'SupportTicketController');

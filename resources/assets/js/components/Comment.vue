@@ -21,11 +21,15 @@
 </template>
 <script>
 export default {
-    props: ['body', 'id'],
+    props: ['body', 'id', 'comments'],
+    mounted() {
+        console.log(this.comments)
+    },
     data() {
         return {
             isEditing: false,
             commentBody: this.body,
+            foo: this.comments,
             errors: {},
         }
     },

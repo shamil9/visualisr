@@ -3,6 +3,7 @@
 use App\User;
 use App\Visual;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 use Carbon\Carbon;
 
@@ -19,8 +20,10 @@ use Carbon\Carbon;
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\User::class, function (Faker\Generator $faker) {
+    $name = $faker->name;
     return [
-        'name'           => $faker->name,
+        'name'           => $name,
+        'slug'           => Str::slug($name),
         'email'          => $faker->unique()->safeEmail,
         'password'       => bcrypt('secret'),
         'remember_token' => str_random(10),
