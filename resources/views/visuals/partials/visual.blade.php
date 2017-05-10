@@ -35,12 +35,12 @@
         <footer class="card-footer">
             <span class="card-footer-item">
                 <i class="fa fa-comments" aria-hidden="true">
-                    {{ $visual->comments->count() }}
+                    {{ $visual->comments_count }}
                 </i>
             </span>
             <span class="card-footer-item">
                 <i class="fa fa-heart" aria-hidden="true">
-                    {{ $visual->favorites->count() }}
+                    {{ $visual->favorites_count }}
                 </i>
             </span>
             <span class="card-footer-item">

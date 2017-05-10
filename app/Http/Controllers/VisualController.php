@@ -27,7 +27,8 @@ class VisualController extends Controller
     public function index()
     {
         $visuals = Visual::where(['private' => 0])
-            ->with('comments', 'favorites', 'user')
+            ->with('user')
+            ->withCount('comments', 'favorites')
             ->orderBy('id', 'desc')
             ->paginate(9);
 
@@ -78,6 +79,8 @@ class VisualController extends Controller
 
         Redis::zincrby('visual', 1, 'visual.' . $visual->id);
         $visual->userRating = Redis::hget('visual.' . $visual->id, 'user.' . auth()->id());
+
+        $visual->load('comments', 'comments.user');
 
         return view('visuals.show', compact('visual'));
     }

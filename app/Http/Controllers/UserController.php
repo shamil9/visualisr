@@ -6,7 +6,6 @@ use App\Favorite;
 use App\Mail\UserSuspendedMail;
 use App\Mail\UserUnblockedMail;
 use App\User;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -64,17 +63,21 @@ class UserController extends Controller
      */
     public function show($slug)
     {
-        $user = User::with('visuals', 'favorites')
-            ->where(['slug' => $slug])
+        $user = User::where(['slug' => $slug])
+            ->with('visuals.user')
+            ->orderBy('id', 'desc')
             ->firstOrFail();
+
 
         $visuals = $user->visuals->map(function ($visual) {
             return $visual->id;
         });
 
+//        return $user;
+
         $likes = Favorite::whereIn('visual_id', $visuals->toArray())->get()->count();
 
-        return view('admin.users.show', compact('user', 'visuals', 'likes'));
+        return view('admin.users.show', compact('user', 'likes'));
     }
 
     /**

@@ -20,7 +20,6 @@ class Visual extends Model
         return $this->belongsTo(User::class);
     }
 
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */

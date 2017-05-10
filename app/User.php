@@ -33,8 +33,10 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function visuals() {
-        return $this->hasMany(Visual::class);
+    public function visuals()
+    {
+        return $this->hasMany(Visual::class)
+            ->withCount('favorites', 'comments');
     }
 
     public function favorites()
