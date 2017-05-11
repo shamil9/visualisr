@@ -22,9 +22,11 @@
         </article>
     </form>
 @endcan
-<delete-modal v-cloak></delete-modal>
-<br>
 
-@foreach($visual->comments->sortByDesc('id') as $comment)
+<delete-modal v-cloak></delete-modal><br>
+
+@foreach($comments as $comment)
     @include('comments.partials.comment', ['comment' => $comment, 'visual' => $visual])
 @endforeach
+{{ $comments->links() }}
+

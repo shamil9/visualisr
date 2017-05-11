@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
 use App\Events\VisualDestroyEvent;
 use App\Events\VisualStoreEvent;
 use App\Events\VisualUpdateEvent;
@@ -81,8 +82,12 @@ class VisualController extends Controller
         $visual->userRating = Redis::hget('visual.' . $visual->id, 'user.' . auth()->id());
 
         $visual->load('comments', 'comments.user');
+        $comments = Comment::where('visual_id', $visual->id)
+                        ->with('user')
+                        ->orderBy('id', 'desc')
+                        ->simplePaginate(5);
 
-        return view('visuals.show', compact('visual'));
+        return view('visuals.show', compact('visual', 'comments'));
     }
 
     /**

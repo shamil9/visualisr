@@ -31,6 +31,7 @@
 
                     <div class="field">
                         <label class="label">Title</label>
+
                         <p class="control">
                             <input class="input" name="title" type="text" placeholder="Title"
                                    value="{{ $blog->title or old('title') }}">
@@ -39,9 +40,10 @@
 
                     <div class="field">
                         <label class="label">Content</label>
+
                         <p class="control">
-                        <textarea id="editor" class="textarea" name="body"
-                                  placeholder="Content">{{ $blog->body or old('body') }}</textarea>
+                            <textarea id="editor" class="textarea" name="body"
+                                      placeholder="Content">{{ $blog->body or old('body') }}</textarea>
                         </p>
                     </div>
 

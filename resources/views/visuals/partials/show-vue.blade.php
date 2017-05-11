@@ -32,7 +32,7 @@
                     .catch(function ( error ) {
                     }.bind(this));
             },
-            submit: function () {
+            toggleFavorite: function () {
                 axios
                     .post('{{ route('favorites.toggle') }}', {
                         user_id: this.user,
@@ -47,9 +47,7 @@
                         this.tooltipMessage = 'Error! Cannot add favorite'
                     }.bind(this));
             },
-            editComment: function ( body, id ) {
-                return axios.patch(this.commentEditUrl + '/' + id, { body: body });
-            },
+
             showSocial: function () {
                 this.social   = !this.social;
                 this.download = false;
@@ -58,6 +56,12 @@
                 this.social   = false;
                 this.download = !this.download;
             },
+            loadComments: function () {
+                axios.get('{{ route('comments.pagination', $visual->id) }}')
+                    .then(function (response) {
+                        console.log(response.data);
+                    });
+            }
         }
     });
 </script>

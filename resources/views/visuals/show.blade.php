@@ -8,9 +8,11 @@
             <span class="visual__track">
                 <b>Track:</b> {{ $visual->track }}
             </span> ∙
+
             <span class="visual__album">
               <b>Album:</b>  {{ $visual->album }}
             </span> ∙
+
             <span class="visual__artist">
                <b>Artist:</b> {{ $visual->artist }}
             </span>
@@ -60,6 +62,7 @@
                     <header class="card-header">
                         <p class="card-header-title">Comments: {{ $visual->comments->count() }}</p>
                     </header>
+
                     <div class="card-content">
                         <div class="comments">
                             @include('comments.index')
@@ -79,9 +82,10 @@
                                 @change="submitRating">
                             </rating>
                         </div>
+
                         <div class="favorite">
                             <button
-                                @click.prevent="submit"
+                                @click.prevent="toggleFavorite"
                                 class="favorite__button"
                                 :data-balloon="tooltipMessage"
                                 data-balloon-pos="left">

@@ -62,7 +62,6 @@
         },
         methods: {
             play() {
-                console.log(this.player)
                 this.isPlaying = true
                 this.isPaused = false
                 this.player.play()

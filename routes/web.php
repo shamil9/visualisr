@@ -35,8 +35,11 @@ Route::group(['middleware' => 'banned.check'], function () {
 });
 Auth::routes();
 
-// visuals
+// comments
 Route::resource('/visuals/{visual}/comments', 'CommentController');
+Route::get('/comments/{id}/pagination', 'CommentController@pagination')->name('comments.pagination');
+
+// visuals
 Route::post('/visuals/{visual}', 'VisualController@update')->name('visuals.update.post');
 Route::resource('visuals', 'VisualController');
 

@@ -10,7 +10,7 @@ class CommentController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth', 'banned.check'], ['except' => ['index', 'show']]);
+        $this->middleware(['auth', 'banned.check'], ['except' => ['index', 'show', 'pagination']]);
     }
 
     /**
@@ -80,5 +80,13 @@ class CommentController extends Controller
             'visual_id' => 'exists:visuals',
             'body'      => 'required|max:180|min:2',
         ]);
+    }
+
+    public function pagination($id)
+    {
+        return Comment::where('visual_id', $id)
+            ->with('user')
+            ->orderBy('id', 'desc')
+            ->simplePaginate(5, ['*'], 'page', 2);
     }
 }
