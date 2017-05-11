@@ -11,6 +11,7 @@
 |
 */
 //Auth::loginUsingId(2);
+
 Route::get('/', function () {
     if (auth()->check()) return redirect()->route('visuals.index');
 
