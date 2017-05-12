@@ -10,7 +10,9 @@
     </ul>
     <p class="menu-label">Account Management</p>
     <ul class="menu-list">
-        <li><a>Change Password</a></li>
+        <li>
+            <a class="@activeClass('user.password')" href="{{ route('user.password') }}">Change Password</a>
+        </li>
         <li><a>Change Email</a></li>
         <li><a>Change Avatar</a></li>
         <li>

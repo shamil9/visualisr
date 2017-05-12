@@ -15,9 +15,11 @@
 
                         <p class="control has-icon">
                             <input id="name" type="text" class="input" name="name" value="{{ old('name') }}" placeholder="Name" required autofocus>
+
                             <span class="icon is-small">
                                 <i class="fa fa-user"></i>
                             </span>
+
                             @if ($errors->has('email'))
                                 <p class="help is-danger">
                                     {{ $errors->first('email') }}
@@ -31,6 +33,7 @@
 
                         <p class="control has-icon">
                             <input class="input" id="email" type="email" name="email" placeholder="Email">
+
                             <span class="icon is-small">
                                 <i class="fa fa-envelope"></i>
                             </span>
@@ -48,6 +51,7 @@
 
                         <p class="control has-icon">
                             <input class="input" id="password" type="password" name="password" placeholder="Password">
+
                             <span class="icon is-small">
                                 <i class="fa fa-lock"></i>
                             </span>
@@ -65,6 +69,7 @@
 
                         <p class="control has-icon">
                             <input class="input" id="password_confirmation" type="password" name="password_confirmation" placeholder="Confirm Password">
+
                             <span class="icon is-small">
                                 <i class="fa fa-lock"></i>
                             </span>

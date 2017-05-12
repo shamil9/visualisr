@@ -24,8 +24,6 @@ Route::get('/banned', function () {
 
 // main nav
 Route::get('/home', 'HomeController@index')->name('user.home');
-
-// blog
 Route::resource('/blog', 'BlogController');
 
 // auth
@@ -50,14 +48,16 @@ Route::resource('ratings', 'RatingController');
 // users
 Route::patch('/users/{user}/toggle', 'UserController@toggleUserBannedStatus')->name('users.toggle.status');
 Route::resource('users', 'UserController', ['except', ['show']]);
-Route::get('/home/favorites', 'HomeController@showFavorites')->name('user.favorites');
 Route::get('/users/{slug}', 'UserController@show')->name('users.show');
+Route::get('/home/favorites', 'HomeController@showFavorites')->name('user.favorites');
+Route::get('/home/password', 'PasswordController@edit')->name('user.password');
+Route::patch('/home/password', 'PasswordController@update')->name('user.password.update');
 
 // favorite visual
 Route::post('/favorites', 'FavoriteController@toggleFavorite')->name('favorites.toggle');
 
 // support tickets
-Route::resource('contact', 'SupportTicketController');
+Route::resource('/admin/contact', 'SupportTicketController');
 
 // admin stats
 Route::get('/admin/stats', 'StatsController@stats')->name('admin.stats');

@@ -34,26 +34,6 @@ class UserController extends Controller
         return view('admin.users.index', ['users' => $users]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
@@ -68,39 +48,13 @@ class UserController extends Controller
             ->orderBy('id', 'desc')
             ->firstOrFail();
 
-
         $visuals = $user->visuals->map(function ($visual) {
             return $visual->id;
         });
 
-//        return $user;
-
         $likes = Favorite::whereIn('visual_id', $visuals->toArray())->get()->count();
 
         return view('admin.users.show', compact('user', 'likes'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int                      $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
     }
 
     /**
