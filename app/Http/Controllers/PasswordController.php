@@ -25,15 +25,13 @@ class PasswordController extends Controller
      */
     public function update(Request $request)
     {
-        if (! Hash::check($request->current_password, $request->user()->password)) {
+        if (! Hash::check($request->current_password, $request->user()->password))
             return back()
                 ->withErrors(['current_password' => 'Incorrect password']);
-        }
 
-        if ($request->password !== $request->password_confirmation) {
+        if ($request->password !== $request->password_confirmation)
             return back()
                 ->withErrors(['password_confirmation' => 'Passwords do not match']);
-        }
 
         $this->validate($request, [
             'password' => 'required|min:6'

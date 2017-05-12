@@ -1,6 +1,6 @@
 @extends('layouts.app')
-@section('title', 'Update Password')
-@section('class', 'change-password')
+@section('title', 'Update Profile')
+@section('class', 'update-profile')
 @section('breadcrumbs')
     @breadcrumbs(['Home' => 'index', 'My Profile' => 'user.home'])
 @endsection
@@ -29,14 +29,20 @@
                                 <p class="control">
                                     <input class="input" name="avatar" type="file">
                                 </p>
-
-                                @if ($errors->has('email'))
-                                    <p class="help is-danger">
-                                        {{ $errors->first('email') }}
-                                    </p>
-                                @endif
                             </div>
                         </div>
+                    </div>
+
+                    <div class="field">
+                        <label for="email" class="label">Current Email</label>
+
+                        <p class="control has-icon">
+                            <input class="input" value="{{ auth()->user()->email }}" disabled>
+
+                            <span class="icon is-small">
+                                <i class="fa fa-envelope"></i>
+                            </span>
+                        </p>
                     </div>
 
                     <div class="field">
@@ -90,6 +96,6 @@
 @section('footer-js')
     @parent()
     <script>
-        new Vue({ el: '.change-password'})
+        new Vue({ el: '.update-profile'})
     </script>
 @endsection

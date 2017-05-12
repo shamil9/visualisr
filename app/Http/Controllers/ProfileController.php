@@ -20,9 +20,11 @@ class ProfileController extends Controller
 
     public function update(Request $request)
     {
-        if ($request->hasFile('avatar') && $request->file('avatar')->isValid()) {
+        if ($request->hasFile('avatar') && $request->file('avatar')->isValid())
             $this->updateAvatar($request);
-        }
+
+        if ($request->has('email'))
+            $this->updateEmail($request);
 
         return back();
     }
@@ -43,5 +45,20 @@ class ProfileController extends Controller
 
         if ($oldAvatar != 'user.svg')
             unlink(storage_path('app/public/avatars/'.$oldAvatar));
+    }
+
+    public function updateEmail($request)
+    {
+        if ($request->email !== $request->email_confirmation)
+            return back()
+                ->withErrors(['email_confirmation' => 'Emails do not match']);
+
+        $this->validate($request, [
+            'email' => 'required'
+        ]);
+
+        $request->user()->fill([
+            'email' => $request->email
+        ])->save();
     }
 }
