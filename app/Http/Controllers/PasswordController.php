@@ -14,7 +14,7 @@ class PasswordController extends Controller
      */
     public function edit()
     {
-        return view('admin.users.password');
+        return view('users.password');
     }
 
     /**

@@ -52,6 +52,9 @@ Route::get('/users/{slug}', 'UserController@show')->name('users.show');
 Route::get('/home/favorites', 'HomeController@showFavorites')->name('user.favorites');
 Route::get('/home/password', 'PasswordController@edit')->name('user.password');
 Route::patch('/home/password', 'PasswordController@update')->name('user.password.update');
+Route::get('/home/profile', 'ProfileController@edit')->name('user.profile');
+Route::patch('/home/profile', 'ProfileController@update')->name('user.profile.update');
+
 
 // favorite visual
 Route::post('/favorites', 'FavoriteController@toggleFavorite')->name('favorites.toggle');

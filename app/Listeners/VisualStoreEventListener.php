@@ -52,25 +52,26 @@ class VisualStoreEventListener
     public function storeImage($request, $visual)
     {
         $dir = $this->createDir($visual->user_id);
+        $image = $request->image;
 
         // full size image
-        \Image::make($request->image)
+        \Image::make($image)
             ->save($dir . '/' . $visual->image);
 
         // thumbnail
-        \Image::make($request->image)
+        \Image::make($image)
             ->resize(410, null, function ($constraint) {
                 $constraint->aspectRatio();
             })
             ->save($dir . '/' . 'thumb_' . $visual->image);
 
         // twitter banner
-        \Image::make($request->image)
+        \Image::make($image)
             ->resize(1500, 500)
             ->save($dir . '/' . 'twitter_' . $visual->image);
 
         //facebook banner
-        \Image::make($request->image)
+        \Image::make($image)
             ->resize(828, 315)
             ->save($dir . '/' . 'fb_' . $visual->image);
     }

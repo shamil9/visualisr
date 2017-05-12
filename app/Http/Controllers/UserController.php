@@ -54,7 +54,7 @@ class UserController extends Controller
 
         $likes = Favorite::whereIn('visual_id', $visuals->toArray())->get()->count();
 
-        return view('admin.users.show', compact('user', 'likes'));
+        return view('users.show', compact('user', 'likes'));
     }
 
     /**

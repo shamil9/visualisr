@@ -11,10 +11,15 @@
     <p class="menu-label">Account Management</p>
     <ul class="menu-list">
         <li>
-            <a class="@activeClass('user.password')" href="{{ route('user.password') }}">Change Password</a>
+            <a class="@activeClass('user.password')" href="{{ route('user.password') }}">
+                Security
+            </a>
         </li>
-        <li><a>Change Email</a></li>
-        <li><a>Change Avatar</a></li>
+        <li>
+            <a class="@activeClass('user.profile')" href="{{ route('user.profile') }}">
+                Profile
+            </a>
+        </li>
         <li>
             @if (auth()->user()->twitter_id)
                 <a href="{{ route('twitter.unlink') }}">Unlink Twitter Account</a>
