@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Helpers\Utility;
 use App\Mail\UserCreated;
 use App\User;
 
@@ -29,6 +30,6 @@ class UserObserver
         $user->visuals()->delete();
         $dir = public_path() . '/uploads/visuals/' . $user->id;
 
-        deleteDirectory($dir);
+        Utility::deleteDirectory($dir);
     }
 }

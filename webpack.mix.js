@@ -11,11 +11,11 @@ const { mix } = require('laravel-mix')
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/assets/js')
+mix.js('resources/assets/js/app.js', 'public/assets/js').extract(['vue', 'vue-bulma-rating', 'axios', 'turbolinks'])
 if (mix.config.inProduction) {
     mix.version()
 }
-mix.js('resources/assets/js/admin.js', 'public/assets/js').extract(['vue', 'vue-bulma-rating', 'axios'])
+mix.js('resources/assets/js/admin.js', 'public/assets/js')
 mix.sass('resources/assets/sass/app.scss', 'public/assets/css')
 if (mix.config.inProduction) {
     mix.version()

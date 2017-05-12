@@ -3,6 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\VisualDestroyEvent;
+use App\Helpers\Utility;
 
 class VisualDestroyEventListener
 {
@@ -26,6 +27,6 @@ class VisualDestroyEventListener
     {
         $event->visual->delete();
         $dir = public_path() . '/uploads/visuals/' . $event->visual->user->id;
-        deleteDirectory($dir);
+        Utility::deleteDirectory($dir);
     }
 }

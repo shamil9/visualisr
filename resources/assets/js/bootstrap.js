@@ -33,3 +33,6 @@ window.axios.defaults.headers.common = {
 //     key: 'your-pusher-key'
 // });
 //
+
+// import Turbolinks from 'turbolinks'
+// Turbolinks.start()
