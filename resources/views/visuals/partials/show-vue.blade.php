@@ -11,7 +11,7 @@
             social: false,
             download: false,
             pageUrl: window.location.href,
-            ratingValue: {{ $visual->userRating or 1 }},
+            ratingValue: {{ $visual->userRating or 0 }},
             ratingItems: [
                 { title: '5 Stars', value: 5 },
                 { title: '4 Stars', value: 4 },

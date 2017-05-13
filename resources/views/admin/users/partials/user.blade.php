@@ -44,7 +44,7 @@
                 <form ref="{{ $user->id }}" style="flex: 1" method="post" action="{{ route('users.destroy', $user) }}">
                     {{ csrf_field() }}
                     {{ method_field('delete') }}
-                    <a @click.prevent="$emit('showModalEvent', {{ $user->id }})" class="user__delete card-footer-item">Delete</a>
+                    <a @click.prevent="$emit('showDeleteModalEvent', {{ $user->id }})" class="user__delete card-footer-item">Delete</a>
                 </form>
             </footer>
         @endcan

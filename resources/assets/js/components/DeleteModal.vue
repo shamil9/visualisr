@@ -21,7 +21,7 @@
 <script>
 export default {
     mounted() {
-        this.$parent.$on('showModalEvent', id => this.showDeleteModal(id));
+        this.$parent.$on('showDeleteModalEvent', id => this.showDeleteModal(id));
     },
     data() {
         return {

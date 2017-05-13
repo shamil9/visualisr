@@ -44,15 +44,17 @@
             </div>
 
             <div class="has-text-right comment__info">
+                <delete-modal v-cloak></delete-modal><br>
                 By {{ $comment->user->name }}
                 {{ $comment->created_at->diffForHumans() }}
                 @can('destroy', App\Comment::class)
-                    <a @click.prevent="$emit('showModalEvent', {{ $comment->id }})" href="#">
+                    <a @click.prevent="$emit('showDeleteModalEvent', 'comment-{{ $comment->id }}')" href="#">
                         Delete
                     </a>
-                    <form method="post" ref="{{ $comment->id }}"
+                    <form method="post" ref="comment-{{ $comment->id }}"
                           action="{{ route('comments.destroy',
-                                    ['visual' => $visual, 'comment' => $comment]) }}">
+                                    ['visual' => $visual, 'comment' => $comment])
+                                }}">
                         {{ csrf_field() }}
                         {{ method_field('delete') }}
                     </form>

@@ -26,12 +26,12 @@
             </div>
 
             <div class="visual__remove">
-                <a href="#" @click.prevent="$emit('showModalEvent', {{ $visual->id }})">
+                <a href="#" @click.prevent="$emit('showDeleteModalEvent', 'visual-{{ $visual->id }}')">
                     <img src="{{ asset('assets/img/icons/user/trash.svg') }}" alt="Delete">
                 </a>
             </div>
 
-            <form ref="{{ $visual->id }}" action="{{ route('visuals.destroy', ['visual' => $visual->id]) }}" method="POST">
+            <form ref="visual-{{ $visual->id }}" action="{{ route('visuals.destroy', ['visual' => $visual->id]) }}" method="POST">
                 {{ method_field('DELETE') }}
                 {{ csrf_field() }}
             </form>

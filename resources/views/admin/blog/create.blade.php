@@ -25,7 +25,7 @@
 
                     @if (isset($blog))
                         <span class="pull-right">
-                        <button @click.prevent="$emit('showModalEvent', {{ $blog->id }})" class="button is-small is-danger">Delete</button>
+                        <button @click.prevent="$emit('showDeleteModalEvent', {{ $blog->id }})" class="button is-small is-danger">Delete</button>
                     </span>
                     @endif
 
