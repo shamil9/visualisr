@@ -33,24 +33,25 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Visual::class, function (Faker\Generator $faker) {
     $user = factory(App\User::class)->create(['created_at' => Carbon::now()->subMonths(rand(1,6))]);
-    $path = public_path() . '/' . getenv('APP_UPLOADS') . '/visuals/' . $user->id;
-    File::makeDirectory($path);
+    $path = storage_path('app/public/visuals/' . $user->id);
+    File::makeDirectory($path, 0755, true);
     $image = $faker->image($path, 1900, 1080, 'abstract', false);
+    $modifiedImage = Image::make($path . '/' . $image);
 
     // thumbnail
-    Image::make($path . '/' . $image)
+    $modifiedImage
         ->resize(410, null, function ($constraint) {
             $constraint->aspectRatio();
         })
         ->save($path . '/' . 'thumb_' . $image);
 
     // twitter banner
-    Image::make($path . '/' . $image)
+    $modifiedImage
         ->resize(1500, 500)
         ->save($path . '/' . 'twitter_' . $image);
 
     //facebook banner
-    Image::make($path . '/' . $image)
+    $modifiedImage
         ->resize(828, 315)
         ->save($path . '/' . 'fb_' . $image);
 

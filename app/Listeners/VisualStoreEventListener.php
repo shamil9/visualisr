@@ -6,6 +6,7 @@ use App\Events\VisualStoreEvent;
 
 class VisualStoreEventListener
 {
+    private $date;
     /**
      * Create the event listener.
      *
@@ -13,7 +14,6 @@ class VisualStoreEventListener
      */
     public function __construct()
     {
-        //
     }
 
     /**
@@ -28,22 +28,17 @@ class VisualStoreEventListener
         $event->visual->user_id = auth()->user()->id;
         $event->visual->artist = $event->request->artist;
         $event->visual->album = $event->request->album;
-        $event->visual->image = $event->visual->user_id . uniqid($event->visual->track) . '.png';
 
-        try {
-            $this->storeImage($event->request, $event->visual);
-        } catch (\Exception $e) {
-            return $e;
-        } finally {
-            $event->visual->save();
-        }
+        $this->storeImage($event->request, $event->visual);
+
+        $event->visual->image = str_slug($event->request->track, '-') . '.png';
+        $event->visual->save();
     }
 
-    private function createDir(int $id)
+    public function createDirectory($dir)
     {
-        $dir = public_path() . '/uploads/visuals/' . $id;
         try {
-           \File::makeDirectory($dir);
+           \File::makeDirectory($dir, 0755, true);
         } finally {
             return $dir;
         }
@@ -51,28 +46,26 @@ class VisualStoreEventListener
 
     public function storeImage($request, $visual)
     {
-        $dir = $this->createDir($visual->user_id);
-        $image = $request->image;
+        $dir = storage_path('app/public/visuals/' . $visual->user_id . '/' . $this->date);
+        $this->createDirectory($dir);
+        $image = \Image::make($request->image);
+        $name = str_slug($request->track, '-') . '.png';
 
         // full size image
-        \Image::make($image)
-            ->save($dir . '/' . $visual->image);
+        $image->save($dir . '/' . $name);
 
         // thumbnail
-        \Image::make($image)
-            ->resize(410, null, function ($constraint) {
+        $image->resize(410, null, function ($constraint) {
                 $constraint->aspectRatio();
             })
-            ->save($dir . '/' . 'thumb_' . $visual->image);
+            ->save($dir . '/' . 'thumb_' . $name);
 
         // twitter banner
-        \Image::make($image)
-            ->resize(1500, 500)
-            ->save($dir . '/' . 'twitter_' . $visual->image);
+        $image->resize(1500, 500)
+            ->save($dir . '/' . 'twitter_' . $name);
 
         //facebook banner
-        \Image::make($image)
-            ->resize(828, 315)
-            ->save($dir . '/' . 'fb_' . $visual->image);
+        $image->resize(828, 315)
+            ->save($dir . '/' . 'fb_' . $name);
     }
 }

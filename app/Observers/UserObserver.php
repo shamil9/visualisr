@@ -4,7 +4,6 @@ namespace App\Observers;
 
 use App\Mail\UserCreated;
 use App\User;
-use Illuminate\Support\Facades\Storage;
 
 class UserObserver
 {
@@ -28,8 +27,8 @@ class UserObserver
     public function deleting(User $user)
     {
         $user->visuals()->delete();
-        $dir = public_path() . '/uploads/visuals/' . $user->id;
+        $dir = storage_path('app/public/visuals/' . $user->id);
 
-        Storage::deleteDirectory($dir);
+        \File::deleteDirectory($dir);
     }
 }

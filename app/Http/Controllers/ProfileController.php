@@ -18,6 +18,12 @@ class ProfileController extends Controller
         return view('users.profile');
     }
 
+    /**
+     * Update user profile
+     *
+     * @param  Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(Request $request)
     {
         if ($request->hasFile('avatar') && $request->file('avatar')->isValid())
@@ -29,6 +35,12 @@ class ProfileController extends Controller
         return back();
     }
 
+    /**
+     * Store and save new user avatar
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return mixed
+     */
     public function updateAvatar($request)
     {
         $user = $request->user();
@@ -47,6 +59,12 @@ class ProfileController extends Controller
             unlink(storage_path('app/public/avatars/'.$oldAvatar));
     }
 
+    /**
+     * Update user email address
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return void
+     */
     public function updateEmail($request)
     {
         if ($request->email !== $request->email_confirmation)
