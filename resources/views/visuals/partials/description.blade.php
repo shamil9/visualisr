@@ -3,7 +3,7 @@
         <div class="media">
             <div class="media-left">
                 <figure class="user__avatar image is-48x48">
-                    <img src="{{ asset(getenv('APP_UPLOADS') . '/avatars/' . $visual->user->avatar) }}"
+                    <img src="{{ asset(\Storage::url('avatars/' . $visual->user->avatar)) }}"
                          alt="{{ $visual->user->name }}">
                 </figure>
             </div>

@@ -8,7 +8,7 @@
                 <nav class="level">
                     <div class="level-item">
                         <figure class="user__avatar image is-48x48">
-                            <img src="{{ asset(getenv('APP_UPLOADS') . '/avatars/' . $user->avatar) }}"
+                            <img src="{{ asset(\Storage::url('avatars/' . $user->avatar)) }}"
                                  alt="{{ $user->name }}">
                         </figure>
                         <h1 class="title">{{ $user->name }}</h1>

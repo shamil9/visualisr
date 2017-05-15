@@ -3,7 +3,7 @@
     <article class="media comment">
         <figure class="media-left">
             <div class="comment__avatar">
-                <img src="{{ asset(getenv('APP_UPLOADS') . '/avatars/' . $comment->user->avatar) }}" alt="{{ $comment->user->name }}">
+                <img src="{{ asset(\Storage::url('avatars/' . $visual->user->avatar)) }}" alt="{{ $comment->user->name }}">
             </div>
         </figure>
 
