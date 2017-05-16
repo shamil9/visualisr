@@ -13,6 +13,7 @@
                     <p class="control is-expanded">
                         <input name="body" maxlength="180" minlength="2" class="input relative is-primary" type="text" placeholder="Add Comment">
                     </p>
+
                     <p class="control">
                         <button type="submit" class="button is-primary">
                             <img src="{{ asset('assets/img/icons/user/comment.svg') }}" alt="Add Comment">

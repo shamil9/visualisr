@@ -5,5 +5,6 @@
   "/assets/css/app.css": "/assets/css/app.css",
   "/assets/css/vendor.css": "/assets/css/vendor.css",
   "/assets/css/admin.css": "/assets/css/admin.css",
+  "/assets/js/player.js": "/assets/js/player.js",
   "/assets/js/manifest.js": "/assets/js/manifest.js"
 }

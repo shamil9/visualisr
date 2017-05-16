@@ -11,16 +11,15 @@ const { mix } = require('laravel-mix')
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/assets/js').extract(['vue', 'vue-bulma-rating', 'axios', 'turbolinks'])
-if (mix.config.inProduction) {
-    mix.version()
-}
-mix.js('resources/assets/js/admin.js', 'public/assets/js')
-mix.sass('resources/assets/sass/app.scss', 'public/assets/css')
 if (mix.config.inProduction) {
     mix.version()
 }
 mix
+    .js('resources/assets/js/app.js', 'public/assets/js')
+    .extract(['vue', 'vue-bulma-rating', 'axios', 'turbolinks'])
+    .js('resources/assets/js/admin.js', 'public/assets/js')
+    .js('resources/assets/js/player.js', 'public/assets/js')
+    .sass('resources/assets/sass/app.scss', 'public/assets/css')
     .sass('resources/assets/sass/vendor.scss', 'public/assets/css')
     .options({ processCssUrls: false })
     .sass('resources/assets/sass/admin.scss', 'public/assets/css')

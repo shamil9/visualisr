@@ -1,5 +1,8 @@
 const howler = require('howler')
+require('p5')
+Vue.component('player', require('./components/Player.vue'))
 import Visualiser from './visual'
+// import Visualiser from './test'
 
 export default class Player {
     constructor(song) {

@@ -12,7 +12,6 @@ window.flash = message => EventBus.$emit('flash', message)
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-Vue.component('player', require('./components/Player.vue'))
 Vue.component('manager', require('./components/VisualsManager.vue'))
 Vue.component('modal', require('./components/Modal.vue'))
 Vue.component('comment', require('./components/Comment.vue'))
