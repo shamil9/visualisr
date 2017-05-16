@@ -1,8 +1,7 @@
-const howler = require('howler')
-require('p5')
+import 'howler'
+import p5 from 'p5'
 Vue.component('player', require('./components/Player.vue'))
-import Visualiser from './visual'
-// import Visualiser from './test'
+import Visualiser from './2dcanvas'
 
 export default class Player {
     constructor(song) {
@@ -12,7 +11,7 @@ export default class Player {
         this.dataArray = new Uint8Array(this.analyser.frequencyBinCount)
         this.analyser.connect(Howler.ctx.destination)
         this.position = null
-        Visualiser.init()
+        this.visualiser = new Visualiser(new p5())
     }
 
     play(event) {
@@ -66,6 +65,6 @@ export default class Player {
 
         this.analyser.getByteFrequencyData(this.dataArray)
 
-        Visualiser.showData(this.dataArray)
+        this.visualiser.show(this.dataArray)
     }
 }

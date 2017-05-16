@@ -15,12 +15,13 @@
 
 @section('content')
     <div class="section">
-        <canvas id="visualizer"></canvas>
+        <div id="visualizer"></div>
     </div>
 @endsection
 
 @section('footer-js')
     @parent
+    <script src="{{ mix('assets/js/player.js') }}"></script>
     <script>
         new Vue({
             el: '#player',

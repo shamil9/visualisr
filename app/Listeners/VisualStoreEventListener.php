@@ -24,14 +24,15 @@ class VisualStoreEventListener
      */
     public function handle(VisualStoreEvent $event)
     {
+        $name = uniqid(str_slug($event->request->track, '-') . '-') . '.png';
         $event->visual->track = $event->request->track;
         $event->visual->user_id = auth()->user()->id;
         $event->visual->artist = $event->request->artist;
         $event->visual->album = $event->request->album;
 
-        $this->storeImage($event->request, $event->visual);
+        $this->storeImage($event->request, $event->visual, $name);
 
-        $event->visual->image = str_slug($event->request->track, '-') . '.png';
+        $event->visual->image = $name;
         $event->visual->save();
     }
 
@@ -44,12 +45,11 @@ class VisualStoreEventListener
         }
     }
 
-    public function storeImage($request, $visual)
+    public function storeImage($request, $visual, $name)
     {
         $dir = storage_path('app/public/visuals/' . $visual->user_id . '/' . $this->date);
         $this->createDirectory($dir);
         $image = \Image::make($request->image);
-        $name = str_slug($request->track, '-') . '.png';
 
         // full size image
         $image->save($dir . '/' . $name);

@@ -40,7 +40,6 @@
 
 <script>
     import Player from '../player'
-    const visualizer = document.querySelector('#visualizer')
     export default {
         mounted() {
             EventBus.$on('pauseEvent', () => this.pause())
@@ -58,6 +57,9 @@
         computed: {
             player() {
                 return new Player(this.song)
+            },
+            visualizer() {
+                return document.querySelector('#visualizer')
             }
         },
         methods: {
@@ -78,11 +80,12 @@
                 this.player.jumpForward()
             },
             toggleModal() {
-                this.image = visualizer.toDataURL()
+                this.image = this.visualizer.children[0].toDataURL()
                 this.$emit('toggleModalEvent')
             },
             changeSong() {
                 this.pause()
+                this.visualizer.removeChild(this.visualizer.children[0])
                 this.song = this.$parent.song
                 this.play()
             }

@@ -3,7 +3,7 @@
         {{ csrf_field() }}
         <article class="media">
             <figure class="media-left">
-                <div class="comment__avatar"
+                <div class="comment__avatar">
                     <img src="{{ asset(\Storage::url('avatars/' . $visual->user->avatar)) }}" alt="{{ $visual->user->name }}">
                 </div>
             </figure>
