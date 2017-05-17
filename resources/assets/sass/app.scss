@@ -7,6 +7,7 @@
 @import "mixins/mixins";
 // Main Layout
 @import "layout/header";
+@import "layout/footer";
 @import "layout/partials/input";
 @import "layout/tooltip";
 @import "layout/control-bar";
@@ -55,11 +56,11 @@ html {
     z-index: -1;
     background-color: black;
     & img {
-        max-width: 710px;
+        max-width: 44.375rem;
     }
     & p {
         color: white;
-        font-size: 64px;
+        font-size: 4rem;
         font-family: 'Raleway', sans-serif;
     }
 }
@@ -68,17 +69,17 @@ html {
     background: #000000;
     color: #FFFFFF;
     border-radius: 50%;
-    border: 2px solid;
-    border-image: linear-gradient(to right, #31725A, #34495E 100px, #31725A);
+    border: 0.125rem solid;
+    border-image: linear-gradient(to right, #31725A, #34495E 6.25rem, #31725A);
     border-image-slice: 1;
-    font-size: 14px !important;
+    font-size: 0.875rem !important;
     font-family: 'Raleway', sans-serif;
-    letter-spacing: 2.36px;
-    line-height: 19px;
+    letter-spacing: 0.1475rem;
+    line-height: 1.1875rem;
     text-align: center;
-    width: 250px;
-    margin-top: 70px;
-    padding: 10px 50px;
+    width: 15.625rem;
+    margin-top: 4.375rem;
+    padding: 0.625rem 3.125rem;
     &:hover {
         color: $success;
     }
@@ -96,10 +97,10 @@ html {
     height: 50vh;
 
     &__number {
-        font-size: 60px;
-        border-right: 3px solid $red;
+        font-size: 3.75rem;
+        border-right: 0.1875rem solid $red;
         line-height: 1;
-        padding: 0 20px;
-        margin-right: 20px;
+        padding: 0 1.25rem;
+        margin-right: 1.25rem;
     }
 }

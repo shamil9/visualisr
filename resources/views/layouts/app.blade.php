@@ -37,9 +37,9 @@
             </div>
         </main>
 
-        {{--<section class="footer">--}}
-            {{--@include('layouts.partials.footer')--}}
-        {{--</section>--}}
+        <footer class="footer">
+            @include('layouts.partials.footer')
+        </footer>
         <!-- Scripts -->
     </div>
     @section('footer-js')
