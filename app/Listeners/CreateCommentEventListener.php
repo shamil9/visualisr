@@ -3,8 +3,9 @@
 namespace App\Listeners;
 
 use App\Events\CreateCommentEvent;
-use Illuminate\Queue\InteractsWithQueue;
+use App\Mail\CommentCreated;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
 
 class CreateCommentEventListener
 {
@@ -26,6 +27,12 @@ class CreateCommentEventListener
      */
     public function handle(CreateCommentEvent $event)
     {
-        //
+        $comment = $event->visual->comments()->create([
+            'user_id'   => auth()->id(),
+            'visual_id' => $event->visual->id,
+            'body'      => $event->request->body,
+        ]);
+
+        \Mail::to($event->visual->user->email)->send(new CommentCreated($comment));
     }
 }

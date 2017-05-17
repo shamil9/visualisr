@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Mail;
 class SupportTicketObserver
 {
     /**
-     * Listen to the User created event.
+     * Listen to the SupportTicket created event.
      *
      * @param SupportTicket $supportTicket
      * @return void
@@ -20,7 +20,7 @@ class SupportTicketObserver
     }
 
     /**
-     * Listen to the User deleting event.
+     * Listen to the SupportTicket deleting event.
      *
      * @param SupportTicket $supportTicket
      * @return void

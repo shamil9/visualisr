@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use App\Events\CreateCommentEvent;
 use App\Visual;
 use Illuminate\Http\Request;
 
@@ -25,11 +26,7 @@ class CommentController extends Controller
         $this->authorize('create', Comment::class);
         $this->validateComment($request);
 
-        $visual->comments()->create([
-            'user_id'   => auth()->id(),
-            'visual_id' => $visual->id,
-            'body'      => $request->body,
-        ]);
+        event(new CreateCommentEvent($visual, $request));
 
         return redirect(route('visuals.show', $visual))
             ->with('flash', 'Comment added successfully');
