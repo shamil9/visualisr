@@ -25,6 +25,8 @@ Route::get('/banned', function () {
 // main nav
 Route::get('/home', 'HomeController@index')->name('user.home');
 Route::resource('/blog', 'BlogController');
+Route::get('/faq', function () { return view('faq'); })->name('faq');
+Route::get('/tos', function () { return view('tos'); })->name('tos');
 
 // auth
 Route::group(['middleware' => 'banned.check'], function () {

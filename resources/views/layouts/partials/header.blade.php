@@ -22,7 +22,6 @@
                                 <a href="{{ route('visuals.index') }}">Visuals</a>
                             </li>
                             <li><a href="{{ route('blog.index') }}">Blog</a></li>
-                            <li><a href="{{ route('contact.create') }}">Contact</a></li>
                             @if (auth()->check())
                                 <li>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
