@@ -33,6 +33,6 @@ class CreateCommentEventListener
             'body'      => $event->request->body,
         ]);
 
-        \Mail::to($event->visual->user->email)->send(new CommentCreated($comment));
+        \Mail::to($event->visual->user->email)->queue(new CommentCreated($comment));
     }
 }

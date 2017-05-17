@@ -16,7 +16,7 @@ class SupportTicketObserver
      */
     public function created(SupportTicket $supportTicket)
     {
-        Mail::to('contact@visualisr.space')->send(new SupportTicketCreated($supportTicket));
+        Mail::to('contact@visualisr.space')->queue(new SupportTicketCreated($supportTicket));
     }
 
     /**

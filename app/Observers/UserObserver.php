@@ -15,7 +15,7 @@ class UserObserver
      */
     public function created(User $user)
     {
-        \Mail::to($user)->send(new UserCreated($user));
+        \Mail::to($user)->queue(new UserCreated($user));
     }
 
     /**

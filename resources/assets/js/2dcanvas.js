@@ -45,6 +45,7 @@ class Visualiser {
             let x1 = this.A2 * this.p5.sin(this.a * this.t + this.p5.PI) + this.width / 2
             let y1 = this.B2 * this.p5.sin(this.b * this.t + this.p5.PI) + this.height / 2
 
+            this.p5.noSmooth()
             this.p5.line(x0, y0, x1, y1)
             this.t += 0.003
             this.update(dataArray)
