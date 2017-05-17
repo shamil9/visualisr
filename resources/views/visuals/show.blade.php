@@ -6,15 +6,15 @@
     <div id="visual-edit" class="visual__edit">
         <div>
             <span class="visual__track">
-                <b>Track:</b> {{ $visual->track }}
+                Track: <b>{{ $visual->track }}</b>
             </span> ∙
 
             <span class="visual__album">
-              <b>Album:</b>  {{ $visual->album }}
+              Album:  <b>{{ $visual->album }}</b>
             </span> ∙
 
             <span class="visual__artist">
-               <b>Artist:</b> {{ $visual->artist }}
+               Artist: <b>{{ $visual->artist }}</b>
             </span>
         </div>
 

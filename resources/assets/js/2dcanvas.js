@@ -32,6 +32,7 @@ class Visualiser {
     }
 
     show(dataArray) {
+        this.p5.frameRate(30)
         if (this.t >= 5) {
             this.init()
             return

@@ -132,7 +132,7 @@ class VisualController extends Controller
         event(new VisualDestroyEvent($visual, $request));
 
         return redirect(route('visuals.index'))
-            ->with('flash', 'Your visual has been deleted');
+            ->with('flash', 'Viusal successfully deleted');
     }
 
     /**

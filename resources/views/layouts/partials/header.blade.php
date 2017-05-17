@@ -15,7 +15,12 @@
                 <div class="level-item">
                     <div class="header__nav">
                         <ul>
-                            <li><a href="{{ route('visuals.index') }}">Visuals</a></li>
+                            <li>
+                                <span class="tag is-primary">
+                                    Create
+                                </span>
+                                <a href="{{ route('visuals.index') }}">Visuals</a>
+                            </li>
                             <li><a href="{{ route('blog.index') }}">Blog</a></li>
                             <li><a href="{{ route('contact.create') }}">Contact</a></li>
                             @if (auth()->check())
