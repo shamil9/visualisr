@@ -1,10 +1,21 @@
 .user__avatar
-  background-color: $primary
+  background-color: rgba($primary, 0.2)
   width: 4rem
   height: 4rem
   border-radius: 50%
+  border: 1px solid $primary
   padding: 0.1875rem
 
+  & img
+    border-radius: 50%
+
+.user__avatar--comment
+    @extend .user__avatar
+    width: 2.25rem
+    height: 2.25rem
+
+.user__name
+  margin-left: 0.625rem
 .user__block
   color: black
 

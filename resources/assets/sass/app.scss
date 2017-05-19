@@ -54,7 +54,7 @@ html {
     top: 0;
     left: 0;
     z-index: -1;
-    background-color: black;
+    background-color: #222831;
     & img {
         max-width: 44.375rem;
     }
@@ -66,9 +66,7 @@ html {
 }
 
 .join {
-    background: #000000;
     color: #FFFFFF;
-    border-radius: 50%;
     border: 0.125rem solid;
     border-image: linear-gradient(to right, #31725A, #34495E 6.25rem, #31725A);
     border-image-slice: 1;

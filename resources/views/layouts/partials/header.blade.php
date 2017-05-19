@@ -8,7 +8,7 @@
                             <img src="{{ asset('assets/img/logo.svg') }}" title="{{ env('APP_NAME') }}" />
                         </a>
                     </div>
-                    <span class="tag is-info">Beta</span>
+                    <span class="tag is-primary">Beta</span>
                 </div>
             </div>
             <div class="level-right">

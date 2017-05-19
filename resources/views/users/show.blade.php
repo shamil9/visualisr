@@ -11,7 +11,7 @@
                             <img src="{{ asset(\Storage::url('avatars/' . $user->avatar)) }}"
                                  alt="{{ $user->name }}">
                         </figure>
-                        <h1 class="title">{{ $user->name }}</h1>
+                        <h1 class="title user__name">{{ $user->name }}</h1>
                     </div>
                     <div class="level-item has-text-centered">
                         <div>

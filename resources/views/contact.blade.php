@@ -57,6 +57,7 @@
         </div>
     </div>
 </div>
+<br>
 @endsection
 
 @section('footer-js')

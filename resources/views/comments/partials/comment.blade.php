@@ -2,7 +2,7 @@
         url="{{ route('comments.update', ['visual' => $visual, 'comment' => $comment]) }}">
     <article class="media comment">
         <figure class="media-left">
-            <div class="comment__avatar">
+            <div class="user__avatar--comment">
                 <img src="{{ asset(\Storage::url('avatars/' . $visual->user->avatar)) }}" alt="{{ $comment->user->name }}">
             </div>
         </figure>
