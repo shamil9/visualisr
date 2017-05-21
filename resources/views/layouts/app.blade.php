@@ -30,7 +30,7 @@
             @include('layouts.partials.header')
         </header>
 
-        <main role="main">
+        <main class="main" role="main">
             @yield('container-header')
             <div class="container">
                 @yield('content')

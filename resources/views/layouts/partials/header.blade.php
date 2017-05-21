@@ -11,22 +11,28 @@
                     <span class="tag is-primary">Beta</span>
                 </div>
             </div>
+
             <div class="level-right">
+                <div class="level-item">
+                    <span class="tag is-primary">
+                        <a class="header__create" href="{{ route('visuals.create') }}">Create</a>
+                    </span>
+                </div>
                 <div class="level-item">
                     <div class="header__nav">
                         <ul>
                             <li>
-                                <span class="tag is-primary">
-                                    Create
-                                </span>
                                 <a href="{{ route('visuals.index') }}">Visuals</a>
                             </li>
+
                             <li><a href="{{ route('blog.index') }}">Blog</a></li>
+
                             @if (auth()->check())
                                 <li>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         {{ csrf_field() }}
                                     </form>
+
                                     <a href="{{ route('logout') }}"
                                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                                         >Sign Out</a>

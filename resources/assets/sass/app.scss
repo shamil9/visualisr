@@ -46,6 +46,10 @@ html {
     position: relative;
 }
 
+.main {
+    min-height: calc(100vh - 260px);
+}
+
 .splash-screen {
     @include flex($direction: column);
     height: 100vh;
