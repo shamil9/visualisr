@@ -1,18 +1,12 @@
 @extends('layouts.app')
 @section('title', 'Blog')
 
-@section('container-header')
-    <section class="hero is-light">
-        <div class="hero-body">
-            <div class="container">
-                <h1 class="title">Blog</h1>
-            </div>
-        </div>
-    </section>
+@section('breadcrumbs')
+    @breadcrumbs(['Home' => 'index', 'Blog' => 'blog.index'])
 @endsection
 
 @section('content')
-    <div class="blog">
+    <section class="section">
         <div class="columns">
             <div class="column is-9 card">
                 <div class="card-content">
@@ -54,7 +48,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 @endsection
 @section('footer-js')
     @parent

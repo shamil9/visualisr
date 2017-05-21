@@ -1,6 +1,10 @@
 @extends('layouts.app')
 @section('title', $user->name)
 
+@section('breadcrumbs')
+    @breadcrumbs(['Home' => 'index', 'Users' => 'users.index'])
+@endsection
+
 @section('container-header')
     <section class="hero is-light">
         <div class="hero-body">
