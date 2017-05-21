@@ -10,17 +10,20 @@
     <link href="{{ mix('assets/css/app.css') }}" rel="stylesheet">
     <title>Visualisr</title>
 </head>
+
 <body>
-<div class="home">
-    <header>
-        @include('layouts.partials.header')
-    </header>
-    <main class="splash-screen" role="main">
-        <p>Create beautiful art</p>
-        <img src="{{ asset('assets/img/wave.png') }}" alt="Visualisr">
-        <p>From your favorite song</p>
-        <a class="join" href="{{ route('register') }}">JOIN NOW</a>
-    </main>
-</div>
+    <div class="home">
+        <header>
+            @include('layouts.partials.header')
+        </header>
+
+        <main class="splash-screen" role="main">
+            <p>Create beautiful art</p>
+            <img src="{{ asset('assets/img/wave.png') }}" alt="Visualisr">
+            <p>From your favorite song</p>
+            <a class="join" href="{{ route('register') }}">JOIN NOW</a>
+        </main>
+    </div>
+
 </body>
 </html>
