@@ -8,7 +8,12 @@
             <div class="column is-2">
                 @include('layouts.partials.sidebar')
             </div>
-            <div class="column is-10">
+            <div class="column">
+                @unless ($messages->count())
+                    <div class="is-flex-centered has-text-centered">
+                        <p class="title is-1 color-grey-light">No Messages</p>
+                    </div>
+                @endunless
                 <div class="columns is-multiline">
                     @each('admin.contact.partials.message', $messages, 'message')
                 </div>

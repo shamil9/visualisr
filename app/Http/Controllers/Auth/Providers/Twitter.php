@@ -39,7 +39,8 @@ class Twitter
         $localUser = $this->createUser($user);
         \Auth::login($localUser, true);
 
-        return redirect(route('user.home'));
+        return redirect(route('user.home'))
+            ->with('flash', 'Twitter account successfully linked');
     }
 
     /**
