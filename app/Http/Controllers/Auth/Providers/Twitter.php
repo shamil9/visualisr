@@ -23,6 +23,10 @@ class Twitter
      */
     public function handleProviderCallback()
     {
+        if (request()->query->has('denied'))
+            return redirect(route('user.home'))
+                ->with('flash', 'Unable to link Twitter account');
+
         $user = Socialite::driver('twitter')->user();
         $localUser = User::where('twitter_id', $user->id)->first();
 

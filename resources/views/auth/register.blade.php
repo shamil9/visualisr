@@ -20,9 +20,9 @@
                                 <i class="fa fa-user"></i>
                             </span>
 
-                            @if ($errors->has('email'))
+                            @if ($errors->has('name'))
                                 <p class="help is-danger">
-                                    {{ $errors->first('email') }}
+                                    {{ $errors->first('name') }}
                                 </p>
                             @endif
                         </p>
@@ -32,7 +32,7 @@
                         <label for="email" class="label">Email</label>
 
                         <p class="control has-icon">
-                            <input class="input" id="email" type="email" name="email" placeholder="Email">
+                            <input class="input" id="email" type="email" value="{{ old('email') }}" name="email" placeholder="Email">
 
                             <span class="icon is-small">
                                 <i class="fa fa-envelope"></i>
@@ -58,8 +58,8 @@
                         </p>
 
                         @if ($errors->has('password'))
-                            <p class="help-block is-danger">
-                                <strong>{{ $errors->first('password') }}</strong>
+                            <p class="help is-danger">
+                                {{ $errors->first('password') }}
                             </p>
                         @endif
                     </div>
