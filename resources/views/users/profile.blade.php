@@ -27,8 +27,15 @@
                             </figure>
                             <div class="media-content">
                                 <p class="control">
-                                    <input class="input" name="avatar" type="file">
+                                    <input class="input" name="avatar" type="file"
+                                        accept=".png,.jpeg,.jpg,.bmp image/jpeg, image/png, image/bmp">
                                 </p>
+
+                                @if ($errors->has('avatar'))
+                                    <p class="help is-danger">
+                                        {{ $errors->first('avatar') }}
+                                    </p>
+                                @endif
                             </div>
                         </div>
                     </div>

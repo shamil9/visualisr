@@ -43,20 +43,35 @@ class ProfileController extends Controller
      */
     public function updateAvatar($request)
     {
-        $user = $request->user();
+        $this->validate($request, [
+            'avatar' => 'mimes:jpg,jpeg,png,bmp'
+        ]);
+
         $oldAvatar = $user->avatar;
-        $file = uniqid($user->name) . '.' . $request->avatar->extension();
-        $avatar = Image::make($request->avatar)
-                    ->resize(256, 256, function ($constraint) {
-                            $constraint->upsize();
-                        })
-                    ->save(storage_path('app/public/avatars/'.$file));
+        $avatar = $this->storeAvatar($request);
 
         $user->avatar = $avatar->basename;
         $user->save();
 
         if ($oldAvatar != 'user.svg')
             unlink(storage_path('app/public/avatars/'.$oldAvatar));
+    }
+
+    /**
+     * Save avatar image on disk
+     * @param \Illuminate\Http\Request $request
+     * @return Image
+     */
+    public function storeAvatar($request)
+    {
+        $user = $request->user();
+        $file = uniqid($user->name) . '.' . $request->avatar->extension();
+
+        return Image::make($request->avatar)
+                    ->resize(256, 256, function ($constraint) {
+                            $constraint->upsize();
+                        })
+                    ->save(storage_path('app/public/avatars/'.$file));
     }
 
     /**

@@ -106,3 +106,8 @@ html {
         margin-right: 1.25rem;
     }
 }
+
+.is-centered {
+    @include flex()
+}
+
