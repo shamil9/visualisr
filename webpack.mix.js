@@ -16,7 +16,7 @@ if (mix.config.inProduction) {
 }
 mix
     .js('resources/assets/js/app.js', 'public/assets/js')
-    .extract(['vue', 'vue-bulma-rating', 'axios', 'turbolinks'])
+    .extract(['vue', 'vue-bulma-rating', 'axios'])
     .js('resources/assets/js/admin.js', 'public/assets/js')
     .js('resources/assets/js/player.js', 'public/assets/js')
     .sass('resources/assets/sass/app.scss', 'public/assets/css')
