@@ -11,10 +11,7 @@
             <div class="column">
                 @unless ($visuals->count())
                     <div class="is-flex-centered has-text-centered">
-                        <p class="title is-1 color-grey-light">No visuals found</p>
-                        <p>
-                            <a class="button is-primary" href="{{ route('visuals.create') }}">Create</a>
-                        </p>
+                        <p class="title is-1 color-grey-light">No Favorites Found</p>
                     </div>
                 @endunless
                 <div class="columns is-multiline">

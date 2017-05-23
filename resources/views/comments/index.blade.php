@@ -11,7 +11,7 @@
             <div class="media-content">
                 <div class="field has-addons">
                     <p class="control is-expanded">
-                        <input name="body" maxlength="180" minlength="2" class="input relative is-primary" type="text" placeholder="Add Comment">
+                        <input name="body" maxlength="180" minlength="2" class="input relative is-primary" type="text" placeholder="Add Comment" required>
                     </p>
 
                     <p class="control">
@@ -20,6 +20,12 @@
                         </button>
                     </p>
                 </div>
+
+                @if ($errors->has('body'))
+                    <p class="help is-danger">
+                        Comment connot by empty
+                    </p>
+                @endif
             </div>
         </article>
     </form>

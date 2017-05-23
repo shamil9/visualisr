@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('title', 'Blog')
+@section('class', 'blog')
 
 @section('breadcrumbs')
     @breadcrumbs(['Home' => 'index', 'Blog' => 'blog.index'])
@@ -12,17 +13,22 @@
                 <div class="card-content">
                     @foreach($blogs as $blog)
                         <article class="content">
+                            @can('update', App\Blog::class)
+                                <div class="pull-right">
+                                    <a class="button is-warning" href="{{ route('blog.edit', $blog) }}">Edit</a>
+                                </div>
+                            @endcan
                             <header class="title">{{ $blog->title }}</header>
                             <h3 class="subtitle is-6 blog__subtitle">
                                 By {{ $blog->user->name . ' ' . $blog->created_at->diffForhumans() }}
                             </h3>
                             <div class="blog__content">
                                 @markdown($blog->body)
-                                @can('update', App\Blog::class)
-                                    <a class="button is-warning" href="{{ route('blog.edit', $blog) }}">Edit</a>
-                                @endcan
                             </div>
                         </article>
+                        @unless ($loop->last)
+                            <hr>
+                        @endunless
                     @endforeach
                 </div>
                 <flash message="{{ session('flash') }}"></flash>

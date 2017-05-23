@@ -107,7 +107,16 @@ html {
     }
 }
 
-.is-centered {
-    @include flex()
+.is-flex-centered {
+    @include flex($direction: column)
+    height: 100%;
+    width: 100%
 }
 
+.color-grey {
+    color: $grey
+}
+
+.color-grey-light {
+    color: $grey-light
+}

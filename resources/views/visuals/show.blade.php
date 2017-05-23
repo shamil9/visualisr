@@ -65,10 +65,10 @@
 
                     <div class="card-content">
                         <div class="comments">
-                            @unless($visual->comments->count())
-                                <p class="has-text-centered">No comments yet</p>
-                            @endunless
                             @include('comments.index')
+                            @unless($visual->comments->count())
+                                <p class="has-text-centered color-grey-light">No comments yet</p>
+                            @endunless
                         </div>
                     </div>
                 </div>

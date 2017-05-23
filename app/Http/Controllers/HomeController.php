@@ -36,6 +36,6 @@ class HomeController extends Controller
             return $favorite->visual_id;
         });
 
-        return view('home', ['visuals' => Visual::find($favorites->all())]);
+        return view('users.favorites', ['visuals' => Visual::find($favorites->all())]);
     }
 }
