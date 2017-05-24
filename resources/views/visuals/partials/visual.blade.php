@@ -3,7 +3,7 @@
         <div class="card-image">
             <figure class="image is-16by9">
                 <a href="{{ route('visuals.show', $visual->visual_id ?: $visual) }}">
-                    <img src="{{ asset(getenv('APP_UPLOADS') . '/visuals/' . $visual->user_id . '/thumb_' . $visual->image) }}"
+                    <img src="{{ asset(\Storage::url('/visuals/' . $visual->user_id . '/thumb_' . $visual->image)) }}"
                          alt="{{ $visual->track }}">
                 </a>
             </figure>

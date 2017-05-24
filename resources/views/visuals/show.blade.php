@@ -101,7 +101,7 @@
                             </button>
                         </div>
                     @endif
-                    <img src="{{ asset(getenv('APP_UPLOADS') . '/visuals/' . $visual->user_id . '/' . $visual->image) }}" alt="{{ $visual->track }}"
+                    <img src="{{ asset(\Storage::url('/visuals/' . $visual->user_id . '/' . $visual->image)) }}" alt="{{ $visual->track }}"
                     style="padding-bottom: 16px">
                 </div>
 

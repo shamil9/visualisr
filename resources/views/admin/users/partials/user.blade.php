@@ -3,7 +3,7 @@
         <div class="card-image">
             <figure class="image is-16by9">
                 @if (isset($user->visuals->last()->image))
-                    <img src="{{ asset(getenv('APP_UPLOADS') . '/visuals/' . $user->id . '/thumb_' . $user->visuals->last()->image) }}"
+                    <img src="{{ asset(\Storage::url('/visuals/' . $user->id . '/thumb_' . $user->visuals->last()->image)) }}"
                          alt="{{ $user->visuals->last()->track }}">
                 @else
                     <img src="http://bulma.io/images/placeholders/640x360.png" alt="User has no visuals">
@@ -14,7 +14,7 @@
             <div class="media">
                 <div class="media-left">
                     <figure class="user__avatar image is-48x48">
-                        <img src="{{ asset(getenv('APP_UPLOADS') . '/avatars/' . $user->avatar) }}"
+                        <img src="{{ asset(\Storage::url('/avatars/' . $user->avatar)) }}"
                              alt="{{ $user->name }}">
                     </figure>
                 </div>
