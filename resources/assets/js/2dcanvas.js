@@ -1,5 +1,6 @@
 class Visualiser {
     constructor(p5) {
+        p5.disableFriendlyErrors = true
         this.p5 = p5
         this.canvas = document.querySelector('#visualizer')
         this.width = this.canvas.offsetWidth

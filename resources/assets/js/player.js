@@ -11,6 +11,7 @@ export default class Player {
         this.dataArray = new Uint8Array(this.analyser.frequencyBinCount)
         this.analyser.connect(Howler.ctx.destination)
         this.position = null
+        p5.disableFriendlyErrors = true
         this.visualiser = new Visualiser(new p5())
     }
 

@@ -1,10 +1,10 @@
 {
-  "/assets/js/admin.js": "/assets/js/admin.js",
-  "/assets/js/vendor.js": "/assets/js/vendor.js",
-  "/assets/js/app.js": "/assets/js/app.js",
-  "/assets/css/app.css": "/assets/css/app.css",
-  "/assets/css/vendor.css": "/assets/css/vendor.css",
-  "/assets/css/admin.css": "/assets/css/admin.css",
-  "/assets/js/player.js": "/assets/js/player.js",
-  "/assets/js/manifest.js": "/assets/js/manifest.js"
+  "/assets/js/admin.js": "/assets/js/admin.7857b0f31306ad23a2e7.js",
+  "/assets/js/vendor.js": "/assets/js/vendor.f460a7ff0ccd53d06a7e.js",
+  "/assets/js/app.js": "/assets/js/app.0c3e8d8d6d7c9309791c.js",
+  "/assets/css/app.css": "/assets/css/app.d7a2e6b5ac6b4a3c9d0d.css",
+  "/assets/css/vendor.css": "/assets/css/vendor.d7a2e6b5ac6b4a3c9d0d.css",
+  "/assets/css/admin.css": "/assets/css/admin.d7a2e6b5ac6b4a3c9d0d.css",
+  "/assets/js/player.js": "/assets/js/player.5c65f01dc096fd162dc1.js",
+  "/assets/js/manifest.js": "/assets/js/manifest.d41d8cd98f00b204e980.js"
 }
