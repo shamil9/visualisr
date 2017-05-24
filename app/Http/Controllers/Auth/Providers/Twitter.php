@@ -93,7 +93,8 @@ class Twitter
             'twitter_avatar'                   => $user->avatar,
             'email'                            => $user->email,
             'password'                         => str_random(8),
-            'name'                             => Str::slug($user->nickname),
+            'name'                             => $user->nickname,
+            'slug'                             => Str::slug($user->nickname),
         ]);
     }
 
