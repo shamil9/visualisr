@@ -8,13 +8,13 @@
 <section class="section">
     <div class="columns">
         <div class="column is-4 is-offset-2">
-            <form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
+            <form role="form" method="POST" action="{{ route('login') }}">
                 {{ csrf_field() }}
                 <div class="columns">
                     <div class="column is-10">
                         <div class="field">
                             <p class="control has-icon">
-                                <input class="input" type="email" name="email" placeholder="Email" required autofocus>
+                                <input class="input" type="email" name="email" value="{{ old('email') }}" placeholder="Email" required autofocus>
                                 <span class="icon is-small">
                                     <i class="fa fa-envelope"></i>
                                 </span>

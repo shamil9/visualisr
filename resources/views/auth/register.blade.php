@@ -7,7 +7,7 @@
     <section class="section">
         <div class="columns">
             <div class="column is-4 is-offset-2">
-                <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
+                <form role="form" method="POST" action="{{ route('register') }}">
                     {{ csrf_field() }}
 
                     <div class="field">
