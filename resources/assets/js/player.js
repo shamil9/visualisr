@@ -1,11 +1,11 @@
 import 'howler'
 import p5 from 'p5'
-Vue.component('player', require('./components/Player.vue'))
 import Visualiser from './2dcanvas'
+Vue.component('player', require('./components/Player.vue'))
 
 export default class Player {
     constructor(song) {
-        this.sound = new Howl({ src: [song], format: ['mp3'], volume: 0.5 })
+        this.sound = new Howl({ src: [song], format: ['mp3'], volume: 0.5, html5: true })
         this.analyser = Howler.ctx.createAnalyser()
         Howler.masterGain.connect(this.analyser)
         this.dataArray = new Uint8Array(this.analyser.frequencyBinCount)

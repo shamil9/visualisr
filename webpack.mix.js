@@ -27,4 +27,4 @@ mix
     .copyDirectory('resources/assets/img/', 'public/assets/img')
     .copy('node_modules/font-awesome/fonts/*.*', 'public/assets/fonts')
     .copy('resources/assets/fonts/*.*', 'public/assets/fonts')
-    .copy('resources/user.svg', 'public/uploads/avatars')
+    .copy('resources/user.svg', 'storage/app/public/avatars')

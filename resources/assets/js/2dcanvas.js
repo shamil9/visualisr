@@ -6,7 +6,7 @@ class Visualiser {
         this.width = this.canvas.offsetWidth
         this.height = this.canvas.offsetHeight
         this.modifier = 0
-        this.speed = 5
+        this.speed = 10
         this.paused = false
         this.alpha = 0.01
         this.p5.frameRate(30)
@@ -40,7 +40,7 @@ class Visualiser {
     }
 
     show(dataArray) {
-        if (this.modifier >= 10) {
+        if (this.modifier >= 5) {
             this.delay(3)
             return
         }
