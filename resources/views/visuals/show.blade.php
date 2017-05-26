@@ -76,7 +76,7 @@
 
             <div class="column is-8">
                 <div class="relative">
-                    @if ($visual->user_id !== auth()->id() && auth()->check())
+                    @can('rate', $visual)
                         <div class="rating">
                             <rating
                                 :items="ratingItems"

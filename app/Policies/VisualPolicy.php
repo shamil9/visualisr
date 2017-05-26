@@ -12,8 +12,8 @@ class VisualPolicy
 
     public function before()
     {
-        if (auth()->user()->banned) return false;
         if (auth()->user()->admin) return true;
+        if (auth()->user()->banned || ! auth()->user()->active) return false;
     }
 
     /**
@@ -36,7 +36,7 @@ class VisualPolicy
      */
     public function create(User $user)
     {
-
+        if (auth()->check()) return true;
     }
 
     /**
@@ -63,11 +63,28 @@ class VisualPolicy
         return $user->id === $visual->user_id;
     }
 
+    /**
+     * Private visual should be visible only to it's owner
+     *
+     * @param  User   $user   [description]
+     * @param  Visual $visual [description]
+     * @return mixed
+     */
     public function viewPrivateVisual(User $user, Visual $visual)
     {
         if ($visual->user_id === $user->id) return true;
         if ($visual->private) return false;
+    }
 
-        return true;
+    /**
+     * Only logged in and confirmed users can rate
+     *
+     * @param  User   $user
+     * @param  Visual $visual
+     * @return mixed
+     */
+    public function rate(User $user, Visual $visual)
+    {
+        if ($visual->user_id !== $user->id && auth()->check()) return true;
     }
 }

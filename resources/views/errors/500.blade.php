@@ -1,5 +1,9 @@
 @extends('layouts.app')
-@section('title', 'Page Not Found')
+@section('title', 'Server Error')
+
+@section('breadcrumbs')
+    @breadcrumbs(['Home' => 'index'])
+@endsection
 
 @section('content')
     <div class="error">
