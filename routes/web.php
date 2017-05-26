@@ -56,6 +56,7 @@ Route::get('/home/password', 'PasswordController@edit')->name('user.password');
 Route::patch('/home/password', 'PasswordController@update')->name('user.password.update');
 Route::get('/home/profile', 'ProfileController@edit')->name('user.profile');
 Route::patch('/home/profile', 'ProfileController@update')->name('user.profile.update');
+Route::get('/confirm/{toke}', 'UnconfirmedUserController@confirm')->name('user.confirm');
 
 
 // favorite visual

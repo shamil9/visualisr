@@ -2,7 +2,9 @@
 
 namespace App\Observers;
 
+use App\Mail\ConfirmAccount;
 use App\Mail\UserCreated;
+use App\UnconfirmedUser;
 use App\User;
 
 class UserObserver
@@ -15,7 +17,7 @@ class UserObserver
      */
     public function created(User $user)
     {
-        \Mail::to($user)->queue(new UserCreated($user));
+        $this->sendConfirmation($user);
     }
 
     /**
@@ -30,5 +32,20 @@ class UserObserver
         $dir = storage_path('app/public/visuals/' . $user->id);
 
         \File::deleteDirectory($dir);
+    }
+
+    /**
+     * Send email confirmation
+     *
+     * @param User $user
+     */
+    public function sendConfirmation(User $user)
+    {
+        $unconfirmedUser = UnconfirmedUser::create([
+            'user_id' => $user->id,
+            'token' => hash('sha256', $user->name),
+        ]);
+
+        \Mail::to($user->email)->queue(new ConfirmAccount($unconfirmedUser));
     }
 }

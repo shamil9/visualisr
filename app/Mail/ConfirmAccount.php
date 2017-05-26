@@ -2,26 +2,25 @@
 
 namespace App\Mail;
 
-use App\Comment;
+use App\UnconfirmedUser;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class CommentCreated extends Mailable
+class ConfirmAccount extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $comment;
-
+    public $unconfirmedUser;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(Comment $comment)
+    public function __construct(UnconfirmedUser $unconfirmedUser)
     {
-        $this->comment = $comment;
+        $this->unconfirmedUser = $unconfirmedUser;
     }
 
     /**
@@ -32,7 +31,7 @@ class CommentCreated extends Mailable
     public function build()
     {
         return $this
-            ->subject('New Comment')
-            ->markdown('email.comments.created');
+        ->subject('Confirm Account')
+        ->markdown('email.users.confirm');
     }
 }
