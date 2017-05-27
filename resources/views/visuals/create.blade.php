@@ -49,10 +49,10 @@
                 checkFormat(event) {
                     var files = event.target.files || event.dataTransfer.files;
 
-                    if (this.fileTypes.indexOf(files[0].type)  !== -1) {
+                    if (/^(audio)/.test(files[0].type)) {
                         this.changeSong(files[0]);
                     } else {
-                        this.message = 'Invalid File Format. Valid Formats mp3, aac, webm, ogg, flac';
+                        this.message = 'Invalid File Format.';
                     }
 
                 },
