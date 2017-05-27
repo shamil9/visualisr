@@ -66,6 +66,7 @@
             play() {
                 this.isPlaying = true
                 this.isPaused = false
+                this.$root.showDropArea = false
                 this.player.play()
             },
             pause() {

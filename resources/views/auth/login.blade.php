@@ -4,6 +4,7 @@
 @section('breadcrumbs')
     @breadcrumbs(['Home' => 'index', 'Login' => 'login'])
 @stop
+
 @section('content')
 <section class="section">
     <div class="columns">

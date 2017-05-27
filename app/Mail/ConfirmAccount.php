@@ -31,7 +31,7 @@ class ConfirmAccount extends Mailable
     public function build()
     {
         return $this
-        ->subject('Confirm Account')
-        ->markdown('email.users.confirm');
+            ->subject('Confirm Account')
+            ->markdown('email.users.confirm');
     }
 }
