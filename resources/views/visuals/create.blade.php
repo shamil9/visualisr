@@ -46,13 +46,13 @@
 
                     EventBus.$emit('changeSongEvent');
                 },
-                checkFormat(event) {
+                checkFormat: function(event) {
                     var files = event.target.files || event.dataTransfer.files;
 
-                    if (/^(audio)/.test(files[0].type)) {
+                    if (/^audio/.test(files[0].type)) {
                         this.changeSong(files[0]);
                     } else {
-                        this.message = 'Invalid File Format.';
+                        this.message = 'Invalid File Format';
                     }
 
                 },
