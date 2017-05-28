@@ -28,7 +28,7 @@
             </a>5sec
         </div>
 
-        <div class="player__save" @click.prevent="toggleModal">
+        <div class="player__save" @click.prevent="toggleModal" :data-balloon="saveMessage" data-balloon-pos="right">
             <a id="save" href="#">
                 <img src="/assets/img/icons/user/camera.svg" alt="Save">
             </a>
@@ -52,11 +52,13 @@
                 isPaused: false,
                 image: null,
                 song: '/assets/song.mp3',
+                format: 'audio/mp3',
+                saveMessage: 'Please start playback first'
             }
         },
         computed: {
             player() {
-                return new Player(this.song)
+                return new Player(this.song, this.format)
             },
             visualizer() {
                 return document.querySelector('#visualizer')
@@ -67,6 +69,7 @@
                 this.isPlaying = true
                 this.isPaused = false
                 this.$root.showDropArea = false
+                this.saveMessage = 'Save the visual'
                 this.player.play()
             },
             pause() {
@@ -81,13 +84,16 @@
                 this.player.jumpForward()
             },
             toggleModal() {
-                this.image = this.visualizer.children[0].toDataURL()
-                this.$emit('toggleModalEvent')
+                if (this.visualizer.children.length) {
+                    this.image = this.visualizer.children[0].toDataURL()
+                    this.$emit('toggleModalEvent')
+                }
             },
             changeSong() {
                 this.pause()
                 this.visualizer.removeChild(this.visualizer.children[0])
                 this.song = this.$parent.song
+                this.format = this.$parent.format
                 this.play()
             }
         }

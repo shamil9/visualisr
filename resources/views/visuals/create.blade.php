@@ -14,9 +14,9 @@
     <div class="section relative">
         <div class="file is-flex-centered"
             v-show="showDropArea"
-            @drop.stop.prevent="changeSong"
+            @drop.stop.prevent="checkFormat"
             @dragover.stop.prevent="dragOver">
-            Drop Your Song Here
+            @{{ message }}
             <img src="{{ asset('/assets/img/icons/file.png') }}" alt="Drop File"> <br>
         </div>
         <div id="visualizer">
@@ -33,14 +33,28 @@
             data: {
                 showDropArea: true,
                 song: null,
+                format: null,
+                message: 'Drop Your Song Here',
+                fileTypes: ['audio/mp3', 'audio/wav', 'audio/aac', 'audio/webm', 'audio/ogg', 'audio/flac']
             },
             methods:{
-                changeSong: function(event) {
-                    var files = event.target.files || event.dataTransfer.files;
-                    this.song = URL.createObjectURL(files[0]);
-                    this.text = files[0].name;
+                changeSong: function(file) {
+                    this.format = file.type;
+                    this.song = URL.createObjectURL(file);
+                    this.text = file.name;
                     this.showDropArea = false;
+
                     EventBus.$emit('changeSongEvent');
+                },
+                checkFormat(event) {
+                    var files = event.target.files || event.dataTransfer.files;
+
+                    if (this.fileTypes.indexOf(files[0].type)  !== -1) {
+                        this.changeSong(files[0]);
+                    } else {
+                        this.message = 'Invalid File Format. Valid Formats mp3, aac, webm, ogg, flac';
+                    }
+
                 },
                 dragOver: function(event) {
                     event.dataTransfer.dropEffect = 'copy';

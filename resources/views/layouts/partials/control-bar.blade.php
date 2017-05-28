@@ -8,8 +8,11 @@
                 @section('control-bar')
                 @show
             </div>
-            <div class="column is-1 has-text-right" style="line-height: 50px;">
+            <div class="column is-2 has-text-right" style="line-height: 50px;">
             @if(Auth::check())
+                 @if (! auth()->user()->active)
+                    <span class="tag is-warning is-small" style="vertical-align: middle">Unconfirmed Account</span>
+                @endif
                 <span>
                     <a href="{{ route('user.home') }}">
                         <img src="{{ asset('assets/img/icons/user/sliders.svg') }}" alt="Edit">

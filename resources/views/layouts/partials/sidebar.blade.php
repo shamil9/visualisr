@@ -1,7 +1,4 @@
 <aside class="menu">
-    @if (! auth()->user()->active)
-        <span class="tag is-warning is-medium">Unconfirmed Account</span>
-    @endif
     <p class="menu-label">General</p>
     <ul class="menu-list">
         <li>
