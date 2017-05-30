@@ -26,8 +26,8 @@ class Visual
 
         // thumbnail
         $image->resize(410, null, function ($constraint) {
-                $constraint->aspectRatio();
-            })
+            $constraint->aspectRatio();
+        })
             ->save($dir . '/' . 'thumb_' . $this->name);
 
         // twitter banner

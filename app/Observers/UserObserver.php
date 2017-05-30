@@ -3,7 +3,6 @@
 namespace App\Observers;
 
 use App\Mail\ConfirmAccount;
-use App\Mail\UserCreated;
 use App\UnconfirmedUser;
 use App\User;
 
@@ -43,7 +42,7 @@ class UserObserver
     {
         $unconfirmedUser = UnconfirmedUser::create([
             'user_id' => $user->id,
-            'token' => hash('sha256', $user->name),
+            'token'   => hash('sha256', $user->name),
         ]);
 
         \Mail::to($user->email)->queue(new ConfirmAccount($unconfirmedUser));

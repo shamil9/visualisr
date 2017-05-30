@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 class ProfileController extends Controller
@@ -44,7 +43,7 @@ class ProfileController extends Controller
     public function updateAvatar($request)
     {
         $this->validate($request, [
-            'avatar' => 'mimes:jpg,jpeg,png,bmp'
+            'avatar' => 'mimes:jpg,jpeg,png,bmp',
         ]);
 
         $oldAvatar = $user->avatar;
@@ -54,11 +53,12 @@ class ProfileController extends Controller
         $user->save();
 
         if ($oldAvatar != 'user.svg')
-            unlink(storage_path('app/public/avatars/'.$oldAvatar));
+            unlink(storage_path('app/public/avatars/' . $oldAvatar));
     }
 
     /**
      * Save avatar image on disk
+     *
      * @param \Illuminate\Http\Request $request
      * @return Image
      */
@@ -68,10 +68,10 @@ class ProfileController extends Controller
         $file = uniqid($user->name) . '.' . $request->avatar->extension();
 
         return Image::make($request->avatar)
-                    ->resize(256, 256, function ($constraint) {
-                            $constraint->upsize();
-                        })
-                    ->save(storage_path('app/public/avatars/'.$file));
+            ->resize(256, 256, function ($constraint) {
+                $constraint->upsize();
+            })
+            ->save(storage_path('app/public/avatars/' . $file));
     }
 
     /**
@@ -87,11 +87,11 @@ class ProfileController extends Controller
                 ->withErrors(['email_confirmation' => 'Emails do not match']);
 
         $this->validate($request, [
-            'email' => 'required'
+            'email' => 'required',
         ]);
 
         $request->user()->fill([
-            'email' => $request->email
+            'email' => $request->email,
         ])->save();
     }
 }

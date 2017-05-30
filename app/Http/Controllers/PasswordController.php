@@ -20,7 +20,7 @@ class PasswordController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
@@ -34,11 +34,11 @@ class PasswordController extends Controller
                 ->withErrors(['password_confirmation' => 'Passwords do not match']);
 
         $this->validate($request, [
-            'password' => 'required|min:6'
+            'password' => 'required|min:6',
         ]);
 
         $request->user()->fill([
-            'password' => Hash::make($request->password)
+            'password' => Hash::make($request->password),
         ])->save();
 
         return back()->with('flash', 'Password successfully updated');

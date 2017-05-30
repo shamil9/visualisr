@@ -2,10 +2,10 @@
 
 use App\User;
 use App\Visual;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
-use Carbon\Carbon;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +21,7 @@ use Carbon\Carbon;
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     $name = $faker->name;
+
     return [
         'name'           => $name,
         'slug'           => Str::slug($name),
@@ -32,7 +33,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(App\Visual::class, function (Faker\Generator $faker) {
-    $user = factory(App\User::class)->create(['created_at' => Carbon::now()->subMonths(rand(1,6))]);
+    $user = factory(App\User::class)->create(['created_at' => Carbon::now()->subMonths(rand(1, 6))]);
     $path = storage_path('app/public/visuals/' . $user->id);
     File::makeDirectory($path, 0755, true);
     $image = $faker->image($path, 1900, 1080, 'abstract', false);
@@ -77,8 +78,8 @@ $factory->define(App\Comment::class, function (Faker\Generator $faker) {
     $users = User::all();
 
     return [
-        'user_id' => $users->random()->id,
+        'user_id'   => $users->random()->id,
         'visual_id' => $visuals->random()->id,
-        'body' => $faker->paragraph()
+        'body'      => $faker->paragraph(),
     ];
 });

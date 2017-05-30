@@ -7,17 +7,17 @@
 </template>
 <script>
     export default {
-        props: ['message'],
+        props: [ 'message' ],
         mounted() {
             EventBus.$on('flash', message => this.show(message))
         },
         created() {
-            if (this.message)
+            if ( this.message )
                 this.show(this.message)
         },
         methods: {
-            show(message) {
-                this.body = message
+            show( message ) {
+                this.body    = message
                 this.visible = true
                 this.hide()
             },

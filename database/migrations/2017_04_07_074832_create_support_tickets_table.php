@@ -7,10 +7,10 @@ use Illuminate\Support\Facades\Schema;
 class CreateSupportTicketsTable extends Migration
 {
     /**
-    * Run the migrations.
-    *
-    * @return void
-    */
+     * Run the migrations.
+     *
+     * @return void
+     */
     public function up()
     {
         Schema::create('support_tickets', function (Blueprint $table) {
@@ -23,12 +23,11 @@ class CreateSupportTicketsTable extends Migration
     }
 
 
-
     /**
-    * Reverse the migrations.
-    *
-    * @return void
-    */
+     * Reverse the migrations.
+     *
+     * @return void
+     */
     public function down()
     {
         Schema::dropIfExists('support_tickets');

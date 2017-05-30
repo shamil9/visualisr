@@ -7,7 +7,8 @@
                         <p><strong>Danger</strong>!</p>
                     </div>
                     <div class="message-body">
-                        <p class="title is-2 is-danger"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></p>
+                        <p class="title is-2 is-danger"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                        </p>
                         <p class="title is-3 is-danger">This operation is irreversible!</p>
                         <button class="button is-danger" @click.prevent="deleteTicket">Delete</button>
                         <button @click.prevent="showModal = !showModal" class="button">Cancel</button>
@@ -19,24 +20,24 @@
 </template>
 
 <script>
-export default {
-    mounted() {
-        this.$parent.$on('showDeleteModalEvent', id => this.showDeleteModal(id));
-    },
-    data() {
-        return {
-            showModal: false,
-            formId: null
-        };
-    },
-    methods: {
-        showDeleteModal(id) {
-            this.formId = id;
-            this.showModal = true;
+    export default {
+        mounted() {
+            this.$parent.$on('showDeleteModalEvent', id => this.showDeleteModal(id));
         },
-        deleteTicket() {
-            this.$parent.$refs[this.formId].submit();
+        data() {
+            return {
+                showModal: false,
+                formId: null
+            };
+        },
+        methods: {
+            showDeleteModal( id ) {
+                this.formId    = id;
+                this.showModal = true;
+            },
+            deleteTicket() {
+                this.$parent.$refs[ this.formId ].submit();
+            }
         }
-    }
-};
+    };
 </script>

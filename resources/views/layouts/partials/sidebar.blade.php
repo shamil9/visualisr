@@ -21,7 +21,7 @@
             </a>
         </li>
         <li>
-            @if (auth()->user()->twitter_id)
+            @if (auth()->user()->twitter)
                 <a href="{{ route('twitter.unlink') }}">Unlink Twitter Account</a>
             @else
                 <a href="{{ route('twitter.login') }}">Add Twitter Account</a>

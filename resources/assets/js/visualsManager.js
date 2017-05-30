@@ -1,10 +1,10 @@
 export default class VisualManager {
-    constructor(url) {
+    constructor ( url ) {
         this.visualizer = document.querySelector('#visualizer')
-        this.url = url
+        this.url        = url
     }
 
-    submitImage(event) {
+    submitImage ( event ) {
         window.axios
             .post(this.url, {
                 image: this.visualizer.toDataURL(),

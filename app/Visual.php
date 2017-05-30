@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Redis;
 class Visual extends Model
 {
     protected $fillable = [
-        'track', 'artist', 'album', 'private'
+        'track', 'artist', 'album', 'private',
     ];
 
     protected $with = [];
@@ -16,7 +16,8 @@ class Visual extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
@@ -43,7 +44,7 @@ class Visual extends Model
      */
     public function inFavorites()
     {
-        return !! $this->favorites->count();
+        return ! ! $this->favorites->count();
     }
 
     /**

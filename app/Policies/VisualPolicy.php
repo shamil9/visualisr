@@ -19,8 +19,8 @@ class VisualPolicy
     /**
      * Determine whether the user can view the visual.
      *
-     * @param  \App\User  $user
-     * @param  \App\Visual  $visual
+     * @param  \App\User   $user
+     * @param  \App\Visual $visual
      * @return mixed
      */
     public function view(User $user, Visual $visual)
@@ -31,7 +31,7 @@ class VisualPolicy
     /**
      * Determine whether the user can create visuals.
      *
-     * @param  \App\User  $user
+     * @param  \App\User $user
      * @return mixed
      */
     public function create(User $user)
@@ -42,8 +42,8 @@ class VisualPolicy
     /**
      * Determine whether the user can update the visual.
      *
-     * @param  \App\User  $user
-     * @param  \App\Visual  $visual
+     * @param  \App\User   $user
+     * @param  \App\Visual $visual
      * @return mixed
      */
     public function update(User $user, Visual $visual)
@@ -54,8 +54,8 @@ class VisualPolicy
     /**
      * Determine whether the user can delete the visual.
      *
-     * @param  \App\User  $user
-     * @param  \App\Visual  $visual
+     * @param  \App\User   $user
+     * @param  \App\Visual $visual
      * @return mixed
      */
     public function delete(User $user, Visual $visual)

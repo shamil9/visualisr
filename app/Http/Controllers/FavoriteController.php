@@ -16,19 +16,19 @@ class FavoriteController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return integer
      */
     public function toggleFavorite(Request $request)
     {
         $this->validate($request, [
-            'user_id' => 'required',
+            'user_id'   => 'required',
             'visual_id' => 'required',
         ]);
 
         $favorite = Favorite::where([
-            'user_id' => $request->user_id,
-            'visual_id' => $request->visual_id
+            'user_id'   => $request->user_id,
+            'visual_id' => $request->visual_id,
         ]);
 
         if ($favorite->exists()) {
@@ -38,7 +38,7 @@ class FavoriteController extends Controller
         }
 
         Favorite::create([
-            'user_id' => $request->user_id,
+            'user_id'   => $request->user_id,
             'visual_id' => $request->visual_id,
         ]);
 

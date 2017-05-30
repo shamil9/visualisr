@@ -85,9 +85,9 @@ class VisualController extends Controller
 
         $visual->load('comments', 'comments.user');
         $comments = Comment::where('visual_id', $visual->id)
-                        ->with('user')
-                        ->orderBy('id', 'desc')
-                        ->simplePaginate(5);
+            ->with('user')
+            ->orderBy('id', 'desc')
+            ->simplePaginate(5);
 
         return view('visuals.show', compact('visual', 'comments'));
     }

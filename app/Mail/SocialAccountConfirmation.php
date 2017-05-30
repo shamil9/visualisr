@@ -2,25 +2,28 @@
 
 namespace App\Mail;
 
-use App\Comment;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class CommentCreated extends Mailable
+class SocialAccountConfirmation extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $comment;
+    public $password;
+    public $user;
 
     /**
      * Create a new message instance.
      *
-     * @return void
+     * @param $user
+     * @param $password
      */
-    public function __construct(Comment $comment)
+    public function __construct($user, $password)
     {
-        $this->comment = $comment;
+
+        $this->user = $user;
+        $this->password = $password;
     }
 
     /**
@@ -31,7 +34,7 @@ class CommentCreated extends Mailable
     public function build()
     {
         return $this
-            ->subject('New Comment')
-            ->markdown('email.comments.created');
+            ->subject('Account Created')
+            ->markdown('email.users.social-account-confirmation');
     }
 }

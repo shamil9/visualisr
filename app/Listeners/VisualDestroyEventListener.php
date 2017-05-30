@@ -3,7 +3,6 @@
 namespace App\Listeners;
 
 use App\Events\VisualDestroyEvent;
-use Illuminate\Support\Facades\Storage;
 
 class VisualDestroyEventListener
 {
@@ -20,7 +19,7 @@ class VisualDestroyEventListener
     /**
      * Handle the event.
      *
-     * @param  VisualDestroyEvent  $event
+     * @param  VisualDestroyEvent $event
      * @return void
      */
     public function handle(VisualDestroyEvent $event)

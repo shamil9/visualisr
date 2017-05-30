@@ -3,8 +3,6 @@
 namespace App\Listeners;
 
 use App\Events\CreateUserEvent;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class CreateUserEventListener
 {
@@ -21,7 +19,7 @@ class CreateUserEventListener
     /**
      * Handle the event.
      *
-     * @param  CreateUserEvent  $event
+     * @param  CreateUserEvent $event
      * @return void
      */
     public function handle(CreateUserEvent $event)

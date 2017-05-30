@@ -11,68 +11,68 @@
                     <div class="field has-addons">
                         <p class="control">
                             <button
-                                :class="[errors.track ? 'is-danger' : 'is-outlined']"
-                                disabled class="button" style="width: 75px">Track</button>
+                                    :class="[errors.track ? 'is-danger' : 'is-outlined']"
+                                    disabled class="button" style="width: 75px">Track</button>
                         </p>
 
                         <p class="control is-expanded">
                             <input
-                                v-model="visual.track"
-                                :class="{'is-danger': errors.track}"
-                                name="track" class="input" type="text" autofocus>
+                                    v-model="visual.track"
+                                    :class="{'is-danger': errors.track}"
+                                    name="track" class="input" type="text" autofocus>
                         </p>
                     </div>
 
                     <b v-if="errors.track"
-                        v-for="error in errors.track"
-                        class="help is-danger">* {{ error }}</b>
+                       v-for="error in errors.track"
+                       class="help is-danger">* {{ error }}</b>
 
                     <div class="field has-addons">
                         <p class="control">
                             <button
-                                :class="[errors.album ? 'is-danger' : 'is-outlined']"
-                                disabled class="button" style="width: 75px">Album</button>
+                                    :class="[errors.album ? 'is-danger' : 'is-outlined']"
+                                    disabled class="button" style="width: 75px">Album</button>
                         </p>
 
                         <p class="control is-expanded">
                             <input
-                                v-model="visual.album"
-                                :class="{'is-danger': errors.album}"
-                                name="album" class="input" type="text">
+                                    v-model="visual.album"
+                                    :class="{'is-danger': errors.album}"
+                                    name="album" class="input" type="text">
                         </p>
                     </div>
 
                     <b v-if="errors.album"
-                        v-for="error in errors.album"
-                        class="help is-danger">* {{ error }}</b>
+                       v-for="error in errors.album"
+                       class="help is-danger">* {{ error }}</b>
 
                     <div class="field has-addons">
                         <p class="control">
                             <button
-                                :class="[errors.artist ? 'is-danger' : 'is-outlined']"
-                                disabled class="button" style="width: 75px">Artist</button>
+                                    :class="[errors.artist ? 'is-danger' : 'is-outlined']"
+                                    disabled class="button" style="width: 75px">Artist</button>
                         </p>
 
                         <p class="control is-expanded">
                             <input
-                                v-model="visual.artist"
-                                :class="{'is-danger': errors.artist}"
-                                name="artist" class="input" type="text">
+                                    v-model="visual.artist"
+                                    :class="{'is-danger': errors.artist}"
+                                    name="artist" class="input" type="text">
                         </p>
                     </div>
 
                     <b v-if="errors.artist"
-                        v-for="error in errors.artist"
-                        class="help is-danger">* {{ error }}</b>
+                       v-for="error in errors.artist"
+                       class="help is-danger">* {{ error }}</b>
 
                 </section>
 
                 <footer class="modal-card-foot">
                     <a class="button"
-                        @click.prevent="save"
-                        :class="[{ 'is-loading': loading }, colorClass]"
-                        :disabled="disabled"
-                        >{{ submitMessage }}</a>
+                       @click.prevent="save"
+                       :class="[{ 'is-loading': loading }, colorClass]"
+                       :disabled="disabled"
+                    >{{ submitMessage }}</a>
                     <a class="button" @click.prevent="toggleModal">Close</a>
                 </footer>
             </div>
@@ -82,7 +82,7 @@
 
 <script>
     export default {
-        props: ['url', 'entity', 'image'],
+        props: [ 'url', 'entity', 'image' ],
         mounted() {
             this.$parent.$on('toggleModalEvent', () => this.toggleModal())
         },
@@ -122,30 +122,30 @@
                     })
             },
             showLoadingSpiner() {
-                this.loading = true
+                this.loading  = true
                 this.disabled = true
             },
             showError() {
-                this.loading = false
-                this.disabled = false
+                this.loading       = false
+                this.disabled      = false
                 this.submitMessage = 'Error! Try again?'
-                this.colorClass = 'is-danger'
+                this.colorClass    = 'is-danger'
             },
             showSuccess() {
-               this.loading = false
-               this.disabled = true
-               this.submitMessage = 'Saved! Redirecting...'
-               this.colorClass = 'is-success'
-               this.errors = {}
+                this.loading       = false
+                this.disabled      = true
+                this.submitMessage = 'Saved! Redirecting...'
+                this.colorClass    = 'is-success'
+                this.errors        = {}
             },
             reset() {
-                this.loading = false
-                this.disabled = false
-                this.errors = {}
+                this.loading       = false
+                this.disabled      = false
+                this.errors        = {}
                 this.submitMessage = 'Save'
-                this.colorClass = 'is-success'
+                this.colorClass    = 'is-success'
             },
-            redirectTo(response) {
+            redirectTo( response ) {
                 // when updating an visual the response should be empty, otherwise redirect url will be incorrect
                 const redirectTo = `${this.url}/${response.data.id || ''}`
                 setTimeout(() => window.location.href = redirectTo, 1500)

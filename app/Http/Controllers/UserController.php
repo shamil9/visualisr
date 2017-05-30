@@ -6,7 +6,6 @@ use App\Favorite;
 use App\Mail\UserSuspendedMail;
 use App\Mail\UserUnblockedMail;
 use App\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller

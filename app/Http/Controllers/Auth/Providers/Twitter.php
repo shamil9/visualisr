@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth\Providers;
 
+use App\Mail\SocialAccountConfirmation;
+use App\TwitterAccount;
 use App\User;
 use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
@@ -23,24 +25,27 @@ class Twitter
      */
     public function handleProviderCallback()
     {
+        // If user cancels redirect back to profile home
         if (request()->query->has('denied'))
             return redirect(route('user.home'))
                 ->with('flash', 'Unable to link Twitter account');
 
-        $user = Socialite::driver('twitter')->user();
-        $localUser = User::where('twitter_id', $user->id)->first();
+        $twitter = Socialite::driver('twitter')->user();
+        $user = User::where('email', '=', $twitter->email)->first();
+        $twitterAccount = TwitterAccount::where('account_id', $twitter->id)->first();
 
         // If user's account is already linked proceed to login
-        if ($localUser)
-            return $this->logginUser($localUser);
+        if ($twitterAccount)
+            return $this->logginUser($user);
 
         // If user exist, link the account
-        if (auth()->check())
-            return $this->updateUser($user);
+        if ($user)
+            return $this->updateUser($user, $twitter);
+
 
         // If user does not exist create a new account and proceed to login
-        $localUser = $this->createUser($user);
-        \Auth::login($localUser, true);
+        $twitterAccount = $this->createUser($twitter);
+        \Auth::login($twitterAccount, true);
 
         return redirect(route('user.home'))
             ->with('flash', 'Twitter account successfully linked');
@@ -50,18 +55,21 @@ class Twitter
      * If user is logged in and don't have Twitter account linked
      *
      * @param  $user
+     * @param  $twitter
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    private function updateUser($user)
+    private function updateUser($user, $twitter)
     {
-        User::where(['id' => auth()->user()->id])
-            ->update([
-                'twitter_id'                       => $user->id,
-                'twitter_name'                     => $user->nickname,
-                'twitter_profile_background_color' => $user->user['profile_background_color'],
-                'twitter_profile_link_color'       => $user->user['profile_link_color'],
-                'twitter_profile_image_url'        => $user->user['profile_image_url'],
-            ]);
+        $twitterAccount = new TwitterAccount([
+            'account_id'               => $twitter->id,
+            'name'                     => $twitter->nickname,
+            'profile_background_color' => $twitter->user['profile_background_color'],
+            'profile_link_color'       => $twitter->user['profile_link_color'],
+            'profile_image_url'        => $twitter->user['profile_image_url'],
+        ]);
+
+        $user->twitter()->save($twitterAccount);
+        \Auth::login($user, true);
 
         return redirect(route('user.home'));
     }
@@ -82,23 +90,24 @@ class Twitter
     /**
      * Create new user
      *
-     * @param  $user
-     * @return User           New User instance
+     * @param $twitter
+     * @return User New User instance
+     * @internal param $user
      */
-    private function createUser($user)
+    private function createUser($twitter)
     {
-        return User::create([
-            'twitter_id'                       => $user->id,
-            'twitter_name'                     => $user->nickname,
-            'twitter_profile_background_color' => $user->user['profile_background_color'],
-            'twitter_profile_link_color'       => $user->user['profile_link_color'],
-            'twitter_profile_image_url'        => $user->user['profile_image_url'],
-            'twitter_avatar'                   => $user->avatar,
-            'email'                            => $user->email,
-            'password'                         => str_random(8),
-            'name'                             => $user->nickname,
-            'slug'                             => Str::slug($user->nickname),
+        $password = str_random(8);
+        $user = User::create([
+            'email'    => $twitter->email,
+            'password' => bcrypt($password),
+            'name'     => $twitter->nickname,
+            'slug'     => Str::slug($twitter->nickname),
         ]);
+
+        $this->updateUser($user, $twitter);
+        \Mail::to($user->email)->queue(new SocialAccountConfirmation($user, $password));
+
+        return $user;
     }
 
     /**
@@ -108,14 +117,8 @@ class Twitter
      */
     public function unlinkAccount()
     {
-        auth()->user()->update([
-            'twitter_id'                       => '',
-            'twitter_name'                     => '',
-            'twitter_profile_background_color' => '',
-            'twitter_profile_link_color'       => '',
-            'twitter_profile_image_url'        => '',
-            'twitter_avatar'                   => '',
-        ]);
+        $twitterAccount = TwitterAccount::where('user_id', '=', auth()->id());
+        $twitterAccount->delete();
 
         return back()->with('flash', 'Twitter account successfully removed');
     }

@@ -12,6 +12,7 @@ class UserCreated extends Mailable
     use Queueable, SerializesModels;
 
     private $user;
+
     /**
      * Create a new message instance.
      *

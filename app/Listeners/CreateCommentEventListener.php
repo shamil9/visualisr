@@ -4,8 +4,6 @@ namespace App\Listeners;
 
 use App\Events\CreateCommentEvent;
 use App\Mail\CommentCreated;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 class CreateCommentEventListener
 {
@@ -22,7 +20,7 @@ class CreateCommentEventListener
     /**
      * Handle the event.
      *
-     * @param  CreateCommentEvent  $event
+     * @param  CreateCommentEvent $event
      * @return void
      */
     public function handle(CreateCommentEvent $event)

@@ -10,7 +10,7 @@ class VisualStoreEventListener
     /**
      * Handle the event.
      *
-     * @param  VisualStoreEvent  $event
+     * @param  VisualStoreEvent $event
      * @return Exception|\Exception
      */
     public function handle(VisualStoreEvent $event)

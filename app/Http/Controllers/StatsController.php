@@ -22,7 +22,7 @@ class StatsController extends Controller
      */
     public function stats()
     {
-        if (!auth()->user()->admin) return;
+        if (! auth()->user()->admin) return;
 
         $users = User::all()->count();
         $visuals = Visual::all()->count();
@@ -40,7 +40,7 @@ class StatsController extends Controller
      */
     public function statsCount()
     {
-        if (!auth()->user()->admin) return;
+        if (! auth()->user()->admin) return;
 
         $comments = $this->getStats('comments');
         $visuals = $this->getStats('visuals');

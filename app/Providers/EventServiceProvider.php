@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
@@ -14,23 +13,23 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         // Visual events
-        'App\Events\VisualUpdateEvent' => [
+        'App\Events\VisualUpdateEvent'  => [
             'App\Listeners\VisualUpdateEventListener',
         ],
-        'App\Events\VisualStoreEvent' => [
+        'App\Events\VisualStoreEvent'   => [
             'App\Listeners\VisualStoreEventListener',
         ],
         'App\Events\VisualDestroyEvent' => [
             'App\Listeners\VisualDestroyEventListener',
         ],
         // User events
-        'App\Events\CreateUserEvent' => [
+        'App\Events\CreateUserEvent'    => [
             'App\Listeners\CreateUserEventListener',
         ],
         // Comment Events
         'App\Events\CreateCommentEvent' => [
-            'App\Listeners\CreateCommentEventListener'
-        ]
+            'App\Listeners\CreateCommentEventListener',
+        ],
     ];
 
     /**

@@ -15,13 +15,14 @@ class HomeController extends Controller
     }
 
     /**
-    * Show the application dashboard.
-    *
-    * @return \Illuminate\Http\Response
-    */
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         $user = auth()->user();
+
         return view('home', ['visuals' => $user->visuals, 'user' => $user]);
     }
 
