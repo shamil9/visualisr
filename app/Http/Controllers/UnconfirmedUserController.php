@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Mail\UserCreated;
 use App\UnconfirmedUser;
-use App\User;
-use Illuminate\Http\Request;
 
 class UnconfirmedUserController extends Controller
 {
@@ -26,6 +24,7 @@ class UnconfirmedUserController extends Controller
             return abort(500, 'Error Token Not Found');
         } finally {
             \Mail::to($user)->queue(new UserCreated($user));
+            \Auth::login($user, true);
 
             return redirect(route('user.home'))->with('flash', 'Account successfully activated');
         }

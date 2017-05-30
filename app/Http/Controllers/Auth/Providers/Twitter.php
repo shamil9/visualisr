@@ -30,12 +30,15 @@ class Twitter
         $user = Socialite::driver('twitter')->user();
         $localUser = User::where('twitter_id', $user->id)->first();
 
+        // If user's account is already linked proceed to login
         if ($localUser)
             return $this->logginUser($localUser);
 
+        // If user exist, link the account
         if (auth()->check())
             return $this->updateUser($user);
 
+        // If user does not exist create a new account and proceed to login
         $localUser = $this->createUser($user);
         \Auth::login($localUser, true);
 
