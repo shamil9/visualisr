@@ -46,6 +46,15 @@
         <script src="{{ mix('assets/js/manifest.js') }}"></script>
         <script src="{{ mix('assets/js/vendor.js') }}"></script>
         <script src="{{ mix('assets/js/app.js') }}"></script>
+
+        <script>
+            var menuToggle = document.querySelector('#nav-menu-toggle');
+            var menu = document.querySelector('#nav-menu');
+
+            menuToggle.addEventListener('click', function() {
+                menu.classList.toggle('is-active');
+            });
+        </script>
     @show
 </body>
 </html>

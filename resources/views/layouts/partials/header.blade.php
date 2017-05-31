@@ -1,24 +1,29 @@
 <div class="header">
     <div class="container">
-        <nav class="level">
-            <div class="level-left">
-                <div class="level-item">
+        <nav class="nav">
+            <div class="nav-left">
+                <div class="nav-item">
                     <div class="header__logo is-pulled-left">
                         <a href="{{ url('/') }}">
                             <img src="{{ asset('assets/img/logo.svg') }}" title="{{ env('APP_NAME') }}" />
                         </a>
                     </div>
-                    <span class="tag is-primary">Beta</span>
                 </div>
             </div>
 
-            <div class="level-right">
-                <div class="level-item">
+            <span class="nav-toggle" id="nav-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </span>
+
+            <div class="nav-right nav-menu" id="nav-menu">
+                <div class="nav-item">
                     <span class="tag is-primary">
                         <a class="header__create" href="{{ route('visuals.create') }}">Create</a>
                     </span>
                 </div>
-                <div class="level-item">
+                <div class="nav-item">
                     <div class="header__nav">
                         <ul>
                             <li>

@@ -3,10 +3,10 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-
 require('./bootstrap')
 window.EventBus = new Vue({})
-window.flash    = message => EventBus.$emit('flash', message)
+window.flash = message => EventBus.$emit('flash', message)
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

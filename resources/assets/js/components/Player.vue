@@ -82,9 +82,11 @@
             },
             jumpBack() {
                 this.player.jumpBack()
+                this.player.reset()
             },
             jumpForward() {
                 this.player.jumpForward()
+                this.player.reset()
             },
             toggleModal() {
                 if ( this.visualizer.children.length ) {

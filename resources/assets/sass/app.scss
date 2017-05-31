@@ -1,5 +1,6 @@
 // Variables
 @import "~bulma/sass/utilities/variables";
+@import "~bulma/sass/utilities/mixins";
 @import "layout/partials/variables";
 @import "layout/partials/colors";
 @import "layout/partials/fonts";
@@ -52,20 +53,22 @@ html {
 
 .splash-screen {
     @include flex($direction: column);
-    height: 100vh;
+    height: calc(100vh - 90px);
     width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: -1;
     background-color: #222831;
     & img {
         max-width: 44.375rem;
+        @include mobile {
+            max-width: 80%;
+        }
     }
     & p {
         color: white;
         font-size: 4rem;
         font-family: 'Raleway', sans-serif;
+        @include mobile {
+            font-size: 1.5rem;
+        }
     }
 }
 

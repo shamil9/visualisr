@@ -25,5 +25,14 @@
         </main>
     </div>
 
+<script>
+    var menuToggle = document.querySelector('#nav-menu-toggle');
+    var menu = document.querySelector('#nav-menu');
+
+    menuToggle.addEventListener('click', function() {
+        console.log('toggle');
+        menu.classList.toggle('is-active');
+    });
+</script>
 </body>
 </html>

@@ -1,9 +1,20 @@
+.nav
+  background-color: transparent !important
+  & img
+    max-height: 100%
+
+.nav-toggle
+  & span
+    background-color: white !important
+  &:hover
+    background-color: $primary !important
+
 .header
   width: 100%
   height: 5.625rem
   background-color: #222831
   & .container
-    padding: 1.25rem 0
+    padding: 0.625rem 0
 
 .header__logo
   max-width: 10rem
@@ -11,9 +22,9 @@
   margin: 0 0.5rem 0 0
 
 .header__create
-  color: $white-ter
+  color: $white-ter !important
   &:hover
-    color: $white-bis
+    color: $white-bis !important
 
 .header__nav
   & li
@@ -28,12 +39,13 @@
     margin-left: 1.25rem
     padding: 0 0.625rem 0.625rem 0.625rem
 
-
     color: white
 
     font-family: $roboto
     font-size: 1.25rem
     min-width: 50px
+    &:hover
+      color: white
 
   & a:after
     position: absolute
