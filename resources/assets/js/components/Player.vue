@@ -46,6 +46,7 @@
         mounted() {
             EventBus.$on('pauseEvent', () => this.pause())
             EventBus.$on('changeSongEvent', () => this.changeSong())
+            this.$root.$on('resetEvent', () => this.player.reset())
         },
         props: [ 'url' ],
         data() {
@@ -97,7 +98,7 @@
                 this.song   = this.$parent.song
                 this.format = this.$parent.format
                 this.play()
-            }
+            },
         }
     }
 </script>

@@ -12,6 +12,7 @@
 
 @section('content')
     <div class="section relative">
+        <button v-show="!showDropArea" class="button is-small is-warning" @click.prevent="$emit('resetEvent')">Reset</button>
         <div class="file is-flex-centered"
             v-show="showDropArea"
             @drop.stop.prevent="checkFormat"
