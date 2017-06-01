@@ -35,7 +35,7 @@
                   </div>
                 </nav>
                 <section class="section">
-                    <canvas id="myChart" width="100" height="400"></canvas>
+                    <canvas id="stats" width="100" height="400"></canvas>
                 </section>
             </div>
         </div>
@@ -43,7 +43,7 @@
 @stop
 @section('footer-js')
 @parent
-<script src="{{ asset('assets/js/admin.js') }}"></script>
+<script src="{{ mix('assets/js/admin.js') }}"></script>
 <script>
     var stats = null;
     axios.get('{{ route('admin.stats.count') }}')
@@ -55,7 +55,7 @@
         "July", "August", "September", "October", "November", "December" ];
         var currentMonth = new Date().getMonth();
 
-        // return months from last year if current month number is less than 6
+        // return months from last year if current month number number is less than 6
         if (currentMonth < 5) {
             var monthsWithOffset = months.slice(currentMonth - 5);
             months.forEach(function (value, index) {
@@ -66,7 +66,7 @@
             return monthsWithOffset;
         }
 
-        return months.slice(currentMonth, now + 5);
+        return months.slice(currentMonth - 5, currentMonth);
     }
 
     function renderChart(stats) {
@@ -86,8 +86,8 @@
             });
         }
 
-        var ctx = document.getElementById("myChart");
-        var myChart = new Chart(ctx, {
+        var ctx = document.getElementById("stats");
+        var stats = new Chart(ctx, {
             type: 'line',
             options: {
                 responsive: true,

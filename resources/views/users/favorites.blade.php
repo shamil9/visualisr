@@ -1,6 +1,9 @@
 @extends('layouts/app')
 @section('class', 'home')
 
+@section('breadcrumbs')
+    @breadcrumbs(['Home' => 'index', 'Profile' => 'user.home'])
+@endsection
 
 @section('content')
     <div class="section" id="app">
