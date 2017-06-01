@@ -23,6 +23,7 @@
     "chart.js": "^2.5.0",
     "font-awesome": "^4.7.0",
     "howler": "^2.0.3",
+    "node-sass": "^4.5.3",
     "normalize.css": "^6.0.0",
     "p5": "^0.5.9",
     "simplemde": "^1.11.2",

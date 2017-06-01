@@ -1,0 +1,36 @@
+.nav
+  background-color: transparent !important
+  perspective: 200px
+  & img
+    max-height: 100%
+
+.nav-toggle
+  & span
+    background-color: white !important
+  &:hover
+    background-color: transparent !important
+
+.nav-menu
+  @include touch
+    background-color: $secondary !important
+
+.nav-item
+  @include touch
+    border-top: none !important
+
+.nav-menu.nav-right
+  @include mobile
+    display: block
+    position: absolute
+    top: 100%
+    opacity: 0
+
+    will-change: transform
+    transform-origin: center top
+    transform: rotateX(-80deg)
+    transition: transform 0.5s 0s, opacity 0s 0.5s
+    &.is-active
+      will-change: transform
+      transform: rotateX(0)
+      transition: transform 0.5s 0s, opacity 0.5s 0s
+      opacity: 1

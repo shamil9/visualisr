@@ -13,7 +13,7 @@
 
 <body>
     <div class="home">
-        <header>
+        <header class="header">
             @include('layouts.partials.header')
         </header>
 
@@ -30,8 +30,8 @@
     var menu = document.querySelector('#nav-menu');
 
     menuToggle.addEventListener('click', function() {
-        console.log('toggle');
         menu.classList.toggle('is-active');
+        document.querySelector('header').classList.toggle('is-active');
     });
 </script>
 </body>

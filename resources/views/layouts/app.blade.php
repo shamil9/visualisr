@@ -26,9 +26,11 @@
 </head>
 <body>
     <div class="@yield('class')">
-        <header>
+        <header class="header">
             @include('layouts.partials.header')
         </header>
+        @include('layouts.partials.control-bar')
+
 
         <main class="main" role="main">
             @yield('container-header')
@@ -46,15 +48,16 @@
         <script src="{{ mix('assets/js/manifest.js') }}"></script>
         <script src="{{ mix('assets/js/vendor.js') }}"></script>
         <script src="{{ mix('assets/js/app.js') }}"></script>
-
-        <script>
-            var menuToggle = document.querySelector('#nav-menu-toggle');
-            var menu = document.querySelector('#nav-menu');
-
-            menuToggle.addEventListener('click', function() {
-                menu.classList.toggle('is-active');
-            });
-        </script>
     @show
+    <script>
+        var menuToggle = document.querySelector('#nav-menu-toggle');
+        var menu = document.querySelector('#nav-menu');
+
+        menuToggle.addEventListener('click', function() {
+            menu.classList.toggle('is-active');
+            document.querySelector('header').classList.toggle('is-active');
+
+        });
+    </script>
 </body>
 </html>

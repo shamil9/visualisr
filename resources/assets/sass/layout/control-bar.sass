@@ -4,22 +4,21 @@
   background-color: $primary
   color: white
 
-  display: flex
-  align-items: center
-
+  @include flex()
+  @include mobile
+    padding: 0 0.625rem
   & img
     vertical-align: middle
-
   & .column
     padding: 0
-
   & .columns
     margin: 0
+  & .container
+    width: 100%
 
 .breadcrumbs__link
   & a
     color: white
-
   &:not(:last-of-type)::after
     padding: 0 0.3125rem
     content: '/'
