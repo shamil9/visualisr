@@ -10,7 +10,7 @@
         </div>
         <div class="card-content">
             <div class="media">
-                <div class="media-left">
+                <div class="media-left is-hidden-mobile">
                     <figure class="user__avatar image is-48x48">
                         <img src="{{ asset(\Storage::url('avatars/' . $visual->user->avatar)) }}"
                              alt="{{ $visual->user->name }}">
@@ -45,7 +45,7 @@
             </span>
             <span class="card-footer-item">
                 <i class="fa fa-star" aria-hidden="true">
-                    {{ $visual->rating or 'Not rated' }}
+                    {{ $visual->rating }}
                 </i>
             </span>
         </footer>

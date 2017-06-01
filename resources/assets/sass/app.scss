@@ -54,7 +54,7 @@ html {
 
 .splash-screen {
     @include flex($direction: column);
-    height: calc(100vh - 90px);
+    height: calc(100vh - 72px);
     width: 100%;
     background-color: #222831;
     & img {

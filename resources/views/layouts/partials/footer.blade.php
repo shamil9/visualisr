@@ -1,6 +1,6 @@
 <div class="container">
-    <div class="level">
-        <div class="level-left">
+    <div class="level is-mobile">
+        <div class="level-left is-hidden-mobile">
             <p>{{ config('app.name') }} 2017</p>
         </div>
         <div class="level-right">
