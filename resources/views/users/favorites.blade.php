@@ -8,7 +8,10 @@
 @section('content')
     <div class="section" id="app">
         <div class="columns">
-            <div class="column is-2">
+            <a class="is-hidden-tablet" href="{{ route('user.home') }}">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            </a>
+            <div class="column is-2 is-hidden-mobile">
                 @include('layouts.partials.sidebar')
             </div>
             <div class="column">

@@ -16,7 +16,7 @@
                     <div class="is-flex-centered has-text-centered">
                         <p class="title is-1 color-grey-light">No visuals found</p>
                         <p>
-                            <a class="button is-primary" href="{{ route('visuals.create') }}">Create</a>
+                            <a class="button is-primary is-hidden-mobile" href="{{ route('visuals.create') }}">Create</a>
                         </p>
                     </div>
                 @endunless
