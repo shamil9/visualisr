@@ -9,33 +9,43 @@
     <section class="hero is-light">
         <div class="hero-body">
             <div class="container">
-                <nav class="level">
-                    <div class="level-item">
-                        <figure class="user__avatar image is-48x48">
-                            <img src="{{ asset(\Storage::url('avatars/' . $user->avatar)) }}"
-                                 alt="{{ $user->name }}">
-                        </figure>
-                        <h1 class="title user__name">{{ $user->name }}</h1>
-                    </div>
-                    <div class="level-item has-text-centered">
-                        <div>
-                            <p class="heading">Visuals</p>
-                            <p class="title">{{ $user->visuals->count() }}</p>
+                <div class="columns">
+                    <div class="column">
+                        <div class="media">
+                            <div class="media-left">
+                                <figure class="user__avatar image is-48x48">
+                                    <img src="{{ asset(\Storage::url('avatars/' . $user->avatar)) }}"
+                                         alt="{{ $user->name }}">
+                                </figure>
+                            </div>
+                            <div class="media-content">
+                                <h1 class="title user__name">{{ $user->name }}</h1>
+                            </div>
                         </div>
                     </div>
-                    <div class="level-item has-text-centered">
-                        <div>
-                            <p class="heading">Favorites</p>
-                            <p class="title">{{ $user->favorites->count() }}</p>
+                    <div class="column">
+                        <div class="level is-mobile">
+                            <div class="level-item has-text-centered">
+                                <div>
+                                    <p class="heading">Visuals</p>
+                                    <p class="title">{{ $user->visuals->count() }}</p>
+                                </div>
+                            </div>
+                            <div class="level-item has-text-centered">
+                                <div>
+                                    <p class="heading">Favorites</p>
+                                    <p class="title">{{ $user->favorites->count() }}</p>
+                                </div>
+                            </div>
+                            <div class="level-item has-text-centered">
+                                <div>
+                                    <p class="heading">Likes</p>
+                                    <p class="title">{{ $likes }}</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="level-item has-text-centered">
-                        <div>
-                            <p class="heading">Likes</p>
-                            <p class="title">{{ $likes }}</p>
-                        </div>
-                    </div>
-                </nav>
+                </div>
             </div>
         </div>
     </section>
