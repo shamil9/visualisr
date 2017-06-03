@@ -7,11 +7,18 @@
 @stop
 
 @section('control-bar')
-    <player url="{{ route('visuals.store') }}"></player>
+    <div class="is-hidden-mobile">
+        <player url="{{ route('visuals.store') }}"></player>
+    </div>
 @endsection
 
 @section('content')
-    <div class="section relative">
+    <div class="is-hidden-desktop">
+        <div class="is-flex-centered has-text-centered">
+            <span class="title is-2">Sorry, this functionality is disabled on mobile devices.</span>
+        </div>
+    </div>
+    <div class="section relative is-hidden-mobile">
         <button v-show="!showDropArea" class="button is-small is-warning" @click.prevent="$emit('resetEvent')">Reset</button>
         <div class="file is-flex-centered"
             v-show="showDropArea"
