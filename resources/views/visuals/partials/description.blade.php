@@ -1,7 +1,7 @@
 <div class="columns">
     <div class="column is-8">
         <div class="media">
-            <div class="media-left">
+            <div class="media-left is-hidden-mobile">
                 <figure class="user__avatar image is-48x48">
                     <img src="{{ asset(\Storage::url('avatars/' . $visual->user->avatar)) }}"
                          alt="{{ $visual->user->name }}">
@@ -72,31 +72,20 @@
         </div>
     </div>
 
-    <div class="column is-4">
+    <div class="column is-4 is-hidden-mobile">
         <div class="stats">
-            <div class="columns is-multiline is-gapless">
-                <div class="column is-6">
-                    <span class="title is-5">Average Rating:</span>
+            <p class="heading">Average Rating:</p>
+            <p class="title is-5">{{ $visual->rating or 'No ratings yet' }}</p>
+
+            <div class="columns is-mobile">
+                <div class="column">
+                    <p class="heading">Views:</p>
+                    <p class="title is-5">{{ $visual->views }}</p>
                 </div>
 
-                <div class="column is-6 has-text-right">
-                    <span class="title is-5">{{ $visual->rating or 'No ratings yet' }}</span>
-                </div>
-
-                <div class="column is-6">
-                    <span class="title is-5">Views:</span>
-                </div>
-
-                <div class="column is-6 has-text-right">
-                    <span class="title is-5">{{ $visual->views }}</span>
-                </div>
-
-                <div class="column is-6">
-                    <span class="title is-5">Favorites:</span>
-                </div>
-
-                <div class="column is-6 has-text-right">
-                    <span class="title is-5">@{{ favoritesCount }}</span>
+                <div class="column">
+                    <p class="heading">Favorites:</p>
+                    <p class="title is-5">@{{ favoritesCount }}</p>
                 </div>
             </div>
         </div>

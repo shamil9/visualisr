@@ -13,7 +13,6 @@ class VisualPolicy
     public function before()
     {
         if (auth()->user()->admin) return true;
-        if (auth()->user()->banned || ! auth()->user()->active) return false;
     }
 
     /**
@@ -25,7 +24,6 @@ class VisualPolicy
      */
     public function view(User $user, Visual $visual)
     {
-
     }
 
     /**
@@ -36,6 +34,7 @@ class VisualPolicy
      */
     public function create(User $user)
     {
+        if (auth()->user()->banned || ! auth()->user()->active) return false;
         if (auth()->check()) return true;
     }
 

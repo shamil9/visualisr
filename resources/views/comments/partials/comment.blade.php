@@ -1,54 +1,51 @@
 <comment inline-template :entity="{{ $comment }}"
         url="{{ route('comments.update', ['visual' => $visual, 'comment' => $comment]) }}">
-    <article class="media comment">
-        <figure class="media-left">
-            <div class="user__avatar--comment">
-                <img src="{{ asset(\Storage::url('avatars/' . $visual->user->avatar)) }}" alt="{{ $comment->user->name }}">
-            </div>
-        </figure>
+    <article class="comment__content">
+        <div class="box">
+            @can('update', $comment)
+                <div>
+                    <p v-show="!isEditing">
+                        <a @click.prevent="isEditing = !isEditing" href="#">
+                            @{{ body }}
+                        </a>
+                    </p>
 
-        <div class="media-content comment__content">
-            <div class="box">
-                @can('update', $comment)
-                    <div>
-                        <p v-show="!isEditing">
-                            <a @click.prevent="isEditing = !isEditing" href="#">
-                                @{{ body }}
-                            </a>
-                        </p>
+                    <div v-if="isEditing">
+                        <div class="field has-addons">
+                            <p class="control is-expanded">
+                                <input v-model="body"
+                                        @keyup.enter="submit"
+                                        @keyup.esc="isEditing = !isEditing"
+                                        class="input" type="text" autofocus>
+                            </p>
 
-                        <div v-if="isEditing">
-                            <div class="field has-addons">
-                                <p class="control is-expanded">
-                                    <input v-model="body"
-                                            @keyup.enter="submit"
-                                            @keyup.esc="isEditing = !isEditing"
-                                            class="input" type="text" autofocus>
-                                </p>
-
-                                <p class="control">
-                                    <a @click.prevent="submit" class="button is-primary">
-                                        Submit
-                                    </a>
-                                </p>
-                            </div>
-
-                            <p v-if="errors.body" v-for="error in errors.body" class="help is-danger">
-                                @{{ error }}
+                            <p class="control">
+                                <a @click.prevent="submit" class="button is-primary">
+                                    Submit
+                                </a>
                             </p>
                         </div>
-                    </div>
-                @else
-                    {{ $comment->body }}
-                @endcan
-            </div>
 
-            <div class="has-text-right comment__info">
-                <delete-modal v-cloak></delete-modal><br>
-                By {{ $comment->user->name }}
+                        <p v-if="errors.body" v-for="error in errors.body" class="help is-danger">
+                            @{{ error }}
+                        </p>
+                    </div>
+                </div>
+            @else
+                {{ $comment->body }}
+            @endcan
+        </div>
+
+        <div class="pull-right">
+            <span class="has-text-right comment__info">
+                <delete-modal v-cloak></delete-modal>
+                By <a href="{{ route('users.show', ['slug' => $comment->user->slug]) }}" title="Visit {{ $comment->user->name }} profile">{{ $comment->user->name }}</a>
                 {{ $comment->created_at->diffForHumans() }}
                 @can('destroy', App\Comment::class)
-                    <a @click.prevent="$emit('showDeleteModalEvent', 'comment-{{ $comment->id }}')" href="#">
+                    <a
+                        class="comment__delete"
+                        @click.prevent="$emit('showDeleteModalEvent', 'comment-{{ $comment->id }}')"
+                        href="#">
                         Delete
                     </a>
                     <form method="post" ref="comment-{{ $comment->id }}"
@@ -59,7 +56,8 @@
                         {{ method_field('delete') }}
                     </form>
                 @endcan
-            </div>
+            </span>
         </div>
+        <br>
     </article>
 </comment>

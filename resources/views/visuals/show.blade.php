@@ -4,7 +4,7 @@
 
 @section('control-bar')
     <div id="visual-edit" class="visual__edit">
-        <div>
+        <div class="is-hidden-mobile">
             <span class="visual__track">
                 Track: <b>{{ $visual->track }}</b>
             </span> ∙
@@ -54,67 +54,89 @@
 @endsection
 
 @section('content')
-<section id="content">
-    <div class="section">
-        <div class="columns">
-            <div class="column is-4">
-                <div class="card">
-                    <header class="card-header">
-                        <p class="card-header-title">Comments: {{ $visual->comments->count() }}</p>
-                    </header>
+    <section id="content">
+        <div class="section">
+            <div class="columns">
+                <div class="column is-8">
+                    <div class="message is-primary is-hidden-desktop">
+                        <div class="message-body">
+                            <p class="heading">Track: {{ $visual->track }}</p>
+                            <p class="heading">Album: {{ $visual->album }}</p>
+                            <p class="heading">Artist: {{ $visual->artist }}</p>
 
-                    <div class="card-content">
-                        <div class="comments">
-                            @include('comments.index')
-                            @unless($visual->comments->count())
-                                <p class="has-text-centered color-grey-light">No comments yet</p>
-                            @endunless
+                            <hr>
+
+                            <p class="heading">Average Rating: {{ $visual->rating or 'No ratings yet' }}</p>
+
+                            <div class="columns is-mobile">
+                                <div class="column">
+                                    <p class="heading">Views: {{ $visual->views }}</p>
+                                </div>
+
+                                <div class="column">
+                                    <p class="heading">Favorites: @{{ favoritesCount }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative">
+                        @can('rate', $visual)
+                            <div class="rating">
+                                <rating
+                                    :items="ratingItems"
+                                    kind="grow"
+                                    :value="ratingValue"
+                                    @change="submitRating">
+                                </rating>
+                            </div>
+
+                            <div class="favorite">
+                                <button
+                                    @click.prevent="toggleFavorite"
+                                    class="favorite__button"
+                                    :data-balloon="tooltipMessage"
+                                    data-balloon-pos="left">
+                                    <svg width="20px" height="20px" viewBox="0 0 83 71">
+                                       <use
+                                        :class="{'favorite--active': isActive}"
+                                        class="favorite__heart" xlink:href="{{ asset('assets/img/icons/user/favorite.svg') }}#Default">
+                                        </use>
+                                    </svg>
+                                </button>
+                            </div>
+                        @endif
+                        <img src="{{ asset(\Storage::url('/visuals/' . $visual->user_id . '/' . $visual->image)) }}" alt="{{ $visual->track }}"
+                        style="padding-bottom: 16px">
+                    </div>
+
+                    <div class="card">
+                        <div class="card-content">
+                            @include('visuals/partials/description')
+                        </div>
+                    </div>
+                </div>
+
+                <div class="column is-4">
+                    <div class="card">
+                        <header class="card-header">
+                            <p class="card-header-title">Comments: {{ $visual->comments->count() }}</p>
+                        </header>
+
+                        <div class="card-content">
+                            <div class="comments">
+                                @include('comments.index')
+                                @unless($visual->comments->count())
+                                    <p class="has-text-centered color-grey-light">No comments yet</p>
+                                @endunless
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div class="column is-8">
-                <div class="relative">
-                    @can('rate', $visual)
-                        <div class="rating">
-                            <rating
-                                :items="ratingItems"
-                                kind="grow"
-                                :value="ratingValue"
-                                @change="submitRating">
-                            </rating>
-                        </div>
-
-                        <div class="favorite">
-                            <button
-                                @click.prevent="toggleFavorite"
-                                class="favorite__button"
-                                :data-balloon="tooltipMessage"
-                                data-balloon-pos="left">
-                                <svg width="20px" height="20px" viewBox="0 0 83 71">
-                                   <use
-                                    :class="{'favorite--active': isActive}"
-                                    class="favorite__heart" xlink:href="{{ asset('assets/img/icons/user/favorite.svg') }}#Default">
-                                    </use>
-                                </svg>
-                            </button>
-                        </div>
-                    @endif
-                    <img src="{{ asset(\Storage::url('/visuals/' . $visual->user_id . '/' . $visual->image)) }}" alt="{{ $visual->track }}"
-                    style="padding-bottom: 16px">
-                </div>
-
-                <div class="card">
-                    <div class="card-content">
-                        @include('visuals/partials/description')
-                    </div>
-                </div>
-            </div>
+            <flash message="{{ session('flash') }}"></flash>
         </div>
-        <flash message="{{ session('flash') }}"></flash>
-    </div>
-</section>
+    </section>
 @endsection
 
 @section('footer-js')
