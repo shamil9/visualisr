@@ -34,6 +34,10 @@ class Twitter
         $user = User::where('email', '=', $twitter->email)->first();
         $twitterAccount = TwitterAccount::where('account_id', $twitter->id)->first();
 
+        // If logged in user upate account
+        if (auth()->check())
+            return $this->updateUser(auth()->user(), $twitter);
+
         // If user's account is already linked proceed to login
         if ($twitterAccount)
             return $this->logginUser($user);

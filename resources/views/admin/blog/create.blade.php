@@ -2,7 +2,7 @@
 @section('title', 'Add Blog')
 @section('styles')
     @parent
-    <link rel="stylesheet" href="{{ asset('assets/css/admin.css') }}">
+    <link rel="stylesheet" href="{{ mix('assets/css/admin.css') }}">
 @endsection
 @section('class', 'blog-create')
 
