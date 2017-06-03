@@ -20,6 +20,7 @@ class CommentPolicy
 
     public function before()
     {
+        if (auth()->user()->admin) return true;
         if (auth()->user()->banned || ! auth()->user()->active) return false;
     }
 

@@ -12,7 +12,10 @@
             @if(Auth::check())
                  @if (! auth()->user()->active)
                     <span class="tag is-warning is-small
-                        @if(\Route::currentRouteName() == 'visuals.show') is-hidden-mobile @endif"
+                        @if(
+                            \Route::currentRouteName() == 'visuals.show' ||
+                            \Route::currentRouteName() == 'visuals.create'
+                        ) is-hidden-mobile @endif"
                         style="vertical-align: middle">Unconfirmed Account</span>
                 @endif
                 <a href="{{ route('user.home') }}">

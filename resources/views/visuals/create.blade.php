@@ -3,22 +3,17 @@
 @section('class', 'create-visual')
 
 @section('breadcrumbs')
-    @breadcrumbs(['Home' => 'index', 'Visuals' => 'visuals.index'])
-@stop
-
-@section('control-bar')
     <div class="is-hidden-mobile">
-        <player url="{{ route('visuals.store') }}"></player>
+        @breadcrumbs(['Home' => 'index', 'Visuals' => 'visuals.index'])
     </div>
 @endsection
 
+@section('control-bar')
+    <player url="{{ route('visuals.store') }}"></player>
+@endsection
+
 @section('content')
-    <div class="is-hidden-desktop">
-        <div class="is-flex-centered has-text-centered">
-            <span class="title is-2">Sorry, this functionality is disabled on mobile devices.</span>
-        </div>
-    </div>
-    <div class="section relative is-hidden-mobile">
+    <div class="section relative">
         <button v-show="!showDropArea" class="button is-small is-warning" @click.prevent="$emit('resetEvent')">Reset</button>
         <div class="file is-flex-centered"
             v-show="showDropArea"

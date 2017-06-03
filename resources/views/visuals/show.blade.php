@@ -2,6 +2,12 @@
 @section('title', $visual->track)
 @section('class', 'show-visual')
 
+@section('breadcrumbs')
+    <div class="is-hidden-mobile">
+        @breadcrumbs(['Home' => 'index', 'Visuals' => 'visuals.index'])
+    </div>
+@endsection
+
 @section('control-bar')
     <div id="visual-edit" class="visual__edit">
         <div class="is-hidden-mobile">

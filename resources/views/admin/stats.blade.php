@@ -60,12 +60,14 @@
     function getMonthLabel(stats) {
         var months = [ "January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December" ];
-        var currentMonth = new Date().getMonth();
+        var currentMonth = new Date().getMonth(); // getMonth() starts from 0
 
-        // return months from last year if current month number number is less than 6
+        // return months from last year
         if (currentMonth < 5) {
+            // get months from the back of the array
             var monthsWithOffset = months.slice(currentMonth - 5);
             months.forEach(function (value, index) {
+                // stop if we at the current month
                 if (index > currentMonth) return;
                 monthsWithOffset.push(value);
             });
@@ -73,7 +75,7 @@
             return monthsWithOffset;
         }
 
-        return months.slice(currentMonth - 5, currentMonth);
+        return months.slice(0, currentMonth + 1);
     }
 
     function renderChart(stats) {

@@ -12,7 +12,7 @@ class StatsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('banned.check');
+        $this->middleware(['auth', 'banned.check']);
     }
 
     /**
@@ -22,8 +22,6 @@ class StatsController extends Controller
      */
     public function stats()
     {
-        if (! auth()->user()->admin) return;
-
         $users = User::all()->count();
         $visuals = Visual::all()->count();
         $comments = Comment::all()->count();
@@ -40,8 +38,6 @@ class StatsController extends Controller
      */
     public function statsCount()
     {
-        if (! auth()->user()->admin) return;
-
         $comments = $this->getStats('comments');
         $visuals = $this->getStats('visuals');
         $users = $this->getStats('users');

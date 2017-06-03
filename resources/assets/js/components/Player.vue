@@ -1,13 +1,13 @@
 <template>
     <div class="player">
         <div class="player__seek-back" @click.prevent="jumpBack">
-            5sec<a id="seek-back" href="#">
+            <a id="seek-back" href="#" title="Seek back 5sec">
             <img src="/assets/img/icons/player/seek-back.svg" alt="Seek back 5sec">
         </a>
         </div>
 
         <div class="player__play" @click.prevent="play">
-            <a id="play" href="#">
+            <a id="play" href="#" title="Play">
                 <svg width="35px" height="35px" viewBox="0 0 35 35">
                     <use :class="{'player--active': isPlaying}" class="player__button"
                          xlink:href="/assets/img/icons/player/play.svg#Layout"></use>
@@ -16,7 +16,7 @@
         </div>
 
         <div class="player__pause" @click.prevent="pause">
-            <a id="pause" href="#">
+            <a id="pause" href="#" title="Pause">
                 <svg width="18px" height="18px" viewBox="0 0 18 18">
                     <use :class="{'player--active': isPaused}" class="player__button"
                          xlink:href="/assets/img/icons/player/pause.svg#Layout"></use>
@@ -25,13 +25,13 @@
         </div>
 
         <div class="player__seek-forward" @click.prevent="jumpForward">
-            <a id="seek-forward" href="#">
+            <a id="seek-forward" href="#" title="Seek Forward 5sec">
                 <img src="/assets/img/icons/player/seek-forward.svg" alt="Seek Forward 5sec">
-            </a>5sec
+            </a>
         </div>
 
         <div class="player__save" @click.prevent="toggleModal" :data-balloon="saveMessage" data-balloon-pos="right">
-            <a id="save" href="#">
+            <a id="save" href="#" title="Save">
                 <img src="/assets/img/icons/user/camera.svg" alt="Save">
             </a>
         </div>
