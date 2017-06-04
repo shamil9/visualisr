@@ -33,19 +33,19 @@
         </div>
         <div v-if="social" id="social" class="visual__actions">
             <span>
-               <a :href="'https://www.facebook.com/sharer.php?u=' + pageUrl">
+               <a :href="'https://www.facebook.com/sharer.php?u=' + pageUrl" target="_blank" rel="noopener">
                    <img src="{{ asset('assets/img/icons/facebook.svg') }}" alt="Share on Facebook">
                Facebook</a>
             </span>
 
             <span>
-               <a :href="'https://twitter.com/intent/tweet?url=' + pageUrl + '&text=Checkout this visual&via=Visualisr'">
+               <a :href="'https://twitter.com/intent/tweet?url=' + pageUrl + '&text=Checkout this visual&via=Visualisr'" target="_blank" rel="noopener">
                    <img src="{{ asset('assets/img/icons/twitter.svg') }}" alt="Share on Twitter">
                Twitter</a>
             </span>
 
             <span>
-               <a :href="'https://plus.google.com/share?url=' + pageUrl">
+               <a :href="'https://plus.google.com/share?url=' + pageUrl" target="_blank" rel="noopener">
                    <img src="{{ asset('assets/img/icons/google.svg') }}" alt="Share on Google+">
             Google+</a>
             </span>
@@ -53,22 +53,22 @@
 
         <div v-if="download" id="download" class="visual__actions">
             <span>
-               <a href="{{ asset(asset(getenv('APP_UPLOADS') . '/visuals/' . $visual->user_id . '/fb_' . $visual->image)) }}" download>
+               <a href="{{ asset(\Storage::url('visuals/' . $visual->user_id . '/fb_' . $visual->image)) }}" download>
                    <img src="{{ asset('assets/img/icons/facebook.svg') }}" alt="Download Facebook Profile Banner">
                Facebook Banner</a>
             </span>
 
             <span>
-               <a href="{{ asset(asset(getenv('APP_UPLOADS') . '/visuals/' . $visual->user_id . '/twitter_' . $visual->image)) }}" download>
+               <a href="{{ asset(\Storage::url('visuals/' . $visual->user_id . '/twitter_' . $visual->image)) }}" download>
                    <img src="{{ asset('assets/img/icons/twitter.svg') }}" alt="Download Twitter Profile Banner">
                Twitter Banner</a>
             </span>
-
+{{--
             <span>
-               <a href="{{ asset(asset(getenv('APP_UPLOADS') . '/visuals/' . $visual->user_id . '/' . $visual->image)) }}" download>
+               <a href="{{ asset(\Storage::url('visuals/' . $visual->user_id . '/' . $visual->image)) }}" download>
                    <img src="{{ asset('assets/img/icons/wallpaper.svg') }}" alt="Download Wallpaper">
             Wallpaper</a>
-            </span>
+            </span> --}}
         </div>
     </div>
 
