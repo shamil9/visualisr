@@ -7,7 +7,7 @@
 
 @section('content')
     <div class="error">
-        <span class="error__number">500</span>
+        <span class="error__number">Our Bad</span>
         <span class="error__text">Server Error</span>
     </div>
 @stop

@@ -7,7 +7,7 @@
 
 @section('content')
     <div class="error">
-        <span class="error__number">403</span>
+        <span class="error__number">You shall not pass</span>
         <span class="error__text">Action Unauthorized</span>
     </div>
 @stop
