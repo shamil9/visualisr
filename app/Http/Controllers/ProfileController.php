@@ -46,6 +46,8 @@ class ProfileController extends Controller
             'avatar' => 'mimes:jpg,jpeg,png,bmp',
         ]);
 
+        $user = auth()->user();
+
         $oldAvatar = $user->avatar;
         $avatar = $this->storeAvatar($request);
 

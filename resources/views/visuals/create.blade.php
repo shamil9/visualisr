@@ -20,7 +20,7 @@
             @drop.stop.prevent="checkFormat"
             @dragover.stop.prevent="dragOver">
             @{{ message }}
-            <img src="{{ asset('/assets/img/icons/file.png') }}" alt="Drop File"> <br>
+            <img src="{{ asset('/assets/img/icons/file.png') }}" alt="Drop File">
         </div>
         <div id="visualizer">
         </div>
