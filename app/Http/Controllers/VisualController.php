@@ -145,9 +145,9 @@ class VisualController extends Controller
     public function checkFields($request)
     {
         return $this->validate($request, [
-            'track'  => 'required',
-            'album'  => 'required',
-            'artist' => 'required',
+            'track'  => 'required|min:2',
+            'album'  => 'required|min:2',
+            'artist' => 'required|min:2',
         ]);
     }
 }
