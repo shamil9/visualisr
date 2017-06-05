@@ -87,7 +87,7 @@
                     </div>
 
                     <div class="relative">
-                        @can('rate', $visual)
+                        @can('rate', \App\Visual::class)
                             <div class="rating">
                                 <rating
                                     :items="ratingItems"
