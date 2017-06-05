@@ -31,6 +31,7 @@
 
     menuToggle.addEventListener('click', function() {
         menu.classList.toggle('is-active');
+        menuToggle.classList.toggle('is-active');
     });
 </script>
 </body>

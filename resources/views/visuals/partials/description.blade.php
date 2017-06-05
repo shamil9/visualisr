@@ -8,7 +8,7 @@
                 </figure>
             </div>
 
-            <div class="media-right">
+            <div class="media-content">
                 <p class="title is-3">
                     <a href="{{ route('users.show', $visual->user->slug) }}">
                         {{ $visual->user->name }}

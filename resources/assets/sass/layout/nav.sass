@@ -1,6 +1,6 @@
 .nav
   background-color: transparent !important
-  perspective: 200px
+  height: 100%
   & img
     max-height: 100%
 
@@ -11,8 +11,8 @@
     background-color: transparent !important
 
 .nav-menu
-  @include touch
-    background-color: $secondary !important
+  @include mobile
+    background-color: #222831 !important
 
 .nav-item
   @include touch
@@ -22,15 +22,82 @@
   @include mobile
     display: block
     position: absolute
-    top: 100%
     opacity: 0
 
     will-change: transform
-    transform-origin: center top
-    transform: rotateX(-80deg)
+    transform: translateX(100%)
     transition: transform 0.5s 0s, opacity 0s 0.5s
+
     &.is-active
       will-change: transform
-      transform: rotateX(0)
+      transform: translateX(0)
       transition: transform 0.5s 0s, opacity 0.5s 0s
       opacity: 1
+      & li
+        @include mobile
+          animation: slideLinkIn .4s cubic-bezier(0, 0.84, 0.07, 1.28) forwards
+          animation-delay: .5s
+
+          &:nth-of-type(2)
+            animation-delay: .6s
+
+          &:nth-of-type(3)
+            animation-delay: .7s
+
+.header__nav
+  @include mobile
+    width: 100%
+
+  & li
+    display: inline-block
+    margin-left: 1.25rem
+    @include mobile
+      display: block
+      text-align: center
+      margin-left: 0
+      padding: 1rem 0
+      transform: translateX(100%)
+
+  & img
+    vertical-align: middle
+
+  & a
+    position: relative
+
+    padding: 0 0.625rem 0.625rem 0.625rem
+
+    color: white
+
+    font-family: $roboto
+    font-size: 1.25rem
+    min-width: 50px
+    &:hover
+      color: white
+
+  & a:after
+    position: absolute
+    bottom: 0
+    left: 0
+
+    width: 100%
+    height: 3px
+
+    content: ''
+
+    border-bottom: 0.1875rem solid $success
+
+    transform: scaleX(0.5)
+    transition: transform 300ms cubic-bezier(1, 0.45, 0, 1.23)
+    will-change: transform
+    @include mobile
+      border: none
+
+  & a:hover:after
+    transform: scaleX(1)
+
+  & ul li:first-child a
+    margin-left: 0;
+
+@keyframes slideLinkIn
+  100%
+    transform: translateX(0)

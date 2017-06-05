@@ -2,7 +2,7 @@
     <nav class="nav">
         <div class="nav-left">
             <div class="nav-item">
-                <div class="header__logo is-pulled-left">
+                <div class="header__logo">
                     <a href="{{ url('/') }}">
                         <img src="{{ asset('assets/img/logo.svg') }}" title="{{ env('APP_NAME') }}" />
                     </a>
@@ -16,7 +16,7 @@
             <span></span>
         </span>
 
-        <div class="nav-right nav-menu" id="nav-menu">
+        <div class="nav-right nav-menu relative" id="nav-menu">
             <div class="nav-item is-hidden-touch">
                 <span class="tag is-primary">
                     <a class="header__create" href="{{ route('visuals.create') }}">Create</a>
