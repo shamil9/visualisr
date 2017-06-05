@@ -1,16 +1,15 @@
 @component('mail::message')
-    # Welcome to Visualisr
+# Welcome to Visualisr
 
-    Your account was succefully created. You can now login to your profile using these credentials.
+Your account was succefully created. You can now login to your profile using these credentials.
 
-    Email: **{{ $user->email }}**
+Email: **{{ $user->email }}**
+Password: **{{ $password }}**
 
-    Password: **{{ $password }}**
+@component('mail::button', ['url' => route('user.home')])
+Open profile
+@endcomponent
 
-    @component('mail::button', ['url' => route('user.home')])
-        Open profile
-    @endcomponent
-
-    Thanks,<br>
-    {{ config('app.name') }} Team
+Thanks,<br>
+{{ config('app.name') }} Team
 @endcomponent
