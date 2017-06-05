@@ -19,7 +19,7 @@
 
         <main class="splash-screen" role="main">
             <p>Create beautiful art</p>
-            <img src="{{ asset('assets/img/wave.png') }}" alt="Visualisr">
+            <img src="{{ asset('assets/img/wave.png') }}" alt="{{ config('app.name') }}">
             <p>From your favorite song</p>
             <a class="join" href="{{ route('register') }}">JOIN NOW</a>
         </main>

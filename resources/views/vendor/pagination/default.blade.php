@@ -38,4 +38,5 @@
             @endif
         </ul>
         @endforeach
+    </nav>
 @endif

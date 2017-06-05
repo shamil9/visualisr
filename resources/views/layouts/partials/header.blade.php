@@ -3,8 +3,8 @@
         <div class="nav-left">
             <div class="nav-item">
                 <div class="header__logo">
-                    <a href="{{ url('/') }}">
-                        <img src="{{ asset('assets/img/logo.svg') }}" title="{{ env('APP_NAME') }}" />
+                    <a href="{{ url('/') }}" title="{{ config('app.name') }}">
+                        <img src="{{ asset('assets/img/logo.svg') }}" alt="{{ config('app.name') }}" />
                     </a>
                 </div>
             </div>
@@ -26,10 +26,10 @@
                 <div class="header__nav">
                     <ul>
                         <li>
-                            <a href="{{ route('visuals.index') }}">Visuals</a>
+                            <a href="{{ route('visuals.index') }}" title="Visuals">Visuals</a>
                         </li>
 
-                        <li><a href="{{ route('blog.index') }}">Blog</a></li>
+                        <li><a href="{{ route('blog.index') }}" title="Blog">Blog</a></li>
 
                         @if (auth()->check())
                             <li>
@@ -44,7 +44,7 @@
                             </li>
                         @else
                             <li>
-                                <a href="{{ route('login') }}">Sign In</a>
+                                <a href="{{ route('login') }}" title="Sign In">Sign In</a>
                                 <img src="{{ asset('assets/img/icons/sign-in.svg') }}" alt="Sign In">
                             </li>
                         @endif

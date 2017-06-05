@@ -32,7 +32,7 @@
         @include('layouts.partials.control-bar')
 
 
-        <main class="main" role="main">
+        <main class="main">
             @yield('container-header')
             <div class="container">
                 @yield('content')
