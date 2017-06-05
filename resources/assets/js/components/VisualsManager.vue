@@ -4,67 +4,84 @@
             <div class="modal-card">
                 <header class="modal-card-head">
                     <p class="modal-card-title">Save Visual</p>
-                    <button class="delete" @click.prevent="toggleModal"></button>
+                    <button class="delete" @click.prevent="toggleModal" :disabled="disabled"></button>
                 </header>
 
                 <section class="modal-card-body">
-                    <div class="field has-addons">
-                        <p class="control">
-                            <button
-                                    :class="[errors.track ? 'is-danger' : 'is-outlined']"
-                                    disabled class="button" style="width: 75px">Track</button>
-                        </p>
+                    <div class="field is-horizontal">
+                        <div :class="[errors.track ? 'field-label is-danger' : 'field-label is-normal']">
+                            <label class="label">Track</label>
+                        </div>
 
-                        <p class="control is-expanded">
-                            <input
-                                    v-model="visual.track"
-                                    :class="{'is-danger': errors.track}"
-                                    name="track" class="input" type="text" autofocus>
-                        </p>
+                        <div class="field-body">
+                            <div class="field">
+                                <p class="control is-expanded has-icons-left">
+                                    <input
+                                            v-model="visual.track"
+                                            :class="{'is-danger': errors.track}"
+                                            name="track" class="input" type="text" autofocus>
+
+                                    <span class="icon is-small is-left">
+                                        <i class="fa fa-music"></i>
+                                    </span>
+                                </p>
+
+                                <p v-if="errors.track"
+                                   v-for="error in errors.track"
+                                   class="help is-danger">* {{ error }}</p>
+                            </div>
+                        </div>
                     </div>
 
-                    <b v-if="errors.track"
-                       v-for="error in errors.track"
-                       class="help is-danger">* {{ error }}</b>
+                     <div class="field is-horizontal">
+                        <div :class="[errors.album ? 'field-label is-danger' : 'field-label is-normal']">
+                            <label class="label">Album</label>
+                        </div>
 
-                    <div class="field has-addons">
-                        <p class="control">
-                            <button
-                                    :class="[errors.album ? 'is-danger' : 'is-outlined']"
-                                    disabled class="button" style="width: 75px">Album</button>
-                        </p>
+                        <div class="field-body">
+                            <div class="field">
+                                <p class="control is-expanded has-icons-left">
+                                    <input
+                                            v-model="visual.album"
+                                            :class="{'is-danger': errors.album}"
+                                            name="album" class="input" type="text" autofocus>
 
-                        <p class="control is-expanded">
-                            <input
-                                    v-model="visual.album"
-                                    :class="{'is-danger': errors.album}"
-                                    name="album" class="input" type="text">
-                        </p>
+                                    <span class="icon is-small is-left">
+                                        <i class="fa fa-dot-circle-o"></i>
+                                    </span>
+                                </p>
+
+                                <p v-if="errors.album"
+                                   v-for="error in errors.album"
+                                   class="help is-danger">* {{ error }}</p>
+                            </div>
+                        </div>
                     </div>
 
-                    <b v-if="errors.album"
-                       v-for="error in errors.album"
-                       class="help is-danger">* {{ error }}</b>
+                    <div class="field is-horizontal">
+                        <div :class="[errors.artist ? 'field-label is-danger' : 'field-label is-normal']">
+                            <label class="label">Artist</label>
+                        </div>
 
-                    <div class="field has-addons">
-                        <p class="control">
-                            <button
-                                    :class="[errors.artist ? 'is-danger' : 'is-outlined']"
-                                    disabled class="button" style="width: 75px">Artist</button>
-                        </p>
+                        <div class="field-body">
+                            <div class="field">
+                                <p class="control is-expanded has-icons-left">
+                                    <input
+                                            v-model="visual.artist"
+                                            :class="{'is-danger': errors.artist}"
+                                            name="artist" class="input" type="text" autofocus>
 
-                        <p class="control is-expanded">
-                            <input
-                                    v-model="visual.artist"
-                                    :class="{'is-danger': errors.artist}"
-                                    name="artist" class="input" type="text">
-                        </p>
+                                    <span class="icon is-small is-left">
+                                        <i class="fa fa-user"></i>
+                                    </span>
+                                </p>
+
+                                <p v-if="errors.artist"
+                                   v-for="error in errors.artist"
+                                   class="help is-danger">* {{ error }}</p>
+                            </div>
+                        </div>
                     </div>
-
-                    <b v-if="errors.artist"
-                       v-for="error in errors.artist"
-                       class="help is-danger">* {{ error }}</b>
-
                 </section>
 
                 <footer class="modal-card-foot">
@@ -73,7 +90,7 @@
                        :class="[{ 'is-loading': loading }, colorClass]"
                        :disabled="disabled"
                     >{{ submitMessage }}</a>
-                    <a class="button" @click.prevent="toggleModal">Close</a>
+                    <a class="button" @click.prevent="toggleModal" :disabled="disabled">Close</a>
                 </footer>
             </div>
         </modal>
