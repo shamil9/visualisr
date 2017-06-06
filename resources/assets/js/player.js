@@ -5,7 +5,7 @@ Vue.component('player', require('./components/Player.vue'))
 
 export default class Player {
     constructor(song, format) {
-        this.sound = new Howl({ src: [song], format: [format], volume: 0.5 })
+        this.sound = new Howl({ src: [song], format: [format], volume: 0.2 })
         this.createAnalyser()
         this.position = null
         p5.disableFriendlyErrors = true
@@ -13,17 +13,17 @@ export default class Player {
     }
 
     createAnalyser() {
-        if (window.AudioContext || window.webkitAudioContext) {
+        if (this.browserCheck()) {
             this.analyser = Howler.ctx.createAnalyser()
             this.analyser.fftSize = 128
             Howler.masterGain.connect(this.analyser)
             this.dataArray = new Uint8Array(this.analyser.frequencyBinCount)
             this.analyser.connect(Howler.ctx.destination)
-
-            return true
         }
+    }
 
-        return false
+    browserCheck() {
+        return !!window.AudioContext || !!window.webkitAudioContext
     }
 
     play(event) {
@@ -79,7 +79,7 @@ export default class Player {
         requestAnimationFrame(this.showVisualiser.bind(this))
         if (!this.sound.playing()) return
 
-        this.createAnalyser() && this.analyser.getByteTimeDomainData(this.dataArray)
+        if (this.browserCheck()) this.analyser.getByteTimeDomainData(this.dataArray)
 
         this.visualiser.show(this.dataArray)
     }
