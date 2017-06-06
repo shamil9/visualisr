@@ -47,7 +47,7 @@ class Visualiser {
     show ( dataArray ) {
 
         if ( this.modifier >= 5 ) {
-            this.data = dataArray
+            if(!!dataArray) this.data = dataArray
             this.delay(3)
             return
         }
