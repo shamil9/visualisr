@@ -8,7 +8,7 @@ class Visualiser {
         this.modifier            = 0
         this.speed               = 10
         this.paused              = false
-        this.alpha               = 0.01
+        this.data                = [8]
         this.p5.frameRate(30)
         this.p5.createCanvas(this.width, this.height).parent('#visualizer')
         this.init()
@@ -16,18 +16,23 @@ class Visualiser {
 
     init () {
         this.p5.clear()
+        this.p5.background('#f5f5f5')
         this.color = this.p5.round(this.p5.random(360))
         this.p5.strokeWeight(1)
+        this.alpha = 0.01
         this.p5.stroke(`hsla(${this.color}, 80%, 50%, ${this.alpha})`)
+        const number = Math.floor(this.data.reduce((a, b) => a + b) / this.data.length)
+
         this.randomX = this.p5.random(this.width / 2.2)
         this.randomY = this.p5.random(this.height / 2.2)
-        this.randomx = this.p5.random(5)
-        this.randomy = this.p5.random(5)
+        this.randomx = this.p5.random(number / 10)
+        this.randomy = this.p5.random(number / 10)
+
 
         this.randomX2 = this.p5.random(this.width / 2.2)
         this.randomY2 = this.p5.random(this.height / 2.2)
-        this.randomx2 = this.p5.random(5)
-        this.randomy2 = this.p5.random(5)
+        this.randomx2 = this.p5.random(number / 10)
+        this.randomy2 = this.p5.random(number / 10)
         this.modifier = 0
         this.paused   = false
     }
@@ -40,9 +45,16 @@ class Visualiser {
     }
 
     show ( dataArray ) {
+
         if ( this.modifier >= 5 ) {
+            this.data = dataArray
             this.delay(3)
             return
+        }
+
+        if ((this.modifier).toFixed(2) == 5 / 2) {
+            let color = Math.floor(this.p5.random(360))
+            this.p5.stroke(`hsla(${color}, 80%, 50%, ${this.alpha})`)
         }
 
         for ( let i = 0; i < this.speed; i++ ) {

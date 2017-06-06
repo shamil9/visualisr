@@ -55,7 +55,7 @@
                 isPaused: false,
                 image: null,
                 song: '/assets/song.mp3',
-                format: 'audio/mp3',
+                format: 'mp3',
                 saveMessage: 'Please start playback first'
             }
         },
@@ -98,7 +98,7 @@
                 this.pause()
                 this.visualizer.removeChild(this.visualizer.children[ 0 ])
                 this.song   = this.$parent.song
-                this.format = this.$parent.format
+                this.format = /\/(.*)/.exec(this.$parent.format)[1]
                 this.play()
             },
         }

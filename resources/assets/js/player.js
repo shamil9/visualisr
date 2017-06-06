@@ -5,14 +5,15 @@ Vue.component('player', require('./components/Player.vue'))
 
 export default class Player {
     constructor(song, format) {
-        this.sound = new Howl({ src: [song], format: [format], volume: 0.5, html5: true })
+        this.sound = new Howl({ src: [song], format: [format], volume: 0.5 })
         this.analyser = Howler.ctx.createAnalyser()
+        this.analyser.fftSize = 128
+        Howler.masterGain.connect(this.analyser)
         this.dataArray = new Uint8Array(this.analyser.frequencyBinCount)
+        this.analyser.connect(Howler.ctx.destination)
         this.position = null
         p5.disableFriendlyErrors = true
         this.visualiser = new Visualiser(new p5())
-        Howler.masterGain.connect(this.analyser)
-        this.analyser.connect(Howler.ctx.destination)
     }
 
     play(event) {
@@ -68,7 +69,7 @@ export default class Player {
         requestAnimationFrame(this.showVisualiser.bind(this))
         if (!this.sound.playing()) return
 
-        this.analyser.getByteFrequencyData(this.dataArray)
+        this.analyser.getByteTimeDomainData(this.dataArray)
 
         this.visualiser.show(this.dataArray)
     }
