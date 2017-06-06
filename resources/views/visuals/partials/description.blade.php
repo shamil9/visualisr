@@ -63,12 +63,12 @@
                    <img src="{{ asset('assets/img/icons/twitter.svg') }}" alt="Download Twitter Profile Banner">
                Twitter Banner</a>
             </span>
-{{--
+
             <span>
                <a href="{{ asset(\Storage::url('visuals/' . $visual->user_id . '/' . $visual->image)) }}" download>
                    <img src="{{ asset('assets/img/icons/wallpaper.svg') }}" alt="Download Wallpaper">
             Wallpaper</a>
-            </span> --}}
+            </span>
         </div>
     </div>
 
