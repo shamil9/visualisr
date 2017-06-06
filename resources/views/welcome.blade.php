@@ -17,7 +17,7 @@
             @include('layouts.partials.header')
         </header>
 
-        <main class="splash-screen" role="main">
+        <main class="splash-screen">
             <p>Create beautiful art</p>
             <img src="{{ asset('assets/img/wave.png') }}" alt="{{ config('app.name') }}">
             <p>From your favorite song</p>

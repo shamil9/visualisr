@@ -52,6 +52,11 @@ html {
 
 .main {
     min-height: calc(100vh - 260px);
+    background-color: rgba(238, 238, 238, .4)
+}
+
+.section {
+    background-color: transparent
 }
 
 .splash-screen {
