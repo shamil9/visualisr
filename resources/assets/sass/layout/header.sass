@@ -4,7 +4,7 @@
   transition: height 0.5s ease-in
 
   & .container
-    padding: 0.625rem 0.75rem
+    padding: 0.625rem 0
 
 .header__logo
   max-width: 10rem
@@ -16,3 +16,6 @@
   &:hover
     color: $white-bis !important
 
+.header .nav .nav-item
+  @include desktop()
+    padding: 0.5rem 0
