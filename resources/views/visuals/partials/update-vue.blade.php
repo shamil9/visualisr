@@ -15,10 +15,8 @@
                         artist: '{{ $visual->artist }}',
                         private: !this.private,
                     })
-                    .then(response => {
-                    })
-                    .catch(error => {
-                    });
+                    .then(function (response) {})
+                    .catch(function (error) {});
            }
         }
     });
