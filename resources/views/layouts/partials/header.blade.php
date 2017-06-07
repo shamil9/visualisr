@@ -7,6 +7,9 @@
                         <img src="{{ asset('assets/img/logo.svg') }}" alt="{{ config('app.name') }}" />
                     </a>
                 </div>
+                <span class="tag is-primary is-small is-hidden-desktop">
+                    <a  class="header__create" href="{{ route('visuals.create') }}">Create</a>
+                </span>
             </div>
         </div>
 

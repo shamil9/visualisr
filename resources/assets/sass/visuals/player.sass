@@ -1,9 +1,11 @@
 .player
   @include flex()
 
-.player__close, .player__seek-forward
+.player__seek-forward
   margin-right: 3.4375rem
   font-size: 0.75rem
+  @include mobile()
+    margin-right: 1.875rem
 
 .player__seek-back
   margin-right: 2.1875rem
