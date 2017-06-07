@@ -1,5 +1,5 @@
 <div class="column is-4">
-    <div class="card">
+    <div class="card" style="border-top: 6px solid @randomColor">
         <div class="card-image">
             <figure class="image is-16by9">
                 <a href="{{ route('visuals.show', $visual->visual_id ?: $visual) }}">

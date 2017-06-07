@@ -27,6 +27,10 @@ class AppServiceProvider extends ServiceProvider
             return "<?php if (Request::url() == route($path)) echo 'is-active'; ?>";
         });
 
+        Blade::directive('randomColor', function ($path) {
+            return "<?php echo '#' . substr(md5(rand()), 0, 6); ?>";
+        });
+
         Blade::directive('breadcrumbs', function ($routes) {
             $collection = collect(preg_split("/'/", $routes))->nth(2, 1);
             $linkNames = $collection->nth(2);
