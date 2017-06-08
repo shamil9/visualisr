@@ -13,7 +13,7 @@ class RatingController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['auth', 'banned.check'], ['except' => ['index', 'show']]);
+        $this->middleware(['auth', 'banned.check'], ['except' => ['index', 'show', 'ratings', 'views']]);
     }
 
     /**
