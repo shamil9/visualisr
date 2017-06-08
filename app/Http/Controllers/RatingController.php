@@ -17,20 +17,50 @@ class RatingController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of the resource by rating.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function ratings()
     {
-        $topVisuals = Redis::zrange('visuals-rating', 0, -1);
-        $visuals = Visual::where(['private' => 0])
+        $visuals = $this->get('rating');
+
+        return view('visuals.index', compact('visuals'));
+    }
+
+    /**
+     * Display a listing of the resource by views.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function views()
+    {
+        $visuals = $this->get('views');
+
+        return view('visuals.index', compact('visuals'));
+    }
+
+    /**
+     * Get sorted items
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function get($sort)
+    {
+        $topVisuals = Redis::zrange("visuals-{$sort}", 0, -1);
+        if (empty($topVisuals))
+            return Visual::where(['private' => 0])
+                ->with('user')
+                ->withCount('comments', 'favorites')
+                ->orderBy('id', 'DESC')
+                ->paginate(9);
+
+        return Visual::where(['private' => 0])
             ->with('user')
             ->withCount('comments', 'favorites')
             ->orderByRaw('FIELD(id,' .implode(',',$topVisuals). ') DESC')
+            ->orderBy('created_at', 'DESC')
             ->paginate(9);
-
-        return view('visuals.index', compact('visuals'));
     }
 
     /**

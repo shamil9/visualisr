@@ -8,6 +8,11 @@
 
 @section('content')
     <div class="section">
+        <div class="sort-visuals has-text-right">
+            <i class="fa fa-sort-amount-desc" aria-hidden="true" style="vertical-align: baseline"></i>
+            <a href="{{ route('visuals.ratings') }}" class="@activeClass('visuals.ratings')">Rating</a> ∙
+            <a href="{{ route('visuals.views') }}" class="@activeClass('visuals.views')">Views</a>
+        </div>
         <div class="columns is-multiline grid">
             @each ('visuals.partials.visual', $visuals, 'visual')
         </div>

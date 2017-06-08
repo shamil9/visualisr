@@ -54,7 +54,7 @@ class Visual extends Model
      */
     public function getViewsAttribute()
     {
-        return Redis::zscore('visual-views', $this->id);
+        return Redis::zscore('visuals-views', $this->id);
     }
 
     /**
