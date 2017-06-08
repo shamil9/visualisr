@@ -41,6 +41,7 @@ Route::resource('/visuals/{visual}/comments', 'CommentController');
 Route::get('/comments/{id}/pagination', 'CommentController@pagination')->name('comments.pagination');
 
 // visuals
+Route::get('/visuals/rating', 'RatingController@index')->name('visuals.rating');
 Route::post('/visuals/{visual}', 'VisualController@update')->name('visuals.update.post');
 Route::resource('visuals', 'VisualController');
 

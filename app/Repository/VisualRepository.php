@@ -2,10 +2,17 @@
 
 namespace App\Repository;
 
+use App\Visual;
 use Illuminate\Support\Facades\DB;
 
 class VisualRepository
 {
+    /**
+     * Find by id
+     *
+     * @param int $id
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
     public function find(int $id)
     {
         return DB::table('visuals')
@@ -25,7 +32,7 @@ class VisualRepository
             ->groupBy('visuals.id');
     }
 
-    /*
+    /**
      * Get all visuals with relations
      *
      * @return \Illuminate\Database\Eloquent\Collection

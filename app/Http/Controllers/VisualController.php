@@ -80,10 +80,9 @@ class VisualController extends Controller
         )
             return view('visuals.private-error');
 
-        Redis::zincrby('visual', 1, 'visual.' . $visual->id);
+        Redis::zincrby('visual-views', 1, $visual->id);
         $visual->userRating = Redis::hget('visual.' . $visual->id, 'user.' . auth()->id());
 
-        $visual->load('comments', 'comments.user');
         $comments = Comment::where('visual_id', $visual->id)
             ->with('user')
             ->orderBy('id', 'desc')
