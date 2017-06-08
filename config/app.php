@@ -166,6 +166,7 @@ return [
         Laravel\Socialite\SocialiteServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         Indal\Markdown\MarkdownServiceProvider::class,
+        Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
 
         /*
          * Package Service Providers...

@@ -63,7 +63,7 @@ Route::get('/confirm/{toke}', 'UnconfirmedUserController@confirm')->name('user.c
 Route::post('/favorites', 'FavoriteController@toggleFavorite')->name('favorites.toggle');
 
 // support tickets
-Route::resource('/admin/contact', 'SupportTicketController');
+Route::resource('/contact', 'SupportTicketController');
 
 // admin stats
 Route::get('/admin/stats', 'StatsController@stats')->name('admin.stats');

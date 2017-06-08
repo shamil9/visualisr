@@ -46,6 +46,11 @@
                                     <p class="help is-danger">{{ $errors->first('body') }}</p>
                                 @endif
                             </div>
+                            @unless(auth()->check())
+                                <div class="field">
+                                    {!! app('captcha')->display(); !!}
+                                </div>
+                            @endunless
                             <div class="field">
                                 <p class="control">
                                     <button type="submit" class="button is-primary">Submit</button>

@@ -16,7 +16,7 @@ class SupportTicketObserver
      */
     public function created(SupportTicket $supportTicket)
     {
-        Mail::to(config('mail.admin'))->queue(new SupportTicketCreated($supportTicket));
+        Mail::to(env('MAIL_ADMIN'))->queue(new SupportTicketCreated($supportTicket));
     }
 
     /**

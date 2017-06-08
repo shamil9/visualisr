@@ -78,6 +78,7 @@ class SupportTicketController extends Controller
             'body'  => 'required|min:10',
             'email' => 'required',
             'name'  => 'required',
+            'g-recaptcha-response' => 'required|captcha',
         ]);
     }
 }
