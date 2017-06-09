@@ -23,9 +23,14 @@
             <p>From your favorite song</p>
             <a class="join" href="{{ route('register') }}">JOIN NOW</a>
         </main>
+
+        <footer class="footer">
+            @include('layouts.partials.footer')
+        </footer>
     </div>
 
 <script>
+    console.log('%c Qui cherche trouve! ', 'padding: 20px; background: #ccc; color: #333');
     var menuToggle = document.querySelector('#nav-menu-toggle');
     var menu = document.querySelector('#nav-menu');
 

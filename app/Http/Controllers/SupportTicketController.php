@@ -75,9 +75,9 @@ class SupportTicketController extends Controller
         }
 
         $this->validate($request, [
-            'body'  => 'required|min:10',
-            'email' => 'required',
-            'name'  => 'required',
+            'body'                 => 'required|min:10',
+            'email'                => 'required',
+            'name'                 => 'required',
             'g-recaptcha-response' => 'required|captcha',
         ]);
     }

@@ -2,7 +2,6 @@
 
 namespace App\Repository;
 
-use App\Visual;
 use Illuminate\Support\Facades\DB;
 
 class VisualRepository

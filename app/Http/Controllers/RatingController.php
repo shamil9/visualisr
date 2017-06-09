@@ -58,7 +58,7 @@ class RatingController extends Controller
         return Visual::where(['private' => 0])
             ->with('user')
             ->withCount('comments', 'favorites')
-            ->orderByRaw('FIELD(id,' .implode(',',$topVisuals). ') DESC')
+            ->orderByRaw('FIELD(id,' . implode(',', $topVisuals) . ') DESC')
             ->orderBy('created_at', 'DESC')
             ->paginate(9);
     }
