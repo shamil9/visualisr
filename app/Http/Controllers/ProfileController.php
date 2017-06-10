@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 
@@ -84,9 +85,12 @@ class ProfileController extends Controller
      */
     public function updateEmail($request)
     {
+        $user = User::where('email', '=', $request->email)->first();
+        if ($user)
+            return back()->withErrors(['email' => 'Email already in use']);
+
         if ($request->email !== $request->email_confirmation)
-            return back()
-                ->withErrors(['email_confirmation' => 'Emails do not match']);
+            return back()->withErrors(['email_confirmation' => 'Emails do not match']);
 
         $this->validate($request, [
             'email' => 'required',
@@ -95,5 +99,7 @@ class ProfileController extends Controller
         $request->user()->fill([
             'email' => $request->email,
         ])->save();
+
+        return back()->with('flash', 'Email updated');
     }
 }
