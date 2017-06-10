@@ -50,7 +50,7 @@
         <script src="{{ mix('assets/js/app.js') }}"></script>
     @show
     <script>
-        console.log('%c Qui cherche trouve! ', 'padding: 20px; background: #ccc; color: #333');
+        console.log('%c Hey there! ', 'padding: 5px; background: #222831; color: white');
         var menuToggle = document.querySelector('#nav-menu-toggle');
         var menu = document.querySelector('#nav-menu');
 
