@@ -1,14 +1,14 @@
 @component('mail::message')
-    # Account Active
+# Account Active
 
-    We are happy to inform you that your account has been unblocked.
+We are happy to inform you that your account has been unblocked.
 
-    You may now login and use your account.
+You may now login and use your account.
 
-    @component('mail::button', ['url' => route('user.home')])
-        Login
-    @endcomponent
+@component('mail::button', ['url' => route('user.home')])
+Login
+@endcomponent
 
-    Thanks,<br>
-    {{ config('app.name') }} Team
+Thanks,<br>
+{{ config('app.name') }} Team
 @endcomponent

@@ -1,14 +1,14 @@
 @component('mail::message')
-    # Account Suspended
+# Account Suspended
 
-    We are sorry, but your account has been temporarily suspended.
+We are sorry, but your account has been temporarily suspended.
 
-    If you think there was a mistake please feel free to contact us.
+If you think there was a mistake please feel free to contact us.
 
-    @component('mail::button', ['url' => route('contact.create')])
-        Contact Us
-    @endcomponent
+@component('mail::button', ['url' => route('contact.create')])
+Contact Us
+@endcomponent
 
-    Thanks,<br>
-    {{ config('app.name') }} Team
+Thanks,<br>
+{{ config('app.name') }} Team
 @endcomponent
