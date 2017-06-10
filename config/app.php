@@ -2,6 +2,9 @@
 
 return [
 
+    // Admin email
+    'admin_email' => env('MAIL_ADMIN', 'contact@shamil.be'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Name
