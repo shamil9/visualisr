@@ -15,7 +15,7 @@
 
                         <div class="field-body">
                             <div class="field">
-                                <p class="control is-expanded has-icons-left">
+                                <p class="control is-expanded has-icon">
                                     <input
                                             v-model="visual.track"
                                             :class="{'is-danger': errors.track}"
@@ -40,7 +40,7 @@
 
                         <div class="field-body">
                             <div class="field">
-                                <p class="control is-expanded has-icons-left">
+                                <p class="control is-expanded has-icon">
                                     <input
                                             v-model="visual.album"
                                             :class="{'is-danger': errors.album}"
@@ -65,7 +65,7 @@
 
                         <div class="field-body">
                             <div class="field">
-                                <p class="control is-expanded has-icons-left">
+                                <p class="control is-expanded has-icon">
                                     <input
                                             v-model="visual.artist"
                                             :class="{'is-danger': errors.artist}"
