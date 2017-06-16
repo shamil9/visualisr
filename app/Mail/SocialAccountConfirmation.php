@@ -33,8 +33,7 @@ class SocialAccountConfirmation extends Mailable
      */
     public function build()
     {
-        return $this
-            ->subject('Account Created')
-            ->markdown('email.users.social-account-confirmation');
+        return $this->subject('Account Credentials')
+                    ->markdown('email.users.social-account-confirmation');
     }
 }

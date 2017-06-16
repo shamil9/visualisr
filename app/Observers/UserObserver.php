@@ -42,7 +42,7 @@ class UserObserver
     {
         $unconfirmedUser = UnconfirmedUser::create([
             'user_id' => $user->id,
-            'token'   => hash('sha256', $user->name),
+            'token'   => hash('sha256', uniqid()),
         ]);
 
         \Mail::to($user->email)->queue(new ConfirmAccount($unconfirmedUser));
