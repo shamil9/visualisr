@@ -7,6 +7,11 @@
     <section class="section">
         <div class="columns">
             <div class="column is-4 is-offset-2">
+                @if (session('status'))
+                    <div class="notification is-warning">
+                        {{ session('status') }}
+                    </div>
+                @endif
                 <form role="form" method="POST" action="{{ route('register') }}">
                     {{ csrf_field() }}
 

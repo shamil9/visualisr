@@ -32,6 +32,7 @@ class Twitter
 
         $twitter = Socialite::driver('twitter')->user();
         $user = User::where('email', '=', $twitter->email)->first();
+        $usernameExists = User::where('name', '=', $twitter->nickname)->first();
         $twitterAccount = TwitterAccount::where('account_id', $twitter->id)->first();
 
         // If logged in user upate account
@@ -46,6 +47,9 @@ class Twitter
         if ($user)
             return $this->updateUser($user, $twitter);
 
+        if ($usernameExists)
+            return redirect(route('register'))
+                ->with('status', "{$twitter->nickname} already in use");
 
         // If user does not exist create a new account and proceed to login
         $twitterAccount = $this->createUser($twitter);
