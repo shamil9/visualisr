@@ -44,7 +44,11 @@ class Visual extends Model
      */
     public function inFavorites()
     {
-        return ! ! $this->favorites->count();
+        // return !! auth()->user()->favorites->contains(['visual_id' => $this->id]);
+        return !! $this->favorites()->where([
+            'user_id' => auth()->id(),
+            'visual_id' => $this->id
+        ])->first();
     }
 
     /**
