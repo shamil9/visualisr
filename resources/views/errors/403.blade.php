@@ -7,7 +7,7 @@
 
 @section('content')
     <div class="error">
-        <span class="error__number">You shall not pass</span>
+        <span class="error__number">None Shall Pass</span>
         <span class="error__text">Action Unauthorized</span>
     </div>
 @stop
