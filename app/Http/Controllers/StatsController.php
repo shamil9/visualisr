@@ -25,7 +25,7 @@ class StatsController extends Controller
         $users = User::all()->count();
         $visuals = Visual::all()->count();
         $comments = Comment::all()->count();
-        $views = Redis::zrange('visual', 0, -1, 'WITHSCORES');
+        $views = Redis::zrange('visuals-views', 0, -1, 'WITHSCORES');
         $totalViews = collect($views)->sum();
 
         return view('admin.stats', compact('users', 'visuals', 'comments', 'totalViews'));
