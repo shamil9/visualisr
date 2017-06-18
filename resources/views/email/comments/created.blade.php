@@ -1,5 +1,5 @@
 @component('mail::message')
-# Hello {{ $comment->user->name }}
+# Hello {{ $comment->visual->user->name }}
 
 One of yours visuals received a comment.
 > {{ $comment->body }}
