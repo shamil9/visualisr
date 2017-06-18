@@ -15,7 +15,7 @@
                         artist: '{{ $visual->artist }}',
                         private: !this.private,
                     })
-                    .then(function (response) {})
+                    .then(function (response) { this.private = !this.private }.bind(this))
                     .catch(function (error) {});
            }
         }
