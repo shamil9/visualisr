@@ -18,9 +18,10 @@
                         ) is-hidden-mobile @endif"
                         style="vertical-align: middle">Unconfirmed Account</span>
                 @endif
-                <a href="{{ route('user.home') }}">
-                    <img src="{{ asset('assets/img/icons/user/sliders.svg') }}" alt="Edit">
-                </a>
+                    <a href="{{ route('user.home') }}" title="{{ auth()->user()->name }}">
+                        <img src="{{ asset(\Storage::url('avatars/' . auth()->user()->avatar)) }}"
+                             alt="{{ auth()->user()->name }}" class="user__avatar" style="width: 2.5rem; height: 2.5rem;">
+                    </a>
             @endif
             </div>
         </div>
