@@ -20,6 +20,7 @@ class Visual
         $dir = storage_path('app/public/visuals/' . auth()->user()->id);
         Utility::createDirectory($dir);
         $image = \Image::make($this->imagePath);
+        $image->backup();
 
         // full size image
         $image->save($dir . '/' . $this->name);
@@ -28,14 +29,20 @@ class Visual
         $image->resize(410, null, function ($constraint) {
             $constraint->aspectRatio();
         })
-            ->save($dir . '/' . 'thumb_' . $this->name);
+            ->save($dir . '/' . 'thumb_' . $this->name)
+            ->reset();
 
         // twitter banner
-        $image->resize(1500, 500)
-            ->save($dir . '/' . 'twitter_' . $this->name);
+        $image->resize(1500, null, function ($constraint) {
+            $constraint->aspectRatio();
+        })
+            ->save($dir . '/' . 'twitter_' . $this->name)
+            ->reset();
 
         //facebook banner
-        $image->resize(828, 315)
+        $image->resize(828, null, function ($constraint) {
+            $constraint->aspectRatio();
+        })
             ->save($dir . '/' . 'fb_' . $this->name);
     }
 }
