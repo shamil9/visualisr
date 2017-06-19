@@ -12,14 +12,18 @@
         </div>
         <div class="card-content">
             <div class="media">
-                <div class="media-left">
+                <div class="media-left is-hidden-mobile">
                     <figure class="user__avatar image is-48x48">
-                        <img src="{{ asset(\Storage::url('/avatars/' . $user->avatar)) }}"
+                        <img src="{{ asset(\Storage::url('avatars/' . $user->avatar)) }}"
                              alt="{{ $user->name }}">
                     </figure>
                 </div>
                 <div class="media-content">
-                    <p class="title is-4">{{ $user->name }}</p>
+                    <p class="title is-4">
+                        <a href="{{ route('users.show', $user->slug) }}">
+                            {{ $user->name }}
+                        </a>
+                    </p>
                     <p class="subtitle is-6">Visuals: {{ $user->visuals->count() }}</p>
                 </div>
             </div>
