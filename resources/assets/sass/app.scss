@@ -34,7 +34,7 @@ html {
     margin: 0;
     padding: 0;
     @include mobile {
-        overflow-x: hidden
+        overflow-x: hidden;
     }
 }
 
@@ -52,11 +52,11 @@ html {
 
 .main {
     min-height: calc(100vh - 260px);
-    background-color: rgba(238, 238, 238, .4)
+    background-color: rgba(238, 238, 238, .4);
 }
 
 .section {
-    background-color: transparent
+    background-color: transparent;
 }
 
 .splash-screen {
@@ -81,9 +81,9 @@ html {
 }
 
 .join {
-    color: #FFFFFF;
+    color: #ffffff;
     border: 0.125rem solid;
-    border-image: linear-gradient(to right, #31725A, #34495E 6.25rem, #31725A);
+    border-image: linear-gradient(to right, #31725a, #34495e 6.25rem, #31725a);
     border-image-slice: 1;
     font-size: 0.875rem !important;
     font-family: 'Raleway', sans-serif;
@@ -121,15 +121,15 @@ html {
 .is-flex-centered {
     @include flex($direction: column);
     height: 100%;
-    width: 100%
+    width: 100%;
 }
 
 .color-grey {
-    color: $grey
+    color: $grey;
 }
 
 .color-grey-light {
-    color: $grey-light
+    color: $grey-light;
 }
 
 .sort-visuals {
@@ -140,5 +140,12 @@ html {
     & .is-active {
         color: $primary;
         border-bottom: 2px solid $primary;
+    }
+}
+
+.made-by {
+    & img {
+        width: 30px;
+        height: 30px;
     }
 }
