@@ -9,7 +9,7 @@
 @endsection
 
 @section('control-bar')
-    <player url="{{ route('visuals.store') }}"></player>
+    <player user="{{ auth()->check() }}" url="{{ route('visuals.store') }}"></player>
 @endsection
 
 @section('content')

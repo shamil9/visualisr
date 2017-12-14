@@ -12,8 +12,12 @@ class VisualPolicy
 
     public function before()
     {
-        if (auth()->user()->admin) return true;
-        if (auth()->user()->banned || ! auth()->user()->active) return false;
+        if (auth()->user()->admin) {
+            return true;
+        }
+        if (auth()->user()->banned || ! auth()->user()->active) {
+            return false;
+        }
     }
 
     /**
@@ -35,7 +39,9 @@ class VisualPolicy
      */
     public function create(User $user)
     {
-        if (auth()->check()) return true;
+        if (auth()->check()) {
+            return true;
+        }
     }
 
     /**
@@ -71,8 +77,12 @@ class VisualPolicy
      */
     public function viewPrivateVisual(User $user, Visual $visual)
     {
-        if ($visual->user_id === $user->id) return true;
-        if ($visual->private) return false;
+        if ($visual->user_id === $user->id) {
+            return true;
+        }
+        if ($visual->private) {
+            return false;
+        }
     }
 
     /**
@@ -84,6 +94,8 @@ class VisualPolicy
      */
     public function rate(User $user, Visual $visual)
     {
-        if ($visual->user_id !== $user->id && auth()->check()) return true;
+        if ($visual->user_id !== $user->id && auth()->check()) {
+            return true;
+        }
     }
 }

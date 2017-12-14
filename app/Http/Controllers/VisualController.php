@@ -17,7 +17,7 @@ class VisualController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['auth', 'banned.check'], ['except' => ['index', 'show']]);
+        $this->middleware(['auth', 'banned.check'], ['except' => ['index', 'show', 'create']]);
     }
 
     /**
@@ -43,8 +43,6 @@ class VisualController extends Controller
      */
     public function create()
     {
-        $this->authorize('create', Visual::class);
-
         return view('visuals.create');
     }
 
@@ -77,8 +75,9 @@ class VisualController extends Controller
         if ($visual->private &&
             $visual->user_id !== auth()->id() ||
             $visual->private && ! auth()->check()
-        )
+        ) {
             return view('visuals.private-error');
+        }
 
         Redis::zincrby('visuals-views', 1, $visual->id);
         $visual->userRating = Redis::hget('visual.' . $visual->id, 'user.' . auth()->id());
@@ -96,6 +95,7 @@ class VisualController extends Controller
      *
      * @param Visual $visual
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      * @internal param Image $image
      */
     public function edit(Visual $visual)
@@ -110,7 +110,8 @@ class VisualController extends Controller
      *
      * @param  \Illuminate\Http\Request $request
      * @param Visual                    $visual
-     * @return \Illuminate\Http\Response
+     * @return void
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(Request $request, Visual $visual)
     {
@@ -125,7 +126,9 @@ class VisualController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Visual $visual
+     * @param Request      $request
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(Visual $visual, Request $request)
     {
