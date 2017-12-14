@@ -13,7 +13,9 @@
 //Auth::loginUsingId(2);
 
 Route::get('/', function () {
-    if (auth()->check()) return redirect()->route('visuals.index');
+    if (auth()->check()) {
+        return redirect()->route('visuals.index');
+    }
 
     return view('welcome');
 })->name('index');
@@ -25,20 +27,28 @@ Route::get('/banned', function () {
 // main nav
 Route::get('/home', 'HomeController@index')->name('user.home');
 Route::resource('/blog', 'BlogController');
-Route::get('/faq', function () { return view('faq'); })->name('faq');
-Route::get('/tos', function () { return view('tos'); })->name('tos');
+Route::get('/faq', function () {
+    return view('faq');
+})->name('faq');
+Route::get('/tos', function () {
+    return view('tos');
+})->name('tos');
 
 // auth
 Route::group(['middleware' => 'banned.check'], function () {
-    Route::get('/login/twitter', 'Auth\Providers\Twitter@redirectToProvider')->name('twitter.login');
-    Route::get('/login/twitter/callback', 'Auth\Providers\Twitter@handleProviderCallback')->name('twitter.login.callback');
-    Route::get('/login/twitter/remove', 'Auth\Providers\Twitter@unlinkAccount')->name('twitter.unlink');
+    Route::get('/login/twitter', 'Auth\Providers\Twitter@redirectToProvider')
+        ->name('twitter.login');
+    Route::get('/login/twitter/callback', 'Auth\Providers\Twitter@handleProviderCallback')
+        ->name('twitter.login.callback');
+    Route::get('/login/twitter/remove', 'Auth\Providers\Twitter@unlinkAccount')
+        ->name('twitter.unlink');
 });
 Auth::routes();
 
 // comments
 Route::resource('/visuals/{visual}/comments', 'CommentController');
-Route::get('/comments/{id}/pagination', 'CommentController@pagination')->name('comments.pagination');
+Route::get('/comments/{id}/pagination', 'CommentController@pagination')
+    ->name('comments.pagination');
 
 // visuals
 Route::get('/visuals/rating', 'RatingController@ratings')->name('visuals.ratings');
@@ -50,7 +60,8 @@ Route::resource('visuals', 'VisualController');
 Route::resource('ratings', 'RatingController');
 
 // users
-Route::patch('/users/{user}/toggle', 'UserController@toggleUserBannedStatus')->name('users.toggle.status');
+Route::patch('/users/{user}/toggle', 'UserController@toggleUserBannedStatus')
+    ->name('users.toggle.status');
 Route::resource('users', 'UserController', ['except', ['show']]);
 Route::get('/users/{slug}', 'UserController@show')->name('users.show');
 Route::get('/home/favorites', 'HomeController@showFavorites')->name('user.favorites');
