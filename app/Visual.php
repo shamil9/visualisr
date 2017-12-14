@@ -8,7 +8,11 @@ use Illuminate\Support\Facades\Redis;
 class Visual extends Model
 {
     protected $fillable = [
-        'track', 'artist', 'album', 'private',
+        'track',
+        'artist',
+        'album',
+        'private',
+        'user_id',
     ];
 
     protected $with = [];
@@ -45,9 +49,9 @@ class Visual extends Model
     public function inFavorites()
     {
         // return !! auth()->user()->favorites->contains(['visual_id' => $this->id]);
-        return !! $this->favorites()->where([
-            'user_id' => auth()->id(),
-            'visual_id' => $this->id
+        return ! ! $this->favorites()->where([
+            'user_id'   => auth()->id(),
+            'visual_id' => $this->id,
         ])->first();
     }
 
@@ -69,5 +73,16 @@ class Visual extends Model
     public function getRatingAttribute()
     {
         return substr(Redis::zscore('visuals-rating', $this->id), 0, 3);
+    }
+
+    /**
+     * Check if visual is private
+     *
+     * @return bool
+     */
+    public function isPrivate()
+    {
+        return $this->private && $this->user_id !== auth()->id()
+        || $this->private && ! auth()->check() ? true : false;
     }
 }

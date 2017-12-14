@@ -72,10 +72,9 @@ class VisualController extends Controller
      */
     public function show(Visual $visual)
     {
-        if ($visual->private &&
-            $visual->user_id !== auth()->id() ||
-            $visual->private && ! auth()->check()
-        ) {
+        if ($visual->isPrivate()) {
+            request()->session()->flash('errors', 'Private Visual');
+
             return view('visuals.private-error');
         }
 
